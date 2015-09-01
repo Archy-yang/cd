@@ -1,0 +1,176 @@
+<extend name="Admin@Public:base" />
+
+<block name="style">
+<style type="text/css" media="screen">
+    dl {
+    margin-bottom:20px;
+    }
+    .img-sel {
+        position: relative;
+    }
+    .img-sel img {
+        position: absolute;
+        top:0px;
+        left:0px;
+        max-width:312px;
+        max-height:222px;
+    }
+
+    textarea.tag{
+        height:70px;
+        width:270px;
+    }
+    textarea.content{
+        height:240px;
+        width:550px;
+    }
+</style>
+</block>
+
+<block name="sidebar">
+    <include file="Public:documenu" />
+</block>
+
+<block name="body">
+	<!-- 标题 -->
+    <div class="main-title">
+        <div>
+            <a href="javascript:;" class="btn btn-success confirm">确认</a>
+        </div>
+        <div style="margin-top:20px">
+            <form id="myForm">
+                <dl class="dl-horizontal">
+                    <dt>标题</dt>
+                    <dd><input name="title" type="text" required placeholder="请输入标题" value=""/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>作者</dt>
+                    <dd><input name="author" type="text" placeholder="请输入作者" value=""/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>来源</dt>
+                    <dd><input name="refer" type="text" placeholder="请输入来源" value=""/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>类型</dt>
+                    <dd><input name="type" type="text" placeholder="请输入类型" value=""/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>标签</dt>
+                    <dd>
+                        <textarea class="tag" name="tag" placeholder="请输入标签"></textarea>
+                        <p>
+                            <span style="color:red">
+                                多个标签用空格隔开                               
+                            </span>
+                        </p>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>图片</dt>
+                    <dd>
+                        <div class="img-sel">
+                            <div id="uploadify" class="uploadify"></div>
+                            <img src="">
+                            <input name="img_name" id="img-name" type="hidden" value=""/>
+                            <input name="img_path" id="img-path" type="hidden" value=""/>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>内容</dt>
+                    <dd>
+                        <textarea class="content" name="content" id="content"></textarea>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery.form.js"></script>
+<script type="text/javascript" src="__STATIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.main-nav').find('li').eq(1).addClass('current');
+        $('#subnav').find('h3').eq(3).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(3).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(3).find('li').eq(0).addClass('current');
+
+        $('#uploadify').uploadify({
+            'width': 312,
+            'height' : 222,
+            'swf' : '__STATIC__/uploadify/uploadify.swf',
+            'buttonText' : '+上传图片',
+            'uploader' : '__APP__/Admin/Upload/uploadImg',
+            'fileTypeExts': '*.jpg;*.png;*.gif',
+            itemTemplate: '<div id="${fileID}" class="uploadify-queue-item">\
+                                <div class="uploadify-progress">\
+                                    <div class="uploadify-progress-bar"></div>\
+                                </div>\
+            </div>',
+            onUploadStart: function() {
+                $('.saveform').prop('disabled', true);
+            },
+            onUploadSuccess: function(file, data, response) {
+                var  data = $.parseJSON(data);
+                $('.img-sel').find('img').attr("src", data.path+data.name);
+                $('#img-name').val(data.name);
+                $('#img-path').val(data.path);
+            },
+            onQueueComplete: function() {
+                $('.saveform').prop('disabled', false);
+            }
+        });
+        var ue = UE.getEditor('content', {
+            initialFrameWidth:800,
+            initialFrameHeight: 1000,
+        });
+
+        $("#is-funding").on('click', function() {
+            var _this = $(this), next = _this.parent().next();
+
+            if (_this.prop("checked")) {
+                next.show();
+            } else  {
+                next.hide();
+            }
+        });
+        $('.confirm').on('click', function() {
+            $('#myForm').ajaxSubmit({
+                url: '__APP__/Admin/Transition/saveTransition',
+                type: 'post',
+                dataType: 'json',
+                beforeSubmit: function() {
+                    var form = $('#myForm'), flag = true;
+
+                    form.find('input').each(function() {
+                        var _this = $(this);
+                        if (_this.attr("required") == 'required' && !_this.val()) {
+                            alert('请输入文章标题');
+
+                            flag = false;
+                            return ;
+                        }
+                    });
+
+                    return flag;
+                },
+                success: function(data) {
+                    if(data.code == 0) {
+                        alert('添加成功');
+
+                        location.href="__APP__/Admin/Transition/transitionList";
+                    } else {
+                        alert("添加失败");
+                    }
+                }
+            });
+        });
+    });
+</script>
+</block>
+

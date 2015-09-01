@@ -1,0 +1,177 @@
+<extend name="Public/base"/>
+<block name="style">
+<style type="text/css">
+    .info-body {
+        width: 1200px;
+        margin: 20px auto auto auto;
+    }
+
+    .button {
+        margin-top: 20px;
+    }
+
+    .img-list {
+        margin-top: 20px;
+    }
+    .img-list div{
+        margin-bottom:20px;
+        position: relative;
+    }
+
+    #uploadify {
+        max-width:212px;
+    }
+    .uploadify-queue-item {
+        width: 100px;
+        padding: 2px;
+        margin-top: 0;
+        border-radius: 0;
+        background: #fff;
+        position: relative;
+        left:0;
+        bottom: 0px;
+    }
+    .uploadify-progress {
+        width: 100%;
+        margin: 0;
+        background: #f5f5f5;
+    }
+    .uploadify-progress-bar {
+        width: 100%;
+        background: #000;
+        height: 5px;
+    }
+    div.list {
+        height: 361px;
+    }
+    div.del-img {
+        display: none;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 50px;
+        height: 50px;
+        background-color: #000;
+        background-size: 50px 50px;
+        background-image: url('__PUBLIC__/Admin/images/x-w.png');
+    }
+</style>
+</block>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="Public:documenu" />
+</block>
+
+
+<block name="body">
+	<!-- 标题 -->
+    <div class="main-title">
+        <div class="info-body">
+            <a class="btn btn-success" href="javascript:;">保存</a>
+            <div class="button">
+                <div id="uploadify"></div>
+            </div>
+            <form id="myform">
+                <div class="img-list">
+                    <volist name="list" id='vo'>
+                    <div class="list">
+                        <p>
+                            <img src="{$vo.path}{$vo.name}"/>
+                            <input type="hidden" name="img[]" value="{$vo.name}|{$vo.path}" /> 
+                        </p>
+                        <div class="del-img"></div>
+                    </div>
+                    </volist>
+                </div>
+            </form>
+        </div>
+	</div>
+
+	<!-- 按钮工具栏 -->
+</block>
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery.form.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.main-nav').find('li').eq(1).addClass('current');
+        $('#subnav').find('h3').eq(0).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(0).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(0).find('li').eq(1).addClass('current');
+
+        $('#uploadify').uploadify({
+            'width': 100,
+            'height' : 70,
+            'swf' : '__STATIC__/uploadify/uploadify.swf',
+            'buttonText' : '+上传图片',
+            'uploader' : '__APP__/Admin/Upload/uploadImg',
+            'fileTypeExts': '*.jpg;*.png;*.gif',
+            itemTemplate: '<div id="${fileID}" class="uploadify-queue-item">\
+                                <div class="uploadify-progress">\
+                                    <div class="uploadify-progress-bar"></div>\
+                                </div>\
+            </div>',
+            onUploadStart: function() {
+                $('.saveform').prop('disabled', true);
+            },
+            onUploadSuccess: function(file, data, response) {
+                var data = $.parseJSON(data);
+                console.log(data);
+                var temp = '\
+                <div class="list">\
+                <p>\
+                <img src="'+data.path+data.name+'"/>\
+                <input type="hidden" name="img[]" value="'+data.name+'|'+data.path+'" /> \
+                </p>\
+                <div class="del-img"></div>\
+                </div>';
+
+                var imglist = $('.img-list');
+
+                imglist.append(temp);
+            },
+            onQueueComplete: function() {
+                $('.saveform').prop('disabled', false);
+            }
+        });
+        $('.img-list').on('click', '.del-img',function() {
+            var _this = $(this);
+
+            _this.parent().remove();
+        });
+        $('.btn-success').on('click', function() {
+            $('#myform').ajaxSubmit({
+                url:'__APP__/Admin/Set/saveCarousel',
+                type:'post',
+                dataType: 'json',
+                success: function(data) {
+                    if (!data.code) {
+                        alert('保存成功');
+                    } else {
+                        alert('保存失败');
+                    }
+                }
+            });
+        });
+        //$('.list').hover(function() {
+        //    var _this = $(this); 
+        //    _this.find('.del-img').show();
+        //}, function() {
+        //    var _this = $(this); 
+        //    _this.find('.del-img').hide();
+        //
+        //});
+        $('.img-list').on('mouseenter mouseleave', '.list', function(event) {
+            console.log(event.type);
+            var _this = $(this), delImg = _this.find('.del-img');
+
+            if (event.type == 'mouseenter') {
+                delImg.show();
+            } else {
+                delImg.hide();
+            }
+        });
+    });
+</script>
+</block>

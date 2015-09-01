@@ -1,0 +1,25 @@
+<div id="subnav" class="subnav">
+    <h3>
+        <i class="icon <notin name="Think.ACTION_NAME"  value="myimage,draftbox,examine">icon-fold</notin>"></i>
+        系统图片 
+    </h3>
+    <ul class="side-sub-menu <notin name="Think.ACTION_NAME"  value="myimage,draftbox,examine">subnav-off</notin>">
+        <li <eq name="Think.ACTION_NAME" value="myimage">class="current"</eq>><a class="item" href="{:U('article/myimage')}">顶部广告</a></li>
+        <li <eq name="Think.ACTION_NAME" value="draftbox">class="current"</eq>><a class="item" href="{:U('article/draftbox')}">草稿箱</a></li>
+        <li <eq name="Think.ACTION_NAME" value="draftbox">class="examine"</eq>><a class="item" href="{:U('article/examine')}">待审核</a></li>
+    </ul>
+    <!-- 回收站 -->
+    <h3>
+        <em class="recycle"></em>
+        <a href="{:U('article/recycle')}">回收站</a>
+    </h3>
+</div>
+<script>
+    $(function(){
+        $(".side-sub-menu li").hover(function(){
+            $(this).addClass("hover");
+        },function(){
+            $(this).removeClass("hover");
+        });
+    })
+</script>

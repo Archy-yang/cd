@@ -1,0 +1,128 @@
+<extend name="Admin@Public:base" />
+
+<block name="style">
+<link rel="stylesheet" type="text/css" href="__STATIC__/datetimepicker/css/datetimepicker.css"/>
+<style type="text/css" media="screen">
+    dl {
+    margin-bottom:20px;
+    }
+    .img-sel img{
+        position: relative;
+        top:0px;
+        left:0px;
+        max-width:217px;
+        max-height:276px;
+    }
+    textarea{
+        height:120px;
+        width:320px;
+    }
+</style>
+</block>
+
+<block name="sidebar">
+    <include file="Public:documenu" />
+</block>
+
+<block name="body">
+	<!-- 标题 -->
+    <div class="main-title">
+        <div>
+        </div>
+        <div style="margin-top:20px">
+            <form id="myForm">
+                <gt name="info.id" value="0">
+                <input name="id" type="hidden" value="{$info.id}" />
+                </gt>
+                <dl class="dl-horizontal">
+                    <dt>手机</dt>
+                    <dd>{$info.mobile}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>人物简介</dt>
+                    <dd>{$info.profile}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>人物照片</dt>
+                    <dd>
+                        <div class="img-sel">
+                            <div id="uploadify" class="uploadify"></div>
+                            <img id="img-src" src="{$info.img_path}{$info.img_name}">
+                            <input name="img_name" id="img-name" type="hidden" value="{$info.img_name}"/>
+                            <input name="img_path" id="img-path" type="hidden" value="{$info.img_path}"/>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>公司成立时间</dt>
+                    <dd>
+                        {$info.company_creation_time}年
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>公司资产</dt>
+                    <dd>
+                        {$info.company_fund}
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>公司位置</dt>
+                    <dd>
+                        {$info.company_location}
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>去年销售额</dt>
+                    <dd>
+                        {$info.sales_volume}
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>资源</dt>
+                    <dd>
+                        <textarea name="resource" disabled>{$info.resource}</textarea>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>需求</dt>
+                    <dd>
+                        <textarea name="need" disabled>{$info.need}</textarea>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>已备资金</dt>
+                    <dd>
+                        {$info.funding}
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>一句话说明</dt>
+                    <dd>
+                        <textarea name="brief" disabled>{$info.brief}</textarea>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>项目简介</dt>
+                    <dd>
+                        <textarea name="brief" disabled>{$info.preject_desc}</textarea>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery.form.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.main-nav').find('li').eq(1).addClass('current');
+        $('#subnav').find('h3').eq(2).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(2).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(2).find('li').eq(1).addClass('current');
+    });
+</script>
+</block>
+

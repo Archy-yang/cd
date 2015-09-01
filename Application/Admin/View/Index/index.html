@@ -1,0 +1,77 @@
+<extend name="Public/base"/>
+
+<block name="sidebar"></block>
+
+<block name="style">
+    <style>
+        body{padding: 0}
+        .container-span {
+            margin-top: 30px;
+        }
+    </style>
+</block>
+
+<block name="body">
+    <!-- 主体 -->
+    <div id="indexMain" class="index-main">
+       <!-- 插件块 -->
+       <div class="container-span">
+             <div class="container-span top-columns cf">
+                <dl class="show-num-mod">
+                    <dt><i class="count-icon user-count-icon"></i></dt>
+                    <dd>
+                        <strong>{$info.user}</strong>
+                        <span>用户数</span>
+                    </dd>
+                </dl>
+                <dl class="show-num-mod">
+                    <!--dt><i class="count-icon user-action-icon"></i></dt-->
+                    <dt><i class="count-icon doc-modal-icon"></i></dt>
+                    <dd>
+                        <strong>{$info.inverstor}</strong>
+                        <span>招拍挂报名</span>
+                    </dd>
+                </dl>
+                <dl class="show-num-mod">
+                    <!--dt><i class="count-icon user-action-icon"></i></dt-->
+                    <dt><i class="count-icon doc-modal-icon"></i></dt>
+                    <dd>
+                        <strong>{$info.college}</strong>
+                        <span>商学院报名</span>
+                    </dd>
+                </dl>
+                <dl class="show-num-mod">
+                    <dt><i class="count-icon doc-count-icon"></i></dt>
+                    <dd>
+                        <strong>{$info.transition}</strong>
+                        <span>转型</span>
+                    </dd>
+                </dl>
+                <dl class="show-num-mod">
+                    <dt><i class="count-icon doc-count-icon"></i></dt>
+                    <dd>
+                        <strong>{$info.college}</strong>
+                        <span>商学院</span>
+                    </dd>
+                </dl>
+            </div>
+       </div>
+    </div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+    $('.main-nav').find('li').eq(0).addClass('current');
+    /* 插件块关闭操作 */
+    $(".title-opt .wm-slide").each(function(){
+        $(this).click(function(){
+            $(this).closest(".columns-mod").find(".bd").toggle();
+            $(this).find("i").toggleClass("mod-up");
+        });
+    })
+    $(function(){
+        // $('#main').attr({'id': 'indexMain','class': 'index-main'});
+        $('.sidebar').remove();
+    })
+</script>
+</block>

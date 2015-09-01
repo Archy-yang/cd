@@ -1,0 +1,46 @@
+<extend name="Public/base" />
+
+<block name="sidebar">
+    <include file="Public:usermenu" />
+</block>
+<block name="body">
+	<!-- 标题栏 -->
+		<div class="tab-wrap">
+		<ul class="tab-nav nav">
+		<li class="current"><a href="{:U('updatenickname')}">修改昵称</a></li>
+		<li ><a href="{:U('updatepassword')}">修改密码</a></li>
+		</ul>
+		<div class="tab-content">
+	<!-- 修改密码表单 -->
+    <form action="{:U('User/submitNickname')}" method="post" class="form-horizontal" autocomplete="off">
+		<div class="form-item">
+			<label class="item-label">密码：<span class="check-tips">（请输入密码）</span></label>
+			<div class="controls">
+				<input type="password" name="password" class="text input-large"  autocomplete="off"/>
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">昵称：<span class="check-tips">（请输入新昵称）</span></label>
+			<div class="controls">
+				<input type="text" name="nickname" class="text input-large" autocomplete="off" value="{:get_username()}"/>
+			</div>
+		</div>
+		<div class="form-item">
+			<button type="submit" class="btn btn-success submit-btn ajax-post" target-form="form-horizontal">确 认</button>
+			<button class="btn btn-info btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+		</div>
+	</form>
+			</div>
+	</div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+    <script type="text/javascript">
+        //导航高亮
+        $('.main-nav').find('li').eq(2).addClass('current');
+        $('#subnav').find('h3').eq(0).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(0).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(0).find('li').eq(0).addClass('current');
+    </script>
+</block>

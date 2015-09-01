@@ -1,0 +1,75 @@
+<extend name="Public/base"/>
+<block name="style">
+<style type="text/css">
+    .img-sel {
+        position: relative;
+    }
+    .img-sel img {
+        position: absolute;
+        top:0px;
+        left:0px;
+    }
+</style>
+</block>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+
+
+<block name="body">
+	<!-- 标题 -->
+    <div class="main-title">
+        <div class="virtual-body">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-inner">
+                </div>
+            </div>
+            <div class="adv">
+                <div class="logo">
+                </div>
+                <div class="adv-img">
+                    <div class="img-sel">
+                        <div id="uploadify" class="uploadify"></div>
+                        <img src="">
+                        <input id="img-path" type="hidden" value="" name="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<!-- 按钮工具栏 -->
+</block>
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#uploadify').uploadify({
+            'width': 550,
+            'height' : 70,
+            'swf' : '__STATIC__/uploadify/uploadify.swf',
+            'buttonText' : '+上传图片',
+            'uploader' : '__APP__/Admin/Upload/uploadImg',
+            'fileTypeExts': '*.jpg;*.png;*.gif',
+            itemTemplate: '<div id="${fileID}" class="uploadify-queue-item">\
+                                <div class="uploadify-progress">\
+                                    <div class="uploadify-progress-bar"></div>\
+                                </div>\
+            </div>',
+            onUploadStart: function() {
+                $('.saveform').prop('disabled', true);
+            },
+            onUploadSuccess: function(file, data, response) {
+                var  data = $.parseJSON(data);
+                $('.img-sel').find('img').attr("src", data.path+data.name);
+                $('#img-path').val(data.name);
+            },
+            onQueueComplete: function() {
+                $('.saveform').prop('disabled', false);
+            }
+        });
+    });
+</script>
+</block>

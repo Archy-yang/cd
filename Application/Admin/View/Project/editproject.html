@@ -1,0 +1,200 @@
+<extend name="Admin@Public:base" />
+
+<block name="style">
+<style type="text/css" media="screen">
+    dl {
+    margin-bottom:20px;
+    }
+    .img-sel {
+        position: relative;
+    }
+    .img-sel img {
+        position: absolute;
+        top:0px;
+        left:0px;
+        max-width:550px;
+        max-height:235px;
+    }
+    textarea {
+        height:240px;
+        width:550px;
+    }
+</style>
+</block>
+
+<block name="sidebar">
+    <include file="Public:documenu" />
+</block>
+
+<block name="body">
+	<!-- 标题 -->
+    <div class="main-title">
+        <div>
+            <a href="javascript:;" class="btn btn-success confirm">确认</a>
+            <a href="__APP__/Admin/Project/deleteProject/id/{$info.id}" class="btn btn-danger del">删除</a>
+        </div>
+        <div style="margin-top:20px">
+            <form id="myForm">
+                <input type="hidden" value="{$info.id}" name="id" />
+                <dl class="dl-horizontal">
+                    <dt>项目名称</dt>
+                    <dd><input name="name" type="text" required placeholder="请输入项目名称" value="{$info.name}"/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>主类型</dt>
+                    <dd>
+                        <input name="main_type" type="text" placeholder="请输入项目主类型" value="{$info.main_type}"/>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>次类型</dt>
+                    <dd><input name="sub_type" type="text" placeholder="请输入项目次类型" value="{$info.sub_type}"/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>已备资金</dt>
+                    <dd><input name="funds" type="text" placeholder="请输入项目已备资金" value="{$info['funds']/100}"/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>人才招募</dt>
+                    <dd><input name="recruit" type="text" placeholder="请输入项目人才招募" value="{$info.recruit}"/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>融资情况</dt>
+                    <dd>
+                        <p>
+                            是否融资：<input id="is-funding" name="is_funding" type="checkbox" value="1" <eq name="info.is_funding" value="1">checked</eq> />
+                        </p>
+                        <p style="margin-top:10px;<neq name='info.is_funding' value='1'>display:none</neq>">
+                            融资情况：
+                            <select name="funding" id="funding" onchange="" size="1">
+                                <option <eq name="info.is_funding" value="0">selected</eq> value="0">天使轮</option>
+                                <option <eq name="info.is_funding" value="1">selected</eq> value="1">A轮</option>
+                                <option <eq name="info.is_funding" value="2">selected</eq> value="2">B轮</option>
+                                <option <eq name="info.is_funding" value="3">selected</eq> value="3">C轮</option>
+                                <option <eq name="info.is_funding" value="4">selected</eq> value="4">D轮</option>
+                            </select>
+                        </p>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>项目图片</dt>
+                    <dd>
+                        <div class="img-sel">
+                            <div id="uploadify" class="uploadify"></div>
+                            <img src="{$info['img_path']}{$info['img_name']}">
+                            <input name="img_name" id="img-name" type="hidden" value="{$info['img_name']}"/>
+                            <input name="img_path" id="img-path" type="hidden" value="{$info['img_path']}"/>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>项目描述</dt>
+                    <dd>
+                        <textarea name="desc" placeholder="请输入项目描述">{$info.desc}</textarea>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery.form.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.main-nav').find('li').eq(1).addClass('current');
+        $('#subnav').find('h3').eq(1).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(1).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(1).find('li').eq(0).addClass('current');
+
+        $('#uploadify').uploadify({
+            'width': 550,
+            'height' : 235,
+            'swf' : '__STATIC__/uploadify/uploadify.swf',
+            'buttonText' : '+上传图片',
+            'uploader' : '__APP__/Admin/Upload/uploadImg',
+            'fileTypeExts': '*.jpg;*.png;*.gif',
+            itemTemplate: '<div id="${fileID}" class="uploadify-queue-item">\
+                                <div class="uploadify-progress">\
+                                    <div class="uploadify-progress-bar"></div>\
+                                </div>\
+            </div>',
+            onUploadStart: function() {
+                $('.saveform').prop('disabled', true);
+            },
+            onUploadSuccess: function(file, data, response) {
+                var  data = $.parseJSON(data);
+                $('.img-sel').find('img').attr("src", data.path+data.name);
+                $('#img-name').val(data.name);
+                $('#img-path').val(data.path);
+            },
+            onQueueComplete: function() {
+                $('.saveform').prop('disabled', false);
+            }
+        });
+        $("#is-funding").on('click', function() {
+            var _this = $(this), next = _this.parent().next();
+
+            if (_this.prop("checked")) {
+                next.show();
+            } else  {
+                next.hide();
+            }
+        });
+        $('.confirm').on('click', function() {
+            $('#myForm').ajaxSubmit({
+                url: '__APP__/Admin/Project/updateProject',
+                type: 'post',
+                dataType: 'json',
+                beforeSubmit: function() {
+                    var form = $('#myForm'), flag = true;
+
+                    form.find('input').each(function() {
+                        var _this = $(this);
+                        if (_this.attr("required") == 'required' && !_this.val()) {
+                            alert('请输入项目名称');
+
+                            flag = false;
+                            return ;
+                        }
+                    });
+
+                    return flag;
+                },
+                success: function(data) {
+                    if(data.code == 0) {
+                        alert('修改成功');
+
+                        location.href="__APP__/Admin/Project/projectList";
+                    } else {
+                        alert("修改失败");
+                    }
+                }
+            });
+        });
+        $('.del').on("click", function() {
+            var _this = $(this), href = _this.attr("href");
+            if (confirm("确认删除？")) {
+                $.ajax({
+                    url: href,
+                    dateType: 'json',
+                    success: function(data) {
+                        data = $.parseJSON(data);
+
+                        if (data.code == 0) {
+                            alert('删除成功');
+
+                            location.href="__APP__/Admin/Project/projectList";
+                        } else {
+                            alert('删除失败');
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+    });
+</script>
+</block>
+

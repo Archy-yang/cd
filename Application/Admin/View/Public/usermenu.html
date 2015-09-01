@@ -1,0 +1,25 @@
+<div id="subnav" class="subnav">
+    <h3>
+        <i class="icon icon-fold"></i>
+        用户管理       
+    </h3>
+    <ul class="side-sub-menu subnav-off">
+        <li><a class="item" href="__APP__/Admin/User/Index">用户信息</a></li>
+    </ul>
+    <h3>
+        <i class="icon icon-fold"></i>
+        行为管理
+    </h3>
+    <ul class="side-sub-menu subnav-off">
+        <li><a class="item" href="__APP__/Admin/Action/actionlog">登陆记录</a></li>
+    </ul>
+</div>
+<script>
+    $(function(){
+        $(".side-sub-menu li").hover(function(){
+            $(this).addClass("hover");
+        },function(){
+            $(this).removeClass("hover");
+        });
+    })
+</script>
