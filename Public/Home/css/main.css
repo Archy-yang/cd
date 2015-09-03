@@ -379,6 +379,8 @@ a {
 }
 img {
   display: block;
+  max-width: 100%;
+  max-height: 100%;
 }
 body {
   font-family: "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", tahoma, arial, simsun, "宋体";
@@ -454,8 +456,14 @@ body {
   padding: 0 !important;
   overflow: hidden;
 }
+.banner .bd {
+  height: 100%;
+}
+.banner li {
+  height: 100%;
+}
 .vague {
-  height: 410px;
+  max-height: 410px;
   padding: 0 !important;
   overflow: hidden;
 }
@@ -662,4 +670,150 @@ body {
 .bidding .company span {
   color: #464646;
   font-size: 15px;
+}
+.transition {
+  padding-top: 40px;
+}
+.transition .item {
+  height: 220px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+.transition .item .pic {
+  float: left;
+}
+.transition .item .brief {
+  padding-left: 330px;
+}
+.transition .item h4 {
+  line-height: 50px;
+  font-size: 20px;
+}
+.transition .item .attached {
+  font-size: 14px;
+  line-height: 1;
+  color: #666;
+}
+.transition .item span.author {
+  font-size: 15px;
+}
+.transition .item span.datetime {
+  margin-left: 30px;
+}
+.transition .item .general {
+  height: 100px;
+  line-height: 1.5;
+  margin-top: 20px;
+  color: #000;
+  overflow: hidden;
+}
+.transition .item .label {
+  line-height: 1;
+  font-size: 14px;
+  color: #AAA;
+}
+.transition .item .label span {
+  margin-right: 8px;
+}
+.blank {
+  height: 20px;
+}
+.college {
+  margin-top: 40px;
+  position: relative;
+  text-align: justify;
+}
+.college .item {
+  display: inline-block;
+  width: 340px;
+  margin-bottom: 30px;
+  border: 1px solid #EEE;
+  position: relative;
+}
+.college .thumb {
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+}
+.college .label {
+  position: absolute;
+  top: 150px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  line-height: 1;
+  zoom: 1;
+}
+.college .label img {
+  position: relative;
+  border-radius: 40px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  -o-border-radius: 40px;
+  -ms-border-radius: 40px;
+}
+.college .label span {
+  position: absolute;
+  left: 95px;
+  bottom: 15px;
+  display: block;
+  width: 200px;
+  color: #3a7ea3;
+}
+.college p.brief {
+  height: 85px;
+  line-height: 1.4;
+  padding: 50px 20px 0;
+  margin-bottom: 20px;
+  font-size: 15px;
+  overflow: hidden;
+}
+.college .extra {
+  position: relative;
+  line-height: 1;
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #fafafa;
+}
+.college .extra span {
+  display: block;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+.college .extra a.apply {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: block;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  color: #FFF;
+  background-color: #fe5722;
+}
+.pagination {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+.pagination a {
+  display: inline-block;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 15px;
+  margin: 0 5px;
+  color: #666;
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+}
+.pagination a.active,
+.pagination a:hover {
+  color: #FFF;
+  background-color: #db6d4b;
 }

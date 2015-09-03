@@ -1,29 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>虫洞</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="format-detection" content="telephone=no" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <link rel="stylesheet" href="__CSS__/main.css">
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-</head>
+    <include file="Base/header" />
 <body>
 	<!-- 网站导航 -->
 	<div class="topnav">
 		<div class="wrapper">
 			<ul class="nav">
 				<li class="active"><a href="/">首页</a></li>
-				<li><a href="__APP__/Home/Inverstor/Info">虫洞招拍挂</a></li>
-				<li><a href="__PUBILC__/Home/images/transition.html">虫洞转型</a></li>
+				<li><a href="__APP__/Home/Inverstor/info">虫洞招拍挂</a></li>
+				<li><a href="__APP__/Home/Transition/showList">虫洞转型</a></li>
 				<li><a href="__PUBILC__/Home/images/college.html">虫洞商学院</a></li>
 			</ul>
 			<a href="javascript:;" class="extra">
@@ -39,12 +24,23 @@
 		</div>
 	</div>
 	<!-- 焦点图 -->
-	<div class="banner wrapper">
-        <ul>
+	<div class="banner wrapper" id="banner">
+        <ul class="bd">
             <volist name="banners" id="vo">
             <li><img src="{$vo}" alt="虫洞招拍挂"></li>
             </volist>
-		</ul>
+			<li><img src="__PUBLIC__/Home/images/banner.jpg" alt="虫洞招拍挂"></li>
+			<li><img src="__PUBLIC__/Home/images/banner.jpg" alt="虫洞招拍挂"></li>
+        </ul>
+        <p class="hd">
+            <volist name="banners" id="vo">
+            <span>1</span>
+            </volist>
+			<span>1</span>
+			<span>1</span>
+		</p>
+		<a href="javascript:;" class="prev">111</a>
+		<a href="javascript:;" class="next">222</a>
 	</div>
 	<!-- 未知部分 -->
 	<div class="vague wrapper">
@@ -137,5 +133,14 @@
         </if>
     </div>
     <include file="Base/footer" />
+	<script type="text/javascript">
+		$("#banner").slide({
+			mainCell: ".bd",
+			titCell: '.hd span',
+			titOnClassName: 'active',
+			autoPlay: true,
+			effect: 'left'
+		});
+	</script>
 </body>
 </html>
