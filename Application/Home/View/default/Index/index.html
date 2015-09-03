@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <include file="Base/header" />
+	<include file="Base/header" />
 <body>
 	<!-- 网站导航 -->
 	<div class="topnav">
@@ -20,39 +20,29 @@
 	<div class="logo wrapper">
 		<h2>虫洞招拍挂</h2>
 		<div class="advert">
-            <img src="{$adv}" alt="虫洞招拍挂">
+			<img src="{$adv}" alt="虫洞招拍挂">
 		</div>
 	</div>
 	<!-- 焦点图 -->
 	<div class="banner wrapper" id="banner">
-        <ul class="bd">
+		<ul class="slide">
             <volist name="banners" id="vo">
             <li><img src="{$vo}" alt="虫洞招拍挂"></li>
             </volist>
-			<li><img src="__PUBLIC__/Home/images/banner.jpg" alt="虫洞招拍挂"></li>
-			<li><img src="__PUBLIC__/Home/images/banner.jpg" alt="虫洞招拍挂"></li>
-        </ul>
-        <p class="hd">
-            <volist name="banners" id="vo">
-            <span>1</span>
-            </volist>
-			<span>1</span>
-			<span>1</span>
-		</p>
-		<a href="javascript:;" class="prev">111</a>
-		<a href="javascript:;" class="next">222</a>
+		</ul>
 	</div>
 	<!-- 未知部分 -->
 	<div class="vague wrapper">
 		<img src="__PUBLIC__/Home/images/vague.jpg" alt="虫洞招拍挂">
 	</div>
 	<!-- 经营服务 -->
-    <div class="service wrapper">
-        <volist name="project" id="vo">
+	<div class="service wrapper">
 		<!-- Loop Start -->
+        <volist name="project" id="vo">
 		<div class="item">
 			<div class="pic">
                 <img src="{$vo.img_path}{$vo.img_name}" alt="{$vo.name}">
+                <b class="mark">融资成功</b>
 			</div>
 			<div class="brief">
                 <h4>{$vo.name}</h4>
@@ -67,79 +57,16 @@
         </div>
         </volist>
 		<!-- Loop Start -->
-		<div class="item">
-			<div class="pic">
-				<img src="__PUBLIC__/Home/images/service_2.jpg" alt="无忧保姆">
-			</div>
-			<div class="brief">
-				<h4>第一设施</h4>
-				<p>第一设施以主动式反馈控制系统为应用核心，在能源管理、自动化控制、软件和服务领域拥用精深的专业经验，为客户提供与智能设备和大数据时代所紧密</p>
-				<dl>
-					<dt></dt>
-					<dd>已备资金 : <span>100,00万</span></dd>
-					<dd>科技•<span>生活</span></dd>
-					<dd>人才招募 : <span>小米科技</span></dd>
-				</dl>
-			</div>
-		</div>
-		<div class="item">
-			<div class="pic">
-				<img src="__PUBLIC__/Home/images/service_3.jpg" alt="车悦宝">
-			</div>
-			<div class="brief">
-				<h4>第一设施</h4>
-				<p>第一设施以主动式反馈控制系统为应用核心，在能源管理、自动化控制、软件和服务领域拥用精深的专业经验，为客户提供与智能设备和大数据时代所紧密</p>
-				<dl>
-					<dt></dt>
-					<dd>已备资金 : <span>100,00万</span></dd>
-					<dd>科技•<span>生活</span></dd>
-					<dd>人才招募 : <span>小米科技</span></dd>
-				</dl>
-			</div>
-		</div>
-		<div class="item">
-			<div class="pic">
-				<img src="__PUBLIC__/Home/images/service_4.jpg" alt="言几又">
-			</div>
-			<div class="brief">
-				<h4>第一设施</h4>
-				<p>第一设施以主动式反馈控制系统为应用核心，在能源管理、自动化控制、软件和服务领域拥用精深的专业经验，为客户提供与智能设备和大数据时代所紧密</p>
-				<dl>
-					<dt></dt>
-					<dd>已备资金 : <span>100,00万</span></dd>
-					<dd>科技•<span>生活</span></dd>
-					<dd>人才招募 : <span>小米科技</span></dd>
-				</dl>
-			</div>
-		</div>
-		<div class="item">
-			<div class="pic">
-				<img src="__PUBLIC__/Home/images/service_5.jpg" alt="雷神高性能游戏本">
-			</div>
-			<div class="brief">
-				<h4>第一设施</h4>
-				<p>第一设施以主动式反馈控制系统为应用核心，在能源管理、自动化控制、软件和服务领域拥用精深的专业经验，为客户提供与智能设备和大数据时代所紧密</p>
-				<dl>
-					<dt></dt>
-					<dd>已备资金 : <span>100,00万</span></dd>
-					<dd>科技•<span>生活</span></dd>
-					<dd>人才招募 : <span>小米科技</span></dd>
-				</dl>
-			</div>
-		</div>
-        <!-- 更多 -->
-        <if condition="$more">
-        <a href="javascript:;" class="more">MORE</a>
-        </if>
-    </div>
-    <include file="Base/footer" />
+		<!-- 更多 -->
+		<a href="javascript:;" class="more">MORE</a>
+	</div>
+	<include file="Base/footer" />
 	<script type="text/javascript">
-		$("#banner").slide({
-			mainCell: ".bd",
-			titCell: '.hd span',
-			titOnClassName: 'active',
-			autoPlay: true,
-			effect: 'left'
+		$("#banner").unslider({
+			speed: 500,
+			delay: 3000,
+			complete: function() {},
+			dots: true
 		});
 	</script>
 </body>

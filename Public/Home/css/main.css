@@ -366,12 +366,14 @@ h5,
 h6,
 ul,
 dl,
+ol,
 dt,
 dd {
   padding: 0;
   margin: 0;
 }
-ul {
+ul,
+ol {
   list-style-type: none;
 }
 a {
@@ -454,13 +456,40 @@ body {
 .banner {
   height: 400px;
   padding: 0 !important;
-  overflow: hidden;
+  position: relative;
+  overflow: auto;
 }
-.banner .bd {
+.banner .slide {
   height: 100%;
 }
-.banner li {
+.banner .slide li {
   height: 100%;
+  float: left;
+}
+.banner .dots {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+  line-height: 1;
+}
+.banner .dots li {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  color: transparent;
+  background-color: #fbb3b3;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.banner .dots li.active {
+  width: 24px;
+  background-color: #FFF;
 }
 .vague {
   max-height: 410px;
@@ -480,6 +509,20 @@ body {
   height: 100%;
   overflow: hidden;
   float: left;
+  position: relative;
+}
+.service b.mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 90px;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  background: url('../images/icon_bg.png') no-repeat;
 }
 .service .brief {
   padding-top: 40px;
@@ -681,6 +724,19 @@ body {
 }
 .transition .item .pic {
   float: left;
+  position: relative;
+}
+.transition .item b.mark {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 15px;
+  font-size: 14px;
+  color: #FFF;
+  background-color: #db6d4b;
 }
 .transition .item .brief {
   padding-left: 330px;
