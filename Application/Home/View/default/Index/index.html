@@ -63,9 +63,9 @@
                 <p>{$vo.desc}</p>
 				<dl>
 					<dt></dt>
-					<dd>已备资金 : <span>100,00万</span></dd>
-					<dd>科技•<span>生活</span></dd>
-					<dd>人才招募 : <span>小米科技</span></dd>
+                    <dd>已备资金 : <span>{:round($vo['funds']/100/10000, 2)}万</span></dd>
+                    <dd>{$vo.main_type}•<span>{$vo.sub_type}</span></dd>
+                    <dd>人才招募 : <span>{$vo.recruit}</span></dd>
 				</dl>
 			</div>
         </div>
@@ -131,32 +131,11 @@
 				</dl>
 			</div>
 		</div>
-		<!-- 更多 -->
-		<a href="javascript:;" class="more">MORE</a>
-	</div>
-	<div class="footer wrapper">
-		<div class="contact">
-			<a href="javascript:;" class="project">创建项目</a>
-			<dl class="item">
-				<dt>联系邮箱</dt>
-				<dd class="icon mail">
-					gqzc@jd.com
-				</dd>
-			</dl>
-			<dl class="item">
-				<dt class="icon weibo">关注微博</dt>
-				<dd>
-					<img src="" alt="">
-				</dd>
-			</dl>
-			<dl class="item mail">
-				<dt class="icon wechat">关注微信</dt>
-				<dd>
-					<img src="" alt="">
-				</dd>
-			</dl>
-		</div>
-		<div class="copyright"></div>
-	</div>
+        <!-- 更多 -->
+        <if condition="$more">
+        <a href="javascript:;" class="more">MORE</a>
+        </if>
+    </div>
+    <include file="Base/footer" />
 </body>
 </html>
