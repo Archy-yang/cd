@@ -29,12 +29,6 @@ class InverstorController extends HomeController
 
     public function signUp()
     {
-        $inverstor = D("Inverstor");
-
-        $data = $inverstor->create();
-
-        if ($data) {
-        
-        }
+        $this->display();
     }
 }
