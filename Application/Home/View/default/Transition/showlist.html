@@ -9,7 +9,7 @@
 				<li><a href="/">首页</a></li>
 				<li><a href="__APP__/Home/Inverstor/info">虫洞招拍挂</a></li>
 				<li class="active"><a href="__APP__/Home/Transition/showList">虫洞转型</a></li>
-				<li><a href="__PUBILC__/Home/images/college.html">虫洞商学院</a></li>
+				<li><a href="__APP__/Home/College/showList">虫洞商学院</a></li>
 			</ul>
 			<a href="javascript:;" class="extra">
 				官方咨询电话 <span>400-100-6810</span>
@@ -25,119 +25,32 @@
 	</div>
 	<!-- 转型 -->
 	<div class="transition wrapper">
-		<!-- Loop start -->
+        <!-- Loop start -->
+        <volist name="list" id='vo'>
+        <php> $tag = json_decode($vo['tag'], 1)</php>
+        <php> $content = strip_tags($vo['content'])</php>
 		<div class="item">
 			<div class="pic">
-				<img src="__PUBLIC__/Home/images/trans.jpg" alt="转型">
-				<b class="mark">观点</b>
+                <img src="{$vo.img_path}{$vo.img_name}" alt="转型">
+                <notempty name="vo.type">
+                <b class="mark">{$vo.type}</b>
+                </notempty>
 			</div>
 			<div class="brief">
-				<h4>TABLE 正面对战 搅局大师周鸿祎争做互联网金融野蛮人？</h4>
-				<p class="attached">作者: <span class="author">崔婧</span> <span class="datetime">2015-07-23 09:36</span></p>
-				<p class="general">W3C标准中对CSS3的transition这是样描述的:CSS的transition允许CSS的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值</p>
-				<p class="label">
-					<span>360</span>
-					<span>互联网金融</span>
-					<span>周鸿祎</span>
+                <h4>{$vo.title}</h4>
+                <p class="attached">作者: <span class="author">{$vo.author}</span> <span class="datetime">{$vo.create_time}</span></p>
+                <p class="general">{$content|msubstr=0,180}</p>
+                <p class="label">
+                    <volist name="tag" id="tv">
+                    <span>{$tv}</span>
+                    </volist>
 				</p>
 			</div>
-		</div>
+        </div>
+        </volist>
 		<!-- Loop end -->
-		<div class="item">
-			<div class="pic">
-				<img src="__PUBLIC__/Home/images/trans.jpg" alt="转型">
-			</div>
-			<div class="brief">
-				<h4>TABLE 正面对战 搅局大师周鸿祎争做互联网金融野蛮人？</h4>
-				<p class="attached">作者: <span class="author">崔婧</span> <span class="datetime">2015-07-23 09:36</span></p>
-				<p class="general">W3C标准中对CSS3的transition这是样描述的:CSS的transition允许CSS的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值</p>
-				<p class="label">
-					<span>360</span>
-					<span>互联网金融</span>
-					<span>周鸿祎</span>
-				</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="pic">
-				<img src="__PUBLIC__/Home/images/trans.jpg" alt="转型">
-			</div>
-			<div class="brief">
-				<h4>TABLE 正面对战 搅局大师周鸿祎争做互联网金融野蛮人？</h4>
-				<p class="attached">作者: <span class="author">崔婧</span> <span class="datetime">2015-07-23 09:36</span></p>
-				<p class="general">W3C标准中对CSS3的transition这是样描述的:CSS的transition允许CSS的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值</p>
-				<p class="label">
-					<span>360</span>
-					<span>互联网金融</span>
-					<span>周鸿祎</span>
-				</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="pic">
-				<img src="__PUBLIC__/Home/images/trans.jpg" alt="转型">
-			</div>
-			<div class="brief">
-				<h4>TABLE 正面对战 搅局大师周鸿祎争做互联网金融野蛮人？</h4>
-				<p class="attached">作者: <span class="author">崔婧</span> <span class="datetime">2015-07-23 09:36</span></p>
-				<p class="general">W3C标准中对CSS3的transition这是样描述的:CSS的transition允许CSS的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值</p>
-				<p class="label">
-					<span>360</span>
-					<span>互联网金融</span>
-					<span>周鸿祎</span>
-				</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="pic">
-				<img src="__PUBLIC__/Home/images/trans.jpg" alt="转型">
-			</div>
-			<div class="brief">
-				<h4>TABLE 正面对战 搅局大师周鸿祎争做互联网金融野蛮人？</h4>
-				<p class="attached">作者: <span class="author">崔婧</span> <span class="datetime">2015-07-23 09:36</span></p>
-				<p class="general">W3C标准中对CSS3的transition这是样描述的:CSS的transition允许CSS的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值</p>
-				<p class="label">
-					<span>360</span>
-					<span>互联网金融</span>
-					<span>周鸿祎</span>
-				</p>
-			</div>
-		</div>
-	</div>
 	<!-- 分页 -->
-	<div class="pagination wrapper">
-		<a href="javascript:;" class="prev">上一页</a>
-		<a href="javascript:;">1</a>
-		<a href="javascript:;">2</a>
-		<a href="javascript:;">3</a>
-		<a href="javascript:;" class="active">4</a>
-		<a href="javascript:;">5</a>
-		<a href="javascript:;">6</a>
-		<a href="javascript:;" class="next">下一页</a>
-	</div>
-	<div class="footer wrapper">
-		<div class="contact">
-			<a href="javascript:;" class="project">创建项目</a>
-			<dl class="item">
-				<dt>联系邮箱</dt>
-				<dd class="icon mail">
-					gqzc@jd.com
-				</dd>
-			</dl>
-			<dl class="item">
-				<dt class="icon weibo">关注微博</dt>
-				<dd>
-					<img src="" alt="">
-				</dd>
-			</dl>
-			<dl class="item mail">
-				<dt class="icon wechat">关注微信</dt>
-				<dd>
-					<img src="" alt="">
-				</dd>
-			</dl>
-		</div>
-		<div class="copyright"></div>
-	</div>
+    {$show}
+    <include file="Base/footer"/>
 </body>
 </html>

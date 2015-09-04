@@ -12,8 +12,8 @@
         position: absolute;
         top:0px;
         left:0px;
-        max-width:312px;
-        max-height:222px;
+        max-width:310px;
+        max-height:220px;
     }
 
     textarea.tag{
@@ -77,6 +77,7 @@
                             <input name="img_name" id="img-name" type="hidden" value="{$info.img_name}"/>
                             <input name="img_path" id="img-path" type="hidden" value="{$info.img_path}"/>
                         </div>
+                        <span class="remind">建议比例：310X220</span>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
@@ -103,8 +104,8 @@
         $('#subnav').find('ul').eq(3).find('li').eq(0).addClass('current');
 
         $('#uploadify').uploadify({
-            'width': 312,
-            'height' : 222,
+            'width': 310,
+            'height' : 220,
             'swf' : '__STATIC__/uploadify/uploadify.swf',
             'buttonText' : '+上传图片',
             'uploader' : '__APP__/Admin/Upload/uploadImg',
