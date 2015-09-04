@@ -844,6 +844,9 @@ body {
 .transition .item .pic {
   float: left;
   position: relative;
+  width: 310px;
+  height: 220px;
+  overflow: hidden;
 }
 .transition .item b.mark {
   display: block;
@@ -863,6 +866,9 @@ body {
 .transition .item h4 {
   line-height: 50px;
   font-size: 20px;
+}
+.transition h4 a {
+    color: #333;
 }
 .transition .item .attached {
   font-size: 14px;
@@ -884,6 +890,7 @@ body {
 }
 .transition .item .tags {
   line-height: 1;
+  margin-top: 10px;
   font-size: 14px;
   color: #AAA;
   font-weight: 400;
@@ -905,6 +912,10 @@ body {
   margin-bottom: 30px;
   border: 1px solid #EEE;
   position: relative;
+}
+.college .empty {
+  border: 0 none;
+  margin: 0;
 }
 .college .thumb {
   width: 100%;
@@ -1003,7 +1014,12 @@ body {
   color: #e59a83;
 }
 .article .content {
+  line-height: 1.75;
   margin-top: 20px;
+  padding: 0 40px;
+}
+.article .content p {
+  margin-bottom: 10px;
 }
 .detail {
   margin-top: 40px;
