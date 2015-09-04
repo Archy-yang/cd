@@ -48,5 +48,66 @@
 	</div>
 	<!-- 网站底部 -->
     <include file="Base/footer" />
+    <script type="text/javascript">
+    	$('.college, .detail').on('click', '.apply', function () {
+    		var _this = $(this);
+
+    		var mask = $('<div />', {
+    			id: 'cover',
+    			css: {
+    				position: 'fixed',
+    				top: 0,
+    				left: 0,
+    				width: '100%',
+    				height: "100%",
+    				backgroundColor: '#000',
+    				opacity: 0.8
+    			}
+    		}).appendTo('body');
+
+    		var html = $('#layer').html()
+    		
+    		var layer = $(html).appendTo('body');
+
+    		// 提交表单的主要逻辑
+    		layer.find('.submit').click(function () {
+
+    			alert('提交表单');
+    		});
+
+    		mask.one('click', function () {
+    			$(this).remove();
+    			layer.remove();
+    		});
+    	});
+    </script>
+    <script type="text/template" id="layer">
+		<div class="layer">
+			<ul>
+				<li>
+					<label for="">姓名</label>
+					<input type="text" name="">
+					<span class="error">姓名不能为空</span>
+				</li>
+				<li>
+					<label for="">公司</label>
+					<input type="text" name="">
+				</li>
+				<li>
+					<label for="">职位</label>
+					<input type="text" name="">
+				</li>
+				<li>
+					<label for="">手机</label>
+					<input type="text" name="">
+				</li>
+				<li>
+					<label for="">邮箱</label>
+					<input type="text" name="">
+				</li>
+				<li><input type="button" value="提交报名" class="submit"></li>
+			</ul>
+		</div>
+    </script>
 </body>
 </html>
