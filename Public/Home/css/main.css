@@ -560,6 +560,7 @@ body {
   overflow: hidden;
 }
 .service .pic {
+  width: 700px;
   height: 100%;
   overflow: hidden;
   float: left;
