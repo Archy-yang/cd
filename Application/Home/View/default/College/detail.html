@@ -20,7 +20,7 @@
 	<div class="logo wrapper">
 		<h2>虫洞招拍挂</h2>
 		<div class="advert">
-			<img src="__PUBLIC__/Home/images/advert.jpg" alt="虫洞招拍挂">
+            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
 		</div>
 	</div>
 	<!-- 未知部分 -->
@@ -29,21 +29,20 @@
 	</div>
 	<div class="detail wrapper">
 		<div class="content">
-			<img src="__PUBLIC__/Home/images/cover.jpg" alt="">
-			<h4>创新创业</h4>
+            <img src="{$detail.img_t_path}{$detail.img_t_name}" alt="">
+            <h4>{$detail.title}</h4>
 			<p class="attached">
 				<span class="expiration"><b class="icon-clock"></b>
-				2015/06/15 15:20 - 2015/06/15 15:00
+                    {$detail.start_time} - {$detail.end_time}
 				</span>
-				<span class="address"><b class="icon-position"></b>
-					北京市海淀区中关村创业大街昊海楼9层
+                <span class="address"><b class="icon-position"></b>
+                    {$detail.location}
 				</span>
 				<span class="apply">立即报名</span>
 			</p>
 			<h5>活动介绍</h5>
-			<div class="text">
-				<p>琳达·汉密尔顿则将一个刚毅果断的女强人形象展现在观众面前，后来她还与本片的导演詹姆斯·卡梅隆结婚。</p>
-				<p>T2的成功，也造就了一批相关电影产业的发展，从电脑游戏到文化衫，到旅游景点，使得T2不仅仅是一部电影，而成为了一个有生命的奇迹。有关T2的音像制品也是年年出新，从剧场版到特别版，再到白金版，导演剪辑版……，无一例外地成了T2迷们的收藏佳品。T2的成功，代表了典型的美国式文化在全球的推广、渗透，当然也从一个侧面反映了人类内心深处的担忧：人类究竟会不会被自己创造出来的机器人所毁灭？</p>
+            <div class="text">
+                {$detail.content}
 			</div>
 		</div>
 	</div>

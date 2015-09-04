@@ -20,8 +20,8 @@
         position: absolute;
         top:0px;
         left:0px;
-        max-width:330px;
-        max-height:185px;
+        max-width:340px;
+        max-height:190px;
     }
     .img-sel img#img-t-src {
         position: absolute;
@@ -109,6 +109,7 @@
                             <input name="img_l_name" id="img-l-name" type="hidden" value="{$info.img_l_name}"/>
                             <input name="img_l_path" id="img-l-path" type="hidden" value="{$info.img_l_path}"/>
                         </div>
+                        <span class="remind">建议比例：100X100</span>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
@@ -120,10 +121,11 @@
                             <input name="img_b_name" id="img-b-name" type="hidden" value="{$info.img_b_name}"/>
                             <input name="img_b_path" id="img-b-path" type="hidden" value="{$info.img_b_path}"/>
                         </div>
+                        <span class="remind">建议比例：340X190</span>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>顶部图片</dt>
+                    <dt>详情图片</dt>
                     <dd>
                         <div class="img-sel">
                             <div id="uploadify_t" class="uploadify"></div>
@@ -158,8 +160,8 @@
         $('#subnav').find('ul').eq(4).find('li').eq(0).addClass('current');
 
         $('#uploadify_b').uploadify({
-            'width': 330,
-            'height' : 185,
+            'width': 340,
+            'height' : 190,
             'swf' : '__STATIC__/uploadify/uploadify.swf',
             'buttonText' : '+上传图片',
             'uploader' : '__APP__/Admin/Upload/uploadImg',

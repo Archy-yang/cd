@@ -31,10 +31,12 @@ class CollegeController extends HomeController
 
     public function detail($id)
     {
-        $college = M('college');
+        $img = M('image')->where(array('type' => 1))->find();
 
+        $college = M('college');
         $detail = $college->where(array('id' => $id))->find();
 
+        $this->assign('img', $img);
         $this->assign('detail', $detail);
         
         $this->display();

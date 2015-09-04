@@ -20,7 +20,7 @@
 	<div class="logo wrapper">
 		<h2>虫洞招拍挂</h2>
 		<div class="advert">
-			<img src="__PUBLIC__/Home/images/advert.jpg" alt="虫洞招拍挂">
+            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
 		</div>
 	</div>
 	<div class="blank"></div>
@@ -30,177 +30,37 @@
 	</div>
 	<!-- 商学院 -->
 	<div class="college wrapper">
-		<!-- Loop start -->
+        <!-- Loop start -->
+        <volist name="list" id="vo">
+        <php>$content = strip_tags($vo['content'])</php>
 		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
+            <div class="thumb">
+                <a href="__APP__/Home/College/detail/id/{$vo.id}">
+                    <img src="{$vo.img_b_path}{$vo.img_b_name}" alt="虫洞学院">
+                </a>
 			</div>
 			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
+                <img src="{$vo.img_l_path}{$vo.img_l_name}" alt="">
+                <span>{$vo.title}</span>
 			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
+            <p class="brief">
+                {$content|msubstr=0,100}
 			</p>
 			<div class="extra">
-				<span class="datetime"><b class="icon-clock"></b>
-				2015/07/23 15:30
+                <span class="datetime"><b class="icon-clock"></b>
+                    {$vo.start_time}
 				</span>
-				<span class="address"><b class="icon-position"></b>
-					北京市海淀区
+                <span class="address"><b class="icon-position"></b>
+                    {$vo.location|msubstr=0,10}
 				</span>
 				<a href="javascript:;" class="apply">立即报名</a>
 			</div>
-		</div>
-		<!-- Loop end -->
-		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
-			</div>
-			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
-			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
-			</p>
-			<div class="extra">
-				<span class="datetime">2015/07/23 15:30</span>
-				<span class="address">北京市海淀区</span>
-				<a href="javascript:;" class="apply">立即报名</a>
-			</div>
-		</div>
-		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
-			</div>
-			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
-			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
-			</p>
-			<div class="extra">
-				<span class="datetime">2015/07/23 15:30</span>
-				<span class="address">北京市海淀区</span>
-				<a href="javascript:;" class="apply">立即报名</a>
-			</div>
-		</div>
-		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
-			</div>
-			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
-			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
-			</p>
-			<div class="extra">
-				<span class="datetime">2015/07/23 15:30</span>
-				<span class="address">北京市海淀区</span>
-				<a href="javascript:;" class="apply">立即报名</a>
-			</div>
-		</div>
-		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
-			</div>
-			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
-			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
-			</p>
-			<div class="extra">
-				<span class="datetime">2015/07/23 15:30</span>
-				<span class="address">北京市海淀区</span>
-				<a href="javascript:;" class="apply">立即报名</a>
-			</div>
-		</div>
-		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
-			</div>
-			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
-			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
-			</p>
-			<div class="extra">
-				<span class="datetime">2015/07/23 15:30</span>
-				<span class="address">北京市海淀区</span>
-				<a href="javascript:;" class="apply">立即报名</a>
-			</div>
-		</div>
-		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
-			</div>
-			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
-			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
-			</p>
-			<div class="extra">
-				<span class="datetime">2015/07/23 15:30</span>
-				<span class="address">北京市海淀区</span>
-				<a href="javascript:;" class="apply">立即报名</a>
-			</div>
-		</div>
-		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
-			</div>
-			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
-			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
-			</p>
-			<div class="extra">
-				<span class="datetime">2015/07/23 15:30</span>
-				<span class="address">北京市海淀区</span>
-				<a href="javascript:;" class="apply">立即报名</a>
-			</div>
-		</div>
-		<div class="item">
-			<div class="thumb">
-				<img src="__PUBLIC__/Home/images/college.jpg" alt="虫洞学院">
-			</div>
-			<div class="label">
-				<img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-				<span>创新企业</span>
-			</div>
-			<p class="brief">
-				这是一个什么样的网站呀，真是搞不懂呀，可是又有什么办法呢，凑合着做吧，整体差不多就可以了，好，这么决定了，balabala，开始吧
-			</p>
-			<div class="extra">
-				<span class="datetime">2015/07/23 15:30</span>
-				<span class="address">北京市海淀区</span>
-				<a href="javascript:;" class="apply">立即报名</a>
-			</div>
-		</div>
-	</div>
+        </div>
+        </volist>
+        <!-- Loop end -->
+    </div>
 	<!-- 分页 -->
-	<div class="pagination wrapper">
-		<a href="javascript:;" class="prev">上一页</a>
-		<a href="javascript:;">1</a>
-		<a href="javascript:;">2</a>
-		<a href="javascript:;">3</a>
-		<a href="javascript:;" class="active">4</a>
-		<a href="javascript:;">5</a>
-		<a href="javascript:;">6</a>
-		<a href="javascript:;" class="next">下一页</a>
-	</div>
+    {$show}
 	<!-- 网站底部 -->
     <include file="Base/footer" />
 </body>

@@ -18,8 +18,6 @@ class TransitionController extends HomeController
         $img = M('image')->where(array('type' => 1))->find();
         $show = $page->show();
 
-        
-
         $list = $transition->where(array('is_delete' => 0))
             ->limit($page->firstRow, $page->listRows)
             ->select();
@@ -35,6 +33,10 @@ class TransitionController extends HomeController
         $transition = M('transition');
 
         $detail = $transition->where(array('id' => $id))->find();
+        $img = M('image')->where(array('type' => 1))->find();
+
+        $this->assign('img', $img);
+        $this->assign('detail', $detail);
 
         $this->display();
     }

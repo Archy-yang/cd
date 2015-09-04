@@ -13,8 +13,8 @@
         position: absolute;
         top:0px;
         left:0px;
-        max-width:217px;
-        max-height:276px;
+        max-width:300px;
+        max-height:365px;
     }
     #uploadify-queue {
         max-width:212px;
@@ -78,6 +78,7 @@
                             <input name="img_name" id="img-name" type="hidden" value="{$info.img_name}"/>
                             <input name="img_path" id="img-path" type="hidden" value="{$info.img_path}"/>
                         </div>
+                        <span class='remind'>建议比例：300X365</span>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
@@ -151,8 +152,8 @@
         $('#subnav').find('ul').eq(2).find('li').eq(0).addClass('current');
 
         $('#uploadify').uploadify({
-            'width': 217,
-            'height' : 276,
+            'width': 300,
+            'height' : 365,
             'swf' : '__STATIC__/uploadify/uploadify.swf',
             'buttonText' : '+上传图片',
             'uploader' : '__APP__/Admin/Upload/uploadImg',
