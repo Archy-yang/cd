@@ -384,6 +384,56 @@ img {
   max-width: 100%;
   max-height: 100%;
 }
+@font-face {
+  font-family: 'icomoon';
+  src: url('./fonts/icomoon.eot?easkt9');
+  src: url('./fonts/icomoon.eot?#iefixeaskt9') format('embedded-opentype'), url('./fonts/icomoon.ttf?easkt9') format('truetype'), url('./fonts/icomoon.woff?easkt9') format('woff'), url('./fonts/icomoon.svg?easkt9#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-tags:before {
+  content: "\f02c";
+}
+.icon-position:before {
+  content: "\f041";
+}
+.icon-wechat:before {
+  content: "\f086";
+}
+.icon-phone:before {
+  content: "\f095";
+}
+.icon-message:before {
+  content: "\f0e0";
+}
+.icon-weibo:before {
+  content: "\f18a";
+}
+.icon-bubble:before {
+  content: "\e601";
+}
+.icon-mail:before {
+  content: "\e602";
+}
+.icon-clock:before {
+  content: "\e600";
+}
+.icon-arrow:before {
+  content: "\e603";
+}
 body {
   font-family: "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", tahoma, arial, simsun, "宋体";
 }
@@ -430,6 +480,10 @@ body {
 }
 .topnav a.extra span {
   font-size: 18px;
+}
+.topnav .icon-phone {
+  margin-right: 5px;
+  vertical-align: middle;
 }
 .logo {
   height: 136px;
@@ -579,42 +633,103 @@ body {
   padding: 0 !important;
   background-color: #333;
 }
-.footer .contact {
+.footer .focus {
   height: 186px;
   padding: 0 72px;
   background: url('../images/footer.jpg') no-repeat;
   position: relative;
 }
-.footer .contact a.project {
+.footer .focus a.project {
   position: absolute;
   top: 115px;
   left: 370px;
   font-size: 22px;
   color: #AAA;
 }
-.footer .contact .item {
+.footer .focus .icon-arrow {
+  margin-left: 5px;
+}
+.footer .focus .item {
   padding-top: 20px;
   margin-left: 50px;
   font-size: 14px;
   float: right;
 }
-.footer .contact dt {
-  height: 24px;
-  line-height: 24px;
+.footer .focus dt {
+  line-height: 1;
+  margin-bottom: 5px;
 }
-.footer .contact .icon {
-  padding-left: 23px;
+.footer .focus .icon {
+  text-align: right;
 }
-.footer .contact .mail {
-  padding-top: 20px;
+.footer .focus .icon-weibo,
+.footer .focus .icon-wechat,
+.footer .focus .icon-message {
+  padding-right: 4px;
+}
+.footer .focus .message {
   color: #666;
+  padding-top: 20px;
 }
-.footer .contact img {
+.footer .focus .icon-message {
+  vertical-align: middle;
+}
+.footer .focus img {
   width: 80px;
   height: 80px;
 }
 .footer .copyright {
-  height: 74px;
+  height: 90px;
+  line-height: 1;
+  padding-top: 15px;
+  color: #AAA;
+  font-size: 13px;
+}
+.footer .copyright a {
+  color: #AAA;
+}
+.footer .links {
+  float: left;
+}
+.footer .links p {
+  margin: 8px 0 15px;
+}
+.footer .links a {
+  padding-right: 12px;
+  margin: 5px;
+  border-right: 1px solid #666;
+}
+.footer .links a.site {
+  color: #666;
+  padding-right: 0;
+  border: 0 none;
+}
+.footer .extra {
+  float: right;
+  padding-top: 4px;
+  padding-right: 200px;
+  position: relative;
+}
+.footer .extra h6 {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.footer .extra span {
+  display: block;
+  margin-bottom: 5px;
+}
+.footer .extra .contact {
+  position: absolute;
+  left: 170px;
+  bottom: 10px;
+  width: 260px;
+  text-align: left;
+}
+.footer .extra a {
+  padding-left: 12px;
+  margin: 0 5px;
+  border-left: 1px solid #666;
 }
 .bidding {
   padding-top: 40px;
@@ -701,6 +816,10 @@ body {
   font-size: 15px;
   color: #464646;
 }
+.bidding .dot {
+  padding-left: 15px;
+  background: url('../images/dot.png') left center no-repeat;
+}
 .bidding .company ul {
   overflow: hidden;
 }
@@ -763,12 +882,13 @@ body {
   color: #000;
   overflow: hidden;
 }
-.transition .item .label {
+.transition .item .tags {
   line-height: 1;
   font-size: 14px;
   color: #AAA;
+  font-weight: 400;
 }
-.transition .item .label span {
+.transition .item .tags span {
   margin-right: 8px;
 }
 .blank {
@@ -833,8 +953,11 @@ body {
 }
 .college .extra span {
   display: block;
-  padding-left: 20px;
   margin: 10px 0;
+}
+.college .extra .icon-position {
+  font-size: 1.25em;
+  vertical-align: middle;
 }
 .college .extra a.apply {
   position: absolute;
@@ -847,6 +970,100 @@ body {
   line-height: 30px;
   color: #FFF;
   background-color: #fe5722;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+}
+.article {
+  margin: 40px 0;
+}
+.article h3,
+.article .attached {
+  text-align: center;
+  padding: 0 72px;
+  line-height: 1;
+}
+.article h3 {
+  font-weight: 400;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+.article .attached {
+  font-size: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #DDD;
+  color: #888;
+}
+.article span.datetime {
+  margin: 0 10px;
+}
+.article span.source {
+  color: #e59a83;
+}
+.article .content {
+  margin-top: 20px;
+}
+.detail {
+  margin-top: 40px;
+}
+.detail img {
+  width: 100%;
+}
+.detail h4 {
+  line-height: 1;
+  margin: 15px 0 10px;
+  font-size: 20px;
+}
+.detail .attached {
+  padding: 5px 0;
+  font-size: 14px;
+  background-color: #f8f8f8;
+}
+.detail .attached span {
+  display: block;
+  line-height: 1;
+  margin: 10px 0;
+}
+.detail .attached .expiration {
+  color: #666;
+}
+.detail .attached .address {
+  color: #333;
+}
+.detail .attached .icon-position {
+  font-size: 1.25em;
+  vertical-align: middle;
+}
+.detail .attached .apply {
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  color: #FFF;
+  background-color: #fe5722;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  cursor: pointer;
+}
+.detail h5 {
+  font-size: 18px;
+  line-height: 1;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  border-bottom: 1px solid #DDD;
+}
+.detail .text {
+  margin: 20px 0 40px;
+}
+.detail .text p {
+  font-size: 15px;
+  text-indent: 30px;
+  margin: 10px 0;
 }
 .pagination {
   text-align: center;

@@ -12,7 +12,7 @@
 				<li><a href="__APP__/Home/College/showList">虫洞商学院</a></li>
 			</ul>
 			<a href="javascript:;" class="extra">
-				官方咨询电话 <span>400-100-6810</span>
+				<span class="icon-phone"></span> 官方咨询电话 <span>400-100-6810</span>
 			</a>
 		</div>
 	</div>
@@ -38,9 +38,10 @@
 			</div>
 			<div class="brief">
                 <h4>{$vo.title}</h4>
-                <p class="attached">作者: <span class="author">{$vo.author}</span> <span class="datetime">{$vo.create_time}</span></p>
+                <p class="attached">作者: <span class="author">{$vo.author}</span> <span class="datetime"><span class="icon-clock"> {$vo.create_time}</span></p>
                 <p class="general">{$content|msubstr=0,180}</p>
-                <p class="label">
+                <p class="tags">
+                	<span class="icon-tags"></span>
                     <volist name="tag" id="tv">
                     <span>{$tv}</span>
                     </volist>
@@ -49,6 +50,7 @@
         </div>
         </volist>
 		<!-- Loop end -->
+	</div>
 	<!-- 分页 -->
     {$show}
     <include file="Base/footer"/>
