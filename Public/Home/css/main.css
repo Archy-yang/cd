@@ -989,7 +989,7 @@ body {
   -ms-border-radius: 3px;
 }
 .article {
-  margin: 40px 0;
+  margin: 40px auto;
 }
 .article h3,
 .article .attached {
