@@ -42,4 +42,31 @@ class CollegeController extends HomeController
         
         $this->display();
     }
+
+    public function signUp()
+    {
+        $signUp = D('CollegeSignUp');
+
+        $data = $signUp->create();
+
+        if ($data) {
+            $result = $signUp->data($data)->add();
+
+            if ($result) {
+                echo json_encode(array(
+                    'code' => 0,
+                ));
+
+                return ;
+            }
+            $msg = '报名失败';
+        } else {
+            $msg = $signUp->getError();
+        }
+
+        echo json_encode(array(
+            'code' => 1,
+            'msg' => $msg,
+        ));
+    }
 }

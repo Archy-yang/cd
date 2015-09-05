@@ -25,11 +25,30 @@ class InverstorController extends HomeController
         $this->display();
     }
 
-    public function signUp()
+    public function signUp($id = 0)
     {
         $img = M('image')->where(array('type' => 1))->find();
 
         $this->assign('img', $img);
+        $this->assign('id', $id);
         $this->display();
+    }
+
+    public function saveSignUp()
+    {
+        $inverstor = D('Inverstor');
+
+        $data = $inverstor->create();
+
+        $flag = false;
+        if ($data) {
+            $flag = $inverstor->data($data)->add();
+        }
+
+        if ($flag) {
+            $this->success('申请成功', U('Inverstor/info'));
+        } else {
+            $this->error('申请失败');
+        }
     }
 }

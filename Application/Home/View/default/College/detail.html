@@ -38,7 +38,7 @@
                 <span class="address"><b class="icon-position"></b>
                     {$detail.location}
 				</span>
-				<span class="apply">立即报名</span>
+                <span data-cid="{$detail.id}" class="apply">立即报名</span>
 			</p>
 			<h5>活动介绍</h5>
             <div class="text">
@@ -69,10 +69,23 @@
     		
     		var layer = $(html).appendTo('body');
 
-    		// 提交表单的主要逻辑
-    		layer.find('.submit').click(function () {
+            layer.find('#cid').val(_this.attr('data-cid'));
 
-    			alert('提交表单');
+    		// 提交表单的主要逻辑
+            layer.find('.submit').click(function () {
+                layer.find('#myform').ajaxSubmit({
+                    url: '__APP__/Home/College/signUp',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            alert('报名成功');
+
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                });
     		});
 
     		mask.one('click', function () {
@@ -82,31 +95,33 @@
     	});
     </script>
     <script type="text/template" id="layer">
-		<div class="layer">
-			<ul>
-				<li>
-					<label for="">姓名</label>
-					<input type="text" name="">
-					<span class="error">姓名不能为空</span>
-				</li>
-				<li>
-					<label for="">公司</label>
-					<input type="text" name="">
-				</li>
-				<li>
-					<label for="">职位</label>
-					<input type="text" name="">
-				</li>
-				<li>
-					<label for="">手机</label>
-					<input type="text" name="">
-				</li>
-				<li>
-					<label for="">邮箱</label>
-					<input type="text" name="">
-				</li>
-				<li><input type="button" value="提交报名" class="submit"></li>
-			</ul>
+        <div class="layer">
+            <form id="myform" method="post">
+                <input  type="hidden" id="cid" name="college_id" value='' />
+                <ul>
+                    <li>
+                        <label for="">姓名</label>
+                        <input type="text" required name="name">
+                    </li>
+                    <li>
+                        <label for="">公司</label>
+                        <input type="text" required name="company">
+                    </li>
+                    <li>
+                        <label for="">职位</label>
+                        <input type="text" required name="job">
+                    </li>
+                    <li>
+                        <label for="">手机</label>
+                        <input type="text" required name="mobile">
+                    </li>
+                    <li>
+                        <label for="">邮箱</label>
+                        <input type="text" required name="email">
+                    </li>
+                    <li><input type="button" value="提交报名" class="submit"></li>
+                </ul>
+            </form>
 		</div>
     </script>
 </body>
