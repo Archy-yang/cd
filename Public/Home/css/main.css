@@ -964,6 +964,46 @@ body {
   border: 0 none;
   opacity: 0;
 }
+.signup .thumbs .error {
+  top: 160px;
+  left: 320px;
+}
+.signup .custombtn {
+  border: 0 none;
+  background-color: transparent;
+  background-image: none;
+  color: #667fa0;
+  text-shadow: none;
+}
+.signup .uploadify:hover .uploadify-button {
+  background-image: none;
+  background-color: transparent;
+}
+.signup .uploadify {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+.signup .queue {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.signup .uploadify-queue {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  margin: 0;
+}
+.signup .uploadify-queue-item {
+  padding: 0;
+  margin: 0;
+}
+.signup .uploadify-progress-bar {
+  height: 5px;
+}
 .signup .thumbs .mark {
   position: absolute;
   left: 320px;

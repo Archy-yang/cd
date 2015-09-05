@@ -70,11 +70,13 @@
 						<label for="">上传照片：</label>
 						<div class="thumbs">
 							<div class="pic">
-								<img src="__PUBLIC__/Home/images/logo.jpg" class="preview">
+								<img src="__PUBLIC__/Home/images/1px.png" class="preview">
 								<b></b>
-								<input type="file" class="file">
+								<input type="hidden" name="" class="picture">
 							</div>
+							<input type="file" class="file" id="file">
 							<p class="mark">支持jpg、jpeg、git格式<br>大小不超过2M</p>
+							<span class="error">大小不能超过10M</span>
 						</div>
 					</li>
 				</ul>
@@ -103,11 +105,39 @@
 	</div>
 	<include file="Base/footer" />
 	<script type="text/javascript">
-		$("#banner").unslider({
-			speed: 500,
-			delay: 3000,
-			complete: function() {},
-			dots: true
+		$('input#file').uploadify({
+			width: 300,
+			height: 360,
+			buttonClass: 'custombtn',
+			buttonText: '',
+			fileTypeExts: '*.gif; *.jpg; *.png',
+			fileSizeLimit: '10MB',
+			formData: {width: 0, height: 0}, // 一些其它参数
+			swf: '__STATIC__/uploadify/uploadify.swf',
+			uploader: '__APP__/admin/upload/uploadImg',
+			itemTemplate  : '<div id="${fileID}" class="uploadify-queueitem">\
+					<div class="uploadify-progress">\
+						<div class="uploadify-progress-bar"></div>\
+					</div>\
+				</div>',
+			overrideEvents: ['onDialogClose'],
+			onUploadSuccess: function (file, data, response) {
+				var data = JSON.parse(data);
+
+				console.log(data);
+
+				// 根据返回结果的一些其它逻辑
+
+				$('img.preview').attr('src', data.path + data.name);
+				$('input.picture').val(data.path + data.name);
+			},
+			onSelectError: function (file, errorCode, errorMsg) {
+				// 图片类型会在打开窗口时自动过滤不用检测
+				
+                if(errorCode == -110) {
+                	alert('图片大小超出限制');
+                }
+			}
 		});
 	</script>
 </body>
