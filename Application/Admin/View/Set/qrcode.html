@@ -1,0 +1,178 @@
+<extend name="Admin@Public:base" />
+
+<block name="style">
+<style type="text/css" media="screen">
+    dl {
+    margin-bottom:20px;
+    }
+    .img-sel {
+        position: relative;
+    }
+    .img-sel img {
+        position: absolute;
+        top:0px;
+        left:0px;
+        max-width:100px;
+        max-height:100px;
+    }
+    textarea {
+        height:240px;
+        width:550px;
+    }
+
+    .uploadify-queue-item {
+        width: 100px;
+        padding: 2px;
+        margin-top: 0;
+        border-radius: 0;
+        background: #fff;
+        position: relative;
+        left:0;
+        bottom: 0px;
+    }
+    .uploadify-progress {
+        width: 100%;
+        margin: 0;
+        background: #f5f5f5;
+    }
+    .uploadify-progress-bar {
+        width: 100%;
+        background: #000;
+        height: 5px;
+    }
+</style>
+</block>
+
+<block name="sidebar">
+    <include file="Public:documenu" />
+</block>
+
+<block name="body">
+	<!-- 标题 -->
+    <div class="main-title">
+        <div>
+            <a href="javascript:;" class="btn btn-success confirm">确认</a>
+        </div>
+        <div style="margin-top:20px">
+            <form id="myForm">
+                <dl class="dl-horizontal">
+                    <dt>微博二维码</dt>
+                    <dd>
+                        <div class="img-sel">
+                            <div id="uploadify-weibo" class="uploadify"></div>
+                            <img id="img-b-src" src="{$weibo['path']}{$weibo['name']}">
+                            <input name="weibo_name" id="img-b-name" type="hidden" value="{$weibo['name']}"/>
+                            <input name="weibo_path" id="img-b-path" type="hidden" value="{$weibo['path']}"/>
+                        </div>
+                        <p>
+                            <span class="remind">建议比例100X100</span>
+                        </p>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>微信二维码</dt>
+                    <dd>
+                        <div class="img-sel">
+                            <div id="uploadify-weixin" class="uploadify"></div>
+                            <img id="img-x-src" src="{$weixin['path']}{$weixin['name']}">
+                            <input name="weixin_name" id="img-x-name" type="hidden" value="{$weixin['name']}"/>
+                            <input name="weixin_path" id="img-x-path" type="hidden" value="{$weixin['path']}"/>
+                        </div>
+                        <p>
+                            <span class="remind">建议比例100X100</span>
+                        </p>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+    </div>
+</block>
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery.form.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.main-nav').find('li').eq(1).addClass('current');
+        $('#subnav').find('h3').eq(0).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(0).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(0).find('li').eq(2).addClass('current');
+
+        $('#uploadify-weibo').uploadify({
+            'width': 100,
+            'height' : 100,
+            'swf' : '__STATIC__/uploadify/uploadify.swf',
+            'buttonText' : '+上传图片',
+            'uploader' : '__APP__/Admin/Upload/uploadImg',
+            'fileTypeExts': '*.jpg;*.png;*.gif',
+            itemTemplate: '<div id="${fileID}" class="uploadify-queue-item">\
+                                <div class="uploadify-progress">\
+                                    <div class="uploadify-progress-bar"></div>\
+                                </div>\
+            </div>',
+            onUploadStart: function() {
+                $('.saveform').prop('disabled', true);
+            },
+            onUploadSuccess: function(file, data, response) {
+                var  data = $.parseJSON(data);
+                $('#img-b-src').attr("src", data.path+data.name);
+                $('#img-b-name').val(data.name);
+                $('#img-b-path').val(data.path);
+            },
+            onQueueComplete: function() {
+                $('.saveform').prop('disabled', false);
+            }
+        });
+        $('#uploadify-weixin').uploadify({
+            'width': 100,
+            'height' : 100,
+            'swf' : '__STATIC__/uploadify/uploadify.swf',
+            'buttonText' : '+上传图片',
+            'uploader' : '__APP__/Admin/Upload/uploadImg',
+            'fileTypeExts': '*.jpg;*.png;*.gif',
+            itemTemplate: '<div id="${fileID}" class="uploadify-queue-item">\
+                                <div class="uploadify-progress">\
+                                    <div class="uploadify-progress-bar"></div>\
+                                </div>\
+            </div>',
+            onUploadStart: function() {
+                $('.saveform').prop('disabled', true);
+            },
+            onUploadSuccess: function(file, data, response) {
+                var  data = $.parseJSON(data);
+                $('#img-x-src').attr("src", data.path+data.name);
+                $('#img-x-name').val(data.name);
+                $('#img-x-path').val(data.path);
+            },
+            onQueueComplete: function() {
+                $('.saveform').prop('disabled', false);
+            }
+        });
+        $('.btn-success').on('click', function() {
+            $('#myForm').ajaxSubmit({
+                url:'__APP__/Admin/Set/saveQrcode',
+                type:'post',
+                dataType: 'json',
+                success: function(data) {
+                    if (!data.code) {
+                        alert('保存成功');
+
+                        window.location.reload();
+                    } else {
+                        alert('保存失败');
+                    }
+                }
+            });
+        });
+        $('.img-list').on('mouseenter mouseleave', '.list', function(event) {
+            console.log(event.type);
+            var _this = $(this), delImg = _this.find('.del-img');
+
+            if (event.type == 'mouseenter') {
+                delImg.show();
+            } else {
+                delImg.hide();
+            }
+        });
+    });
+</script>
+</block>

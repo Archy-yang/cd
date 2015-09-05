@@ -42,7 +42,7 @@
         <div class="item">
 			<div class="pic">
                 <img src="{$vo.img_path}{$vo.img_name}" alt="{$vo.name}">
-                <if condition="$vo.funding">
+                <if condition="$vo.is_funding eq 1">
                 <b class="mark">融资成功</b>
                 </if>
 			</div>
@@ -59,8 +59,10 @@
         </div>
         </volist>
 		<!-- Loop Start -->
-		<!-- 更多 -->
-		<a href="javascript:;" class="more">MORE</a>
+        <!-- 更多 -->
+        <if condition="$more">
+        <a href="javascript:;" class="more">MORE</a>
+        </if>
 	</div>
 	<include file="Base/footer" />
 	<script type="text/javascript">
@@ -69,7 +71,28 @@
 			delay: 3000,
 			complete: function() {},
 			dots: true
-		});
+        });
+
+        var page = 1;
+        $('.more').on('click', function() {
+            $.ajax({
+                url: '__APP__/Home/Index/moreProject/page/'+page,
+                dataType: 'json',
+                success: function(data) {
+                    if (data.code == 0) {
+                        $('.more').before(data.html);
+
+                        if (!data.more) {
+                            $('.more').hide();
+                        } else {
+                            page++;
+                        }
+                    } else {
+                        $(this).hide();
+                    }
+                }
+            });
+        });
 	</script>
 </body>
 </html>

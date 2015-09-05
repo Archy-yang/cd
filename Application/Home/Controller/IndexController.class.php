@@ -16,7 +16,7 @@ use OT\DataDictionary;
  */
 class IndexController extends HomeController 
 {
-    const PROJECT_INIT_NUM = 4;
+    const PROJECT_INIT_NUM = 5;
 
     public function index()
     {
@@ -48,18 +48,19 @@ class IndexController extends HomeController
 
     public function moreProject($page = 1, $num = 10) 
     {
-        if ($page = 1) {
-            $skip = $page * self::PROJECT_INIT_NUM;
-        } else {
-            $skip = $page * $num;
-        }
+        $skip = ($page-1) * $num + self::PROJECT_INIT_NUM;
 
         list($projectList, $more) = $this->projectList($skip, $num);
 
-        $this->assign('projectList', $projectList);
-        $this->assign('more', $more);
+        $this->assign('project', $projectList);
 
-        $this->display();
+        $html = $this->fetch();
+
+        echo json_encode(array(
+            'code' => 0,
+            'more' => $more,
+            'html' => $html,
+        ));
     }
 
     protected function projectList($skip, $num)
@@ -72,6 +73,7 @@ class IndexController extends HomeController
 
 
         if (count($projectList) > $num) {
+            array_pop($projectList);
             $more = true;
         } else {
             $more = false;

@@ -1,0 +1,20 @@
+<volist name="project" id="vo">
+<div class="item">
+    <div class="pic">
+        <img src="{$vo.img_path}{$vo.img_name}" alt="{$vo.name}">
+        <if condition="$vo.is_funding eq 1">
+        <b class="mark">融资成功</b>
+        </if>
+    </div>
+    <div class="brief">
+        <h4>{$vo.name}</h4>
+        <p>{$vo.desc}</p>
+        <dl>
+            <dt></dt>
+            <dd>已备资金 : <span>{:round($vo['funds']/100/10000, 2)}万</span></dd>
+            <dd>{$vo.main_type}•<span>{$vo.sub_type}</span></dd>
+            <dd>人才招募 : <span>{$vo.recruit}</span></dd>
+        </dl>
+    </div>
+</div>
+</volist>

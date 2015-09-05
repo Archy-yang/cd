@@ -16,6 +16,7 @@ class CollegeController extends HomeController
 
         $page = new Page($count, $num);
         $img = M('image')->where(array('type' => 1))->find();
+
         $show = $page->show();
 
         $list = $college->where(array('is_delete' => 0))

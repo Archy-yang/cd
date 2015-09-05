@@ -30,12 +30,35 @@ class HomeController extends Controller {
         if(!C('WEB_SITE_CLOSE')){
             $this->error('站点已经关闭，请稍后访问~');
         }
+
+        $this->assign('qrcode', $this->getQrcode());
     }
 
 	/* 用户登录检测 */
 	protected function login(){
 		/* 用户登录检测 */
 		is_login() || $this->error('您还没有登录，请先登录！', U('User/login'));
-	}
+    }
+
+    protected function getQrcode() 
+    {
+        $weiboQrcode = M('image')->where(array('type' => 3))->find();
+        $weixinQrcode = M('image')->where(array('type' => 4))->find();
+
+        $qrcode = array(
+            'weibo' => '',
+            'weixin' => '',
+        );
+
+        if ($weiboQrcode) {
+            $qrcode['weibo'] = $weiboQrcode['path'].$weiboQrcode['name'];
+        }
+
+        if ($weixinQrcode) {
+            $qrcode['weixin'] = $weixinQrcode['path'].$weixinQrcode['name'];
+        }
+
+        return $qrcode;
+    }
 
 }

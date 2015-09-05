@@ -20,8 +20,6 @@ class InverstorController extends HomeController
         $info['resource'] = explode("\n", $info['resource']);
         $info['need'] = explode("\n", $info['need']);
 
-        trace($info);
-
         $this->assign('img', $img);
         $this->assign('info', $info);
         $this->display();
@@ -29,6 +27,9 @@ class InverstorController extends HomeController
 
     public function signUp()
     {
+        $img = M('image')->where(array('type' => 1))->find();
+
+        $this->assign('img', $img);
         $this->display();
     }
 }

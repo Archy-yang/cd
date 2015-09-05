@@ -115,6 +115,10 @@ class ProjectController extends AdminController
 
             $id = $data['id'];
 
+            if (!isset($data['is_funding'])) {
+                $data['is_funding'] = 0;
+            }
+
             if ($id > 0) {
                 unset($data['id']);
 

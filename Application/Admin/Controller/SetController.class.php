@@ -11,6 +11,8 @@ class SetController extends AdminController
 {
     const TOP_IMG = 1;
     const CAROUSEL_IMG = 2;
+    const WEIXIN_QRCODE= 3;
+    const WEIBO_QRCODE= 4;
 
     public function topImage()
     {
@@ -115,6 +117,84 @@ class SetController extends AdminController
                     'create_time' => date('Y-m-d H:i:s'),
                 ))
                 ->add();
+
+            if ($saveRe) {
+                echo json_encode(array(
+                    'code' => 0,
+                    'msg' => '',
+                ));
+
+                return ;
+            }
+        } 
+        
+        echo json_encode(array(
+            'code' => 1,
+            'msg' => '',
+        ));
+
+        return;
+    }
+
+    public function qrcode()
+    {
+        $model = new Model();
+
+        $list = $model->table('image')
+            ->where(array(
+                'type' => array('in', array(self::WEIBO_QRCODE, self::WEIXIN_QRCODE)),
+            ))
+            ->select();
+
+        $weibo = '';
+        $weixin = '';
+
+        foreach ($list as $v) {
+            if ($v['type'] == self::WEIBO_QRCODE) {
+                $weibo = $v;
+            }
+            if ($v['type'] == self::WEIXIN_QRCODE) {
+                $weixin = $v;
+            }
+        }
+
+        $this->assign('weibo', $weibo);
+        $this->assign('weixin', $weixin);
+
+        $this->display();
+    }
+
+    public function saveQrcode()
+    {
+        $model = new Model();
+
+        $delRe = $model->table('image')
+            ->where(array(
+                'type' => array('in', array(self::WEIBO_QRCODE, self::WEIXIN_QRCODE)),
+            ))
+            ->delete();
+        if (false !== $delRe) {
+            $data = array();
+
+            if ($_POST['weibo_path'] && $_POST['weibo_name']) {
+                $data[] = array(
+                    'type' => self::WEIBO_QRCODE,
+                    'path' => trim($_POST['weibo_path']),
+                    'name' => trim($_POST['weibo_name']),
+                    'create_time' => date('Y-m-d H:i:s'),
+                );
+            }
+            if ($_POST['weixin_path'] && $_POST['weixin_name']) {
+                $data[] = array(
+                    'type' => self::WEIXIN_QRCODE,
+                    'path' => trim($_POST['weixin_path']),
+                    'name' => trim($_POST['weixin_name']),
+                    'create_time' => date('Y-m-d H:i:s'),
+                );
+            }
+
+            $saveRe = $model->table('image')
+                ->addAll($data);
 
             if ($saveRe) {
                 echo json_encode(array(
