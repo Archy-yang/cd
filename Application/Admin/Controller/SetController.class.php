@@ -65,7 +65,7 @@ class SetController extends AdminController
             $data = array();
 
             foreach ($_POST['img'] as $v) {
-                $tmp = [];
+                $tmp = array();
                 list($tmp['name'], $tmp['path']) = explode('|', $v);
                 $tmp['type'] = self::CAROUSEL_IMG;
                 $tmp['create_time'] = date('Y-m-d H:i:s');
