@@ -1,5 +1,9 @@
 <extend name="Public/base" />
 
+<block name="sidebar">
+    <include file="Public:usermenu" />
+</block>
+
 <block name="body">
 	<div class="main-title cf">
 		<h2>查看行为日志</h2>
@@ -63,6 +67,10 @@
 Think.setValue("extend", {$info.extend|default=0});
 //导航高亮
 highlight_subnav('{:U('Action/actionlog')}');
+        $('.main-nav').find('li').eq(2).addClass('current');
+        $('#subnav').find('h3').eq(1).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(1).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(1).find('li').eq(0).addClass('current');
 
 
 $(function(){
