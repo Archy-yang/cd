@@ -11,6 +11,7 @@ class SetController extends AdminController
 {
     const TOP_IMG = 1;
     const CAROUSEL_IMG = 2;
+    const CAROUSEL_IMG_COLLEGE = 5;
     const WEIXIN_QRCODE= 3;
     const WEIBO_QRCODE= 4;
 
@@ -35,30 +36,57 @@ class SetController extends AdminController
         $this->display();
     }
 
-    public function carousel()
+    public function carousel($type = 0)
     {
+        switch ($type) {
+            case 0:
+                $where = array(
+                    'type' => self::CAROUSEL_IMG,
+                );
+                break;
+            case 1:
+                $where = array(
+                    'type' => self::CAROUSEL_IMG_COLLEGE,
+                );
+                break;
+        }
+
         $model = new Model();
 
         $img = $model->table('image')
-            ->where(array(
-                'type' => self::CAROUSEL_IMG,
-            ))
+            ->where($where)
             ->order('id')
             ->select();
 
         $this->assign('list', $img);
+        $this->assign('type', $type);
 
         $this->display();
     }
 
-    public function saveCarousel()
+    public function saveCarousel($type = 0)
     {
+        switch ($type) {
+            case 0:
+                $where = array(
+                    'type' => self::CAROUSEL_IMG,
+                );
+                $type = self::CAROUSEL_IMG;
+
+                break;
+            case 1:
+                $where = array(
+                    'type' => self::CAROUSEL_IMG_COLLEGE,
+                );
+                $type = self::CAROUSEL_IMG_COLLEGE;
+
+                break;
+        }
+
         $model = new Model();
 
         $delRe = $model->table('image')
-            ->where(array(
-                'type' => self::CAROUSEL_IMG,
-            ))
+            ->where($where)
             ->delete();
 
         if (false !== $delRe) {
@@ -67,7 +95,7 @@ class SetController extends AdminController
             foreach ($_POST['img'] as $v) {
                 $tmp = array();
                 list($tmp['name'], $tmp['path']) = explode('|', $v);
-                $tmp['type'] = self::CAROUSEL_IMG;
+                $tmp['type'] = $type;
                 $tmp['create_time'] = date('Y-m-d H:i:s');
 
                 $data[] = $tmp;

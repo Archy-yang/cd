@@ -65,6 +65,14 @@
 
 
 <block name="body">
+    <ul class="nav nav-tabs">
+        <li <eq name="type" value="0">class="active"</eq>>
+            <a href="__APP__/Admin/Set/carousel/type/0">首页轮播</a>
+        </li>
+        <li <eq name="type" value="1">class="active"</eq>>
+            <a href="__APP__/Admin/Set/carousel/type/1">学院页轮播</a>
+        </li>
+    </ul>
 	<!-- 标题 -->
     <div class="main-title">
         <div class="info-body">
@@ -145,7 +153,7 @@
         });
         $('.btn-success').on('click', function() {
             $('#myform').ajaxSubmit({
-                url:'__APP__/Admin/Set/saveCarousel',
+                url:'__APP__/Admin/Set/saveCarousel/type/{$type}',
                 type:'post',
                 dataType: 'json',
                 success: function(data) {
