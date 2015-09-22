@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<include file="Base/header" />
+<body>
+	<!-- 网站导航 -->
+	<div class="topnav">
+		<div class="wrapper">
+			<ul class="nav">
+				<li><a href="__APP__">首页</a></li>
+				<li class="active"><a href="__APP__/Home/Inverstor/info">虫洞招拍挂</a></li>
+				<li><a href="__APP__/Home/Transition/showList">虫洞转型</a></li>
+				<li><a href="__APP__/Home/College/showList">虫洞商学院</a></li>
+			</ul>
+			<a href="javascript:;" class="extra">
+				<span class="icon-phone"></span> 官方咨询电话 <span>400-100-6810</span>
+			</a>
+		</div>
+	</div>
+	<!-- 网站LOGO -->
+	<div class="logo wrapper">
+		<h2>虫洞招拍挂</h2>
+		<div class="advert">
+            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
+		</div>
+	</div>
+	<!-- 转型 -->
+	<div class="bidding wrapper">
+		<div class="content">
+			<div class="brief">
+                <p class="text">{$info.profile}</p>
+				<div class="info">
+                    <img src="{$info.img_path}{$info.img_name}" alt="">
+					<!-- <p class="name">李开复</p>
+					<p class="avatar">
+						<img src="__PUBLIC__/Home/images/avatar.png" alt="李开复">
+					</p>
+					<p class="intro">曾就读于卡内基梅隆大学获计算机学博士学位后担任副教授</p> -->
+				</div>
+			</div>
+			<div class="item company">
+				<h4>公司简介</h4>
+				<ul>
+                    <li>公司成立时间：<span>{$info.company_creation_time}年</span></li>
+                    <li>公司资产：<span>{$info.company_fund}</span></li>
+                    <li>所在城市：<span>{$info.company_location}</span></li>
+                    <li>公司去年销售额：<span>{$info.sales_volume}</span></li>
+				</ul>
+			</div>
+			<div class="item">
+				<h4>资源</h4>
+                <ul>
+                    <volist name="info.resource" id="vo">
+                    <li class="dot">{$vo}</li>
+                    </volist>
+				</ul>
+			</div>
+			<div class="item">
+				<h4>需求</h4>
+                <ul>
+                    <volist name="info.need" id="vo">
+                    <li class="dot">{$vo}</li>
+                    </volist>
+				</ul> </div>
+			<div class="item">
+                <h4>已备资金</h4>
+                <ul>
+                    <li class="dot">{$info.funding}</li>
+                </ul>
+			</div>
+			<div class="item">
+				<h4>项目名称</h4>
+                <ul>
+                    <li class="dot">{$info.project_name}</li>
+				</ul>
+			</div>
+			<div class="item">
+				<h4>一句话说明</h4>
+                <ul>
+                    <li class="dot">{$info.brief}</li>
+				</ul>
+			</div>
+            <a href="__APP__/Home/Inverstor/signUp/id/{$info.id}" class="apply">申核报名</a>
+		</div>
+	</div>
+	<!-- 网站底部 -->
+    <include file="Base/footer" />
+</body>
+</html>

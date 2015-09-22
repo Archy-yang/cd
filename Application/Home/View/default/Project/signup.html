@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<include file="Base/header" />
+<body>
+	<!-- 网站导航 -->
+	<div class="topnav">
+	    <include file="Base/menu" />
+	</div>
+	<!-- 网站LOGO -->
+	<div class="logo wrapper">
+		<h2>虫洞招拍挂</h2>
+		<div class="advert">
+            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
+		</div>
+	</div>
+	<div class="signup wrapper">
+		<div class="form">
+            <form action="__APP__/Home/Inverstor/saveSignUp/id/{$id}" method="post">
+                <input type="hidden" name="inverstor_id" value="{$id}" />
+                <input type="hidden" name="is_sign_up" value="1"/>
+				<h5>发起项目</h5>
+				<ul>
+					<li>
+						<label for="">项目名称：</label>
+						<input type="text" required name="project_name">
+					</li>
+					<li>
+						<label for="">一句话说明：</label>
+						<input type="text" name="brief">
+					</li>
+					<li>
+						<label for="">已备资金：</label>
+						<input type="text" name="funding">
+						<span class="cell">元</span>
+					</li>
+					<li>
+						<label for="">项目简介：</label>
+						<textarea name="project_desc"></textarea>
+					</li>
+					<li>
+						<label for="">项目资源：</label>
+						<textarea name="resourse"></textarea>
+					</li>
+					<li>
+						<label for="">项目需求：</label>
+						<textarea name="need" class="needs"></textarea>
+					</li>
+				</ul>
+				<h6>发起人信息</h6>
+				<ul>
+					<li>
+						<label for="">自我介绍：</label>
+						<textarea name="profile"></textarea>
+					</li>
+					<li>
+						<label for="">联系电话：</label>
+						<input type="text" required name="mobile">
+					</li>
+					<li>
+						<label for="">上传照片：</label>
+						<div class="thumbs">
+							<div class="pic">
+								<img src="__PUBLIC__/Home/images/1px.png" class="preview">
+								<b></b>
+								<input type="hidden" id="img-path" name="img_path" class="picture">
+								<input type="hidden" id="img-name" name="img_name" class="picture">
+							</div>
+							<input type="file" class="file" id="file">
+							<p class="mark">支持jpg、jpeg、git格式<br>大小不超过2M</p>
+						</div>
+					</li>
+				</ul>
+				<h6>关于公司</h6>
+				<ul>
+					<li>
+						<label for="">成立时间：</label>
+						<input type="text" required name="company_creation_time">
+					</li>
+					<li>
+						<label for="">所在城市：</label>
+						<input type="text" required name="company_loaction">
+					</li>
+					<li>
+						<label for="">公司资产：</label>
+						<input type="text" name="company_fund">
+					</li>
+					<li>
+						<label for="">去年销售额：</label>
+						<input type="text" name="sales_volume">
+					</li>
+				</ul>
+				<input type="submit" class="apply" value="提交">
+			</form>
+		</div>
+	</div>
+	<include file="Base/footer" />
+    <script type="text/javascript">
+        $('.nav').find('li').eq(1).addClass('active');
+		$('input#file').uploadify({
+			width: 300,
+			height: 360,
+			buttonClass: 'custombtn',
+			buttonText: '',
+			fileTypeExts: '*.gif; *.jpg; *.png',
+			fileSizeLimit: '10MB',
+			formData: {width: 0, height: 0}, // 一些其它参数
+			swf: '__STATIC__/uploadify/uploadify.swf',
+			uploader: '__APP__/admin/upload/uploadImg',
+			itemTemplate  : '<div id="${fileID}" class="uploadify-queueitem">\
+					<div class="uploadify-progress">\
+						<div class="uploadify-progress-bar"></div>\
+					</div>\
+				</div>',
+			overrideEvents: ['onDialogClose'],
+			onUploadSuccess: function (file, data, response) {
+				var data = JSON.parse(data);
+
+				console.log(data);
+
+				// 根据返回结果的一些其它逻辑
+
+				$('img.preview').attr('src', data.path + data.name);
+				$('#img-path').val(data.path);
+				$('#img-name').val(data.name);
+			},
+			onSelectError: function (file, errorCode, errorMsg) {
+				// 图片类型会在打开窗口时自动过滤不用检测
+				
+                if(errorCode == -110) {
+                	alert('图片大小超出限制');
+                }
+			}
+        });
+	</script>
+</body>
+</html>

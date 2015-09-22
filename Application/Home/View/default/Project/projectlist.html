@@ -10,24 +10,8 @@
 	<div class="logo wrapper">
 		<h2>虫洞招拍挂</h2>
 		<div class="advert">
-			<img src="{$adv}" alt="虫洞招拍挂">
+            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
 		</div>
-	</div>
-	<!-- 焦点图 -->
-	<div class="banner wrapper" id="banner">
-		<ul class="slide">
-            <volist name="carousel" id="vo">
-            <li><img src="{$vo}" alt="虫洞招拍挂"></li>
-            </volist>
-		</ul>
-	</div>
-	<!-- 未知部分 -->
-    <div class="vague wrapper">
-        <notempty name="banner">
-        <img src="{$banner}" alt="虫洞招拍挂">
-        <else/>
-        <img src="__PUBLIC__/Home/images/vague.jpg" alt="虫洞招拍挂">
-        </notempty>
 	</div>
 	<!-- 经营服务 -->
 	<div class="service wrapper">
@@ -58,16 +42,10 @@
         <a href="javascript:;" class="more">MORE</a>
         </if>
 	</div>
-	<include file="Base/footer" />
+	<!-- 网站底部 -->
+    <include file="Base/footer" />
     <script type="text/javascript">
-        $('.nav').find('li').eq(0).addClass('active');
-		$("#banner").unslider({
-			speed: 500,
-			delay: 3000,
-			complete: function() {},
-			dots: true
-        });
-
+        $('.nav').find('li').eq(1).addClass('active');
         var page = 1;
         $('.more').on('click', function() {
             $.ajax({
@@ -88,6 +66,6 @@
                 }
             });
         });
-	</script>
+    </script>
 </body>
 </html>

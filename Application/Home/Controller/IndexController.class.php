@@ -20,26 +20,34 @@ class IndexController extends HomeController
 
     public function index()
     {
-        $img = M('image')->where(array('type' => array('in', array(1,2))))->select();
+        $img = M('image')->where(array('type' => array('in', array(1, 2, 6))))->select();
 
         $adv = '';
-        $banners = array();
+        $carousel = array();
+        $banner = '';
         foreach ($img as $v) {
-            if ($v['type'] == 1) {
-                $adv = $v['path'].$v['name'];
+            switch ($v['type']) {
+                case 1:
+                    $adv = $v['path'].$v['name'];
 
-                continue;
-            }
+                    break;
+                case 2:
+                    $carousel[] = $v['path'].$v['name'];
 
-            if ($v['type'] == 2) {
-                $banners[] = $v['path'].$v['name'];
+                    break;
+                case 6:
+                    $banner = $v['path'].$v['name'];
+
+                    break;
+
             }
         }
 
         list($project, $more) = $this->projectList(0, self::PROJECT_INIT_NUM);
 
         $this->assign('adv', $adv);
-        $this->assign('banners', $banners);
+        $this->assign('carousel', $carousel);
+        $this->assign('banner', $banner);
         $this->assign('project', $project);
         $this->assign('more', $more);
                  

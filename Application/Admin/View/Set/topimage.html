@@ -8,7 +8,26 @@
         position: absolute;
         top:0px;
         left:0px;
-        max-height:71px;
+    }
+    .uploadify-queue-item {
+        max-width: 1200px;
+        width: 1195px;
+        padding: 2px;
+        margin-top: 0;
+        border-radius: 0;
+        position: relative;
+        left:0;
+        bottom: 0;
+    }
+    .uploadify-progress {
+        width: 100%;
+        margin: 0;
+        background: #f5f5f5;
+    }
+    .uploadify-progress-bar {
+        width: 100%;
+        background: #000;
+        height: 5px;
     }
 </style>
 </block>
@@ -31,24 +50,16 @@
 	<!-- 标题 -->
     <div class="main-title">
         <div class="virtual-body">
-            <div class="navbar navbar-inverse">
-                <div class="navbar-inner">
+            <div class="adv-img">
+                <div class="img-sel">
+                    <div id="uploadify" class="uploadify"></div>
+                    <img src="{$img['path']}{$img['name']}">
+                    <input id="img-name" type="hidden" value="{$img['name']}"/>
+                    <input id="img-path" type="hidden" value="{$img['path']}"/>
                 </div>
             </div>
-            <div class="adv">
-                <div class="logo">
-                </div>
-                <div class="adv-img">
-                    <div class="img-sel">
-                        <div id="uploadify" class="uploadify"></div>
-                        <img src="{$img['path']}{$img['name']}">
-                        <input id="img-name" type="hidden" value="{$img['name']}"/>
-                        <input id="img-path" type="hidden" value="{$img['path']}"/>
-                    </div>
-                </div>
-            </div>
-            <div style="float:right">
-                <span class="remind">建议比例：660×88</span>&nbsp;&nbsp;
+            <div style="float:right;margin-top:20px">
+                <span class="remind">建议比例：1200x400</span>&nbsp;&nbsp;
                 <a href="javascript:;" class="btn btn-success">保存</a>
             </div>
          </div>
@@ -66,8 +77,8 @@
         $('#subnav').find('ul').eq(0).find('li').eq(0).addClass('current');
 
         $('#uploadify').uploadify({
-            'width': 525,
-            'height' : 70,
+            'width': 1200,
+            'height' : 400,
             'swf' : '__STATIC__/uploadify/uploadify.swf',
             'buttonText' : '+上传图片',
             'uploader' : '__APP__/Admin/Upload/uploadImg',
@@ -102,7 +113,7 @@
                 return false;
             }
             $.ajax({
-                url:'__APP__/Admin/Set/saveTopAdv',
+                url:'__APP__/Admin/Set/saveTopAdv/type/{$type}',
                 type:'post',
                 data: {path: path, name: name},
                 dataType: 'json',

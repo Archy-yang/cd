@@ -10,18 +10,33 @@ use Think\Model;
 class SetController extends AdminController
 {
     const TOP_IMG = 1;
-    const CAROUSEL_IMG = 2;
-    const CAROUSEL_IMG_COLLEGE = 5;
     const WEIXIN_QRCODE= 3;
     const WEIBO_QRCODE= 4;
+    const CAROUSEL_IMG = 2;
+    const CAROUSEL_IMG_COLLEGE = 5;
 
-    public function topImage()
+    const TOP_BANNER = 6;
+    const COLLEGE_BANNER = 7; 
+
+    public function topImage($type = 0)
     {
+        switch ($type) {
+            case 0:
+                $where = array(
+                    'type' => self::TOP_BANNER,
+                );
+
+                break;
+            case 1:
+                $where = array(
+                    'type' => self::COLLEGE_BANNER,
+                );
+
+                break;
+        }
         $model = new Model();
         $img = $model->table('image')
-            ->where(array(
-                'type' => self::TOP_IMG,
-            ))
+            ->where($where)
             ->order('id desc')
             ->find();
         if (!$img) {
@@ -32,6 +47,7 @@ class SetController extends AdminController
         }
 
         $this->assign('img', $img);
+        $this->assign('type', $type);
 
         $this->display();
     }
@@ -127,19 +143,30 @@ class SetController extends AdminController
      *
      * @author archy
      */
-    public function saveTopAdv()
+    public function saveTopAdv($type = 0)
     {
+        switch ($type) {
+            case 0:
+                $type = self::TOP_BANNER;
+
+                break;
+            case 1:
+                $type = self::COLLEGE_BANNER;
+
+                break;
+        }
+
         $model = new Model();
 
         $delRe = $model->table('image')
             ->where(array(
-                'type' => 1,
+                'type' => $type,
             ))
             ->delete();
         if (false !== $delRe) {
             $saveRe = $model->table('image')
                 ->data(array(
-                    'type' => 1,
+                    'type' => $type,
                     'path' => trim($_POST['path']),
                     'name' => trim($_POST['name']),
                     'create_time' => date('Y-m-d H:i:s'),
