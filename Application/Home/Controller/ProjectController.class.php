@@ -9,11 +9,12 @@ class ProjectController extends HomeController
 {
     public function projectList()
     {
-        $img = M('image')->where(array('type' => 1))->find();
+        $img = M('image')->where(array('type' => 9))->find();
+        $banner = $img['path'].$img['name'];
 
         list($project, $more) = $this->getList(0, 5);
 
-        $this->assign('img', $img);
+        $this->assign('banner', $banner);
         $this->assign('project', $project);
         $this->assign('more', $more);
         $this->display();

@@ -15,7 +15,9 @@ class TransitionController extends HomeController
         $count = $transition->where(array('is_delete' => 0))->count();
 
         $page = new Page($count, $num);
-        $img = M('image')->where(array('type' => 1))->find();
+        $img = M('image')->where(array('type' => 8))->find();
+        $banner = $img['path'].$img['name'];
+
         $show = $page->show();
 
         $list = $transition->where(array('is_delete' => 0))
@@ -24,7 +26,7 @@ class TransitionController extends HomeController
 
         $this->assign('list', $list);
         $this->assign('show', $show);
-        $this->assign('img', $img);
+        $this->assign('banner', $banner);
         $this->display();
     }
 

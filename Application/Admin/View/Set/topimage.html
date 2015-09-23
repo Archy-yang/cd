@@ -46,10 +46,24 @@
         <li <eq name="type" value="1">class="active"</eq>>
             <a href="__APP__/Admin/Set/topImage/type/1">学院页</a>
         </li>
+        <li <eq name="type" value="2">class="active"</eq>>
+            <a href="__APP__/Admin/Set/topImage/type/2">研究</a>
+        </li>
+        <li <eq name="type" value="3">class="active"</eq>>
+            <a href="__APP__/Admin/Set/topImage/type/3">招拍挂</a>
+        </li>
     </ul>
 	<!-- 标题 -->
     <div class="main-title">
         <div class="virtual-body">
+            <div>
+                <a href="javascript:;" class="btn btn-success">保存</a>
+                <eq name="type" value="0">
+                <span class="remind">建议比例：1200x410</span>&nbsp;&nbsp;
+                <else />
+                <span class="remind">建议比例：1200x610</span>&nbsp;&nbsp;
+                </eq>
+            </div>
             <div class="adv-img">
                 <div class="img-sel">
                     <div id="uploadify" class="uploadify"></div>
@@ -57,10 +71,6 @@
                     <input id="img-name" type="hidden" value="{$img['name']}"/>
                     <input id="img-path" type="hidden" value="{$img['path']}"/>
                 </div>
-            </div>
-            <div style="float:right;margin-top:20px">
-                <span class="remind">建议比例：1200x400</span>&nbsp;&nbsp;
-                <a href="javascript:;" class="btn btn-success">保存</a>
             </div>
          </div>
 	</div>
@@ -78,7 +88,7 @@
 
         $('#uploadify').uploadify({
             'width': 1200,
-            'height' : 400,
+            'height' : !{$type} ? 410 : 610,
             'swf' : '__STATIC__/uploadify/uploadify.swf',
             'buttonText' : '+上传图片',
             'uploader' : '__APP__/Admin/Upload/uploadImg',

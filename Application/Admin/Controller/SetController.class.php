@@ -17,6 +17,8 @@ class SetController extends AdminController
 
     const TOP_BANNER = 6;
     const COLLEGE_BANNER = 7; 
+    const TRANSITION_BANNER = 8;
+    const GUA_BANNER = 9;
 
     public function topImage($type = 0)
     {
@@ -30,6 +32,18 @@ class SetController extends AdminController
             case 1:
                 $where = array(
                     'type' => self::COLLEGE_BANNER,
+                );
+
+                break;
+            case 2:
+                $where = array(
+                    'type' => self::TRANSITION_BANNER,
+                );
+
+                break;
+            case 3:
+                $where = array(
+                    'type' => self::GUA_BANNER,
                 );
 
                 break;
@@ -84,16 +98,10 @@ class SetController extends AdminController
     {
         switch ($type) {
             case 0:
-                $where = array(
-                    'type' => self::CAROUSEL_IMG,
-                );
                 $type = self::CAROUSEL_IMG;
 
                 break;
             case 1:
-                $where = array(
-                    'type' => self::CAROUSEL_IMG_COLLEGE,
-                );
                 $type = self::CAROUSEL_IMG_COLLEGE;
 
                 break;
@@ -102,7 +110,9 @@ class SetController extends AdminController
         $model = new Model();
 
         $delRe = $model->table('image')
-            ->where($where)
+            ->where(array(
+                'type' => $type,
+            ))
             ->delete();
 
         if (false !== $delRe) {
@@ -152,6 +162,14 @@ class SetController extends AdminController
                 break;
             case 1:
                 $type = self::COLLEGE_BANNER;
+
+                break;
+            case 2:
+                $type = self::TRANSITION_BANNER;
+
+                break;
+            case 3:
+                $type = self::GUA_BANNER;
 
                 break;
         }

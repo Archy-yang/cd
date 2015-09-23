@@ -6,12 +6,13 @@
 	<div class="topnav">
 	    <include file="Base/menu" />
 	</div>
-	<!-- 网站LOGO -->
-	<div class="logo wrapper">
-		<h2>虫洞招拍挂</h2>
-		<div class="advert">
-            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
-		</div>
+	<!-- banner -->
+    <div class="vague wrapper adv">
+        <notempty name="banner">
+        <img src="{$banner}" alt="虫洞招拍挂">
+        <else/>
+        <img src="__PUBLIC__/Home/images/zpg.jpg" alt="虫洞招拍挂">
+        </notempty>
 	</div>
 	<!-- 经营服务 -->
 	<div class="service wrapper">

@@ -8,12 +8,10 @@
 
 .virtual-body .adv-img{
     height: 100%;
-    background: #fff;
+    margin-top:20px;
 }
 .virtual-body .img-sel{
     width: 100%;
-    height: 400px;
-    margin-top: 20px;
 }
 span.remind {
     color: red;
