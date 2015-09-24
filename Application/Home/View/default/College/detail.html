@@ -2,39 +2,41 @@
 <html lang="en">
 	<include file="Base/header" />
 <body>
-	<!-- 网站导航 -->
-	<div class="topnav">
-	    <include file="Base/menu" />
-	</div>
-	<!-- banner -->
-    <div class="vague wrapper adv">
-        <notempty name="banner">
-        <img src="{$banner}" alt="虫洞招拍挂">
-        <else/>
-        <img src="__PUBLIC__/Home/images/xy.jpg" alt="虫洞招拍挂">
-        </notempty>
-	</div>
-	<div class="detail wrapper">
-		<div class="content">
-            <img src="{$detail.img_t_path}{$detail.img_t_name}" alt="">
-            <h4>{$detail.title}</h4>
-			<p class="attached">
-				<span class="expiration"><b class="icon-clock"></b>
-                    {$detail.start_time} - {$detail.end_time}
-				</span>
-                <span class="address"><b class="icon-position"></b>
-                    {$detail.location}
-				</span>
-                <span data-cid="{$detail.id}" class="apply">立即报名</span>
-			</p>
-			<h5>活动介绍</h5>
-            <div class="text">
-                {$detail.content}
-			</div>
-		</div>
-	</div>
-	<!-- 网站底部 -->
-    <include file="Base/footer" />
+    <div class="wrapper">
+    	<!-- 网站导航 -->
+    	<div class="nav">
+    	    <include file="Base/menu" />
+    	</div>
+    	<!-- banner -->
+        <div class="vague adv">
+            <notempty name="banner">
+            <img src="{$banner}" alt="虫洞招拍挂">
+            <else/>
+            <img src="__PUBLIC__/Home/images/xy.jpg" alt="虫洞招拍挂">
+            </notempty>
+    	</div>
+    	<div class="detail">
+    		<div class="content">
+                <img src="{$detail.img_t_path}{$detail.img_t_name}" alt="">
+                <h4>{$detail.title}</h4>
+    			<p class="attached">
+    				<span class="expiration"><b class="icon-clock"></b>
+                        {$detail.start_time} - {$detail.end_time}
+    				</span>
+                    <span class="address"><b class="icon-position"></b>
+                        {$detail.location}
+    				</span>
+                    <span data-cid="{$detail.id}" class="apply">立即报名</span>
+    			</p>
+    			<h5>活动介绍</h5>
+                <div class="text">
+                    {$detail.content}
+    			</div>
+    		</div>
+    	</div>
+    	<!-- 网站底部 -->
+        <include file="Base/footer" />
+    </div>
     <script type="text/javascript">
     	$('.college, .detail').on('click', '.apply', function () {
     		var _this = $(this);

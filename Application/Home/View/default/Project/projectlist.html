@@ -2,49 +2,51 @@
 <html lang="en">
 	<include file="Base/header" />
 <body>
-	<!-- 网站导航 -->
-	<div class="topnav">
-	    <include file="Base/menu" />
-	</div>
-	<!-- banner -->
-    <div class="vague wrapper adv">
-        <notempty name="banner">
-        <img src="{$banner}" alt="虫洞招拍挂">
-        <else/>
-        <img src="__PUBLIC__/Home/images/zpg.jpg" alt="虫洞招拍挂">
-        </notempty>
-	</div>
-	<!-- 经营服务 -->
-	<div class="service wrapper">
-		<!-- Loop Start -->
-        <volist name="project" id="vo">
-        <div class="item">
-			<div class="pic">
-                <img src="{$vo.img_path}{$vo.img_name}" alt="{$vo.name}">
-                <if condition="$vo.is_funding eq 1">
-                <b class="mark">融资成功</b>
-                </if>
-			</div>
-			<div class="brief">
-                <h4>{$vo.name}</h4>
-                <p>{$vo.desc}</p>
-				<dl>
-					<dt></dt>
-                    <dd>已备资金 : <span>{:round($vo['funds']/100/10000, 2)}万</span></dd>
-                    <dd>{$vo.main_type}•<span>{$vo.sub_type}</span></dd>
-                    <dd>人才招募 : <span>{$vo.recruit}</span></dd>
-				</dl>
-			</div>
-        </div>
-        </volist>
-		<!-- Loop Start -->
-        <!-- 更多 -->
-        <if condition="$more">
-        <a href="javascript:;" class="more">MORE</a>
-        </if>
-	</div>
-	<!-- 网站底部 -->
-    <include file="Base/footer" />
+    <div class="wrapper">
+    	<!-- 网站导航 -->
+    	<div class="nav">
+    	    <include file="Base/menu" />
+    	</div>
+    	<!-- banner -->
+        <div class="vague adv">
+            <notempty name="banner">
+            <img src="{$banner}" alt="虫洞招拍挂">
+            <else/>
+            <img src="__PUBLIC__/Home/images/zpg.jpg" alt="虫洞招拍挂">
+            </notempty>
+    	</div>
+    	<!-- 经营服务 -->
+    	<div class="service">
+    		<!-- Loop Start -->
+            <volist name="project" id="vo">
+            <div class="item">
+    			<div class="pic">
+                    <img src="{$vo.img_path}{$vo.img_name}" alt="{$vo.name}">
+                    <if condition="$vo.is_funding eq 1">
+                    <b class="mark">融资成功</b>
+                    </if>
+    			</div>
+    			<div class="brief">
+                    <h4>{$vo.name}</h4>
+                    <p>{$vo.desc}</p>
+    				<dl>
+    					<dt></dt>
+                        <dd>已备资金 : <span>{:round($vo['funds']/100/10000, 2)}万</span></dd>
+                        <dd>{$vo.main_type}•<span>{$vo.sub_type}</span></dd>
+                        <dd>人才招募 : <span>{$vo.recruit}</span></dd>
+    				</dl>
+    			</div>
+            </div>
+            </volist>
+    		<!-- Loop Start -->
+            <!-- 更多 -->
+            <if condition="$more">
+            <a href="javascript:;" class="more">MORE</a>
+            </if>
+    	</div>
+    	<!-- 网站底部 -->
+        <include file="Base/footer" />
+    </div>
     <script type="text/javascript">
         $('.nav').find('li').eq(1).addClass('active');
         var page = 1;

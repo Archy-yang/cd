@@ -440,72 +440,54 @@ body {
 .wrapper {
   width: 1200px;
   height: auto;
-  padding: 0 72px;
   margin: 0 auto;
   box-sizing: border-box;
 }
-.topnav {
-  width: 100%;
-  height: 46px;
-  line-height: 46px;
-  font-size: 14px;
-  background-color: #333;
-}
-.topnav .wrapper {
+.nav {
+  height: 80px;
+  line-height: 80px;
+  padding: 10px 80px 0;
+  font-size: 16px;
+  background-color: #F2F2F2;
   position: relative;
 }
-.topnav ul {
+.nav ul {
   height: 100%;
+  margin-left: 200px;
 }
-.topnav li {
+.nav li {
   height: 100%;
   text-align: center;
-  padding: 0 15px;
-  margin-right: 5px;
+  padding: 0 5px;
+  margin-right: 40px;
   float: left;
+  position: relative;
 }
-.topnav li.active,
-.topnav li:hover {
-  background-color: #50abf2;
+.nav li.active b,
+.nav li:hover b {
+  display: block;
 }
-.topnav a {
+.nav li b {
+  position: absolute;
+  left: 0;
+  bottom: 24px;
+  width: 100%;
+  height: 2px;
+  font-weight: normal;
+  background: #50abf2;
+  display: none;
+}
+.nav a {
   display: block;
   height: 100%;
-  color: #FFF;
-}
-.topnav a.extra {
-  position: absolute;
-  top: 0;
-  right: 80px;
-}
-.topnav a.extra span {
-  font-size: 18px;
-}
-.topnav .icon-phone {
-  margin-right: 5px;
-  vertical-align: middle;
-}
-.logo {
-  height: 136px;
-  line-height: 88px;
-  padding-top: 24px;
-  padding-bottom: 24px;
-}
-.logo h2 {
-  height: 100%;
-  padding-left: 135px;
-  font-size: 28px;
   color: #020202;
-  font-weight: normal;
-  background: url('../images/logo.png') left center no-repeat;
-  float: left;
 }
-.logo .advert {
-  width: 660px;
-  height: 100%;
-  margin-left: 40px;
-  overflow: hidden;
-  float: left;
+.nav a.logo {
+  position: absolute;
+  z-index: 10;
+  width: 120px;
+  height: 80px;
+  background: url('../images/logo.png') 0 center no-repeat;
 }
 .banner {
   height: 400px;
@@ -554,6 +536,7 @@ body {
   max-height: 610px;
 }
 .service {
+  padding: 0 80px;
   padding-bottom: 30px;
   margin-top: 64px;
 }
@@ -634,20 +617,19 @@ body {
   -ms-border-radius: 3px;
 }
 .footer {
-  padding: 0 !important;
+  padding: 0 80px;
+  background: url('../images/footer.jpg') 0 0 no-repeat;
   background-color: #333;
 }
 .footer .focus {
   height: 186px;
-  padding: 0 72px;
-  background: url('../images/footer.jpg') no-repeat;
   position: relative;
 }
 .footer .focus a.project {
   position: absolute;
   top: 115px;
-  left: 370px;
-  font-size: 22px;
+  left: 300px;
+  font-size: 20px;
   color: #AAA;
 }
 .footer .focus .icon-arrow {
@@ -727,7 +709,7 @@ body {
   position: absolute;
   left: 170px;
   bottom: 10px;
-  width: 260px;
+  /*width: 260px;*/
   text-align: left;
 }
 .footer .extra a {

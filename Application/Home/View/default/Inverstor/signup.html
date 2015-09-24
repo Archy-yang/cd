@@ -2,108 +2,93 @@
 <html lang="en">
 	<include file="Base/header" />
 <body>
-	<!-- 网站导航 -->
-	<div class="topnav">
-		<div class="wrapper">
-			<ul class="nav">
-				<li><a href="__APP__">首页</a></li>
-				<li class="active"><a href="__APP__/Home/Inverstor/info">虫洞招拍挂</a></li>
-				<li><a href="__APP__/Home/Transition/showList">虫洞转型</a></li>
-				<li><a href="__APP__/Home/College/showList">虫洞商学院</a></li>
-			</ul>
-			<a href="javascript:;" class="extra">
-				<span class="icon-phone"></span> 官方咨询电话 <span>400-100-6810</span>
-			</a>
+	<div class="wrapper">
+		<!-- 网站导航 -->
+		<div class="nav">
+		    <include file="Base/menu" />
 		</div>
-	</div>
-	<!-- 网站LOGO -->
-	<div class="logo wrapper">
-		<h2>虫洞招拍挂</h2>
-		<div class="advert">
-            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
-		</div>
-	</div>
-	<div class="signup wrapper">
-		<div class="form">
-            <form action="__APP__/Home/Inverstor/saveSignUp/id/{$id}" method="post">
-                <input type="hidden" name="inverstor_id" value="{$id}" />
-                <input type="hidden" name="is_sign_up" value="1"/>
-				<h5>发起项目</h5>
-				<ul>
-					<li>
-						<label for="">项目名称：</label>
-						<input type="text" required name="project_name">
-					</li>
-					<li>
-						<label for="">一句话说明：</label>
-						<input type="text" name="brief">
-					</li>
-					<li>
-						<label for="">已备资金：</label>
-						<input type="text" name="funding">
-						<span class="cell">元</span>
-					</li>
-					<li>
-						<label for="">项目简介：</label>
-						<textarea name="project_desc"></textarea>
-					</li>
-					<li>
-						<label for="">项目资源：</label>
-						<textarea name="resourse"></textarea>
-					</li>
-					<li>
-						<label for="">项目需求：</label>
-						<textarea name="need" class="needs"></textarea>
-					</li>
-				</ul>
-				<h6>发起人信息</h6>
-				<ul>
-					<li>
-						<label for="">自我介绍：</label>
-						<textarea name="profile"></textarea>
-					</li>
-					<li>
-						<label for="">联系电话：</label>
-						<input type="text" required name="mobile">
-					</li>
-					<li>
-						<label for="">上传照片：</label>
-						<div class="thumbs">
-							<div class="pic">
-								<img src="__PUBLIC__/Home/images/1px.png" class="preview">
-								<b></b>
-								<input type="hidden" id="img-path" name="img_path" class="picture">
-								<input type="hidden" id="img-name" name="img_name" class="picture">
+		<div class="signup">
+			<div class="form">
+	            <form action="__APP__/Home/Inverstor/saveSignUp/id/{$id}" method="post">
+	                <input type="hidden" name="inverstor_id" value="{$id}" />
+	                <input type="hidden" name="is_sign_up" value="1"/>
+					<h5>发起项目</h5>
+					<ul>
+						<li>
+							<label for="">项目名称：</label>
+							<input type="text" required name="project_name">
+						</li>
+						<li>
+							<label for="">一句话说明：</label>
+							<input type="text" name="brief">
+						</li>
+						<li>
+							<label for="">已备资金：</label>
+							<input type="text" name="funding">
+							<span class="cell">元</span>
+						</li>
+						<li>
+							<label for="">项目简介：</label>
+							<textarea name="project_desc"></textarea>
+						</li>
+						<li>
+							<label for="">项目资源：</label>
+							<textarea name="resourse"></textarea>
+						</li>
+						<li>
+							<label for="">项目需求：</label>
+							<textarea name="need" class="needs"></textarea>
+						</li>
+					</ul>
+					<h6>发起人信息</h6>
+					<ul>
+						<li>
+							<label for="">自我介绍：</label>
+							<textarea name="profile"></textarea>
+						</li>
+						<li>
+							<label for="">联系电话：</label>
+							<input type="text" required name="mobile">
+						</li>
+						<li>
+							<label for="">上传照片：</label>
+							<div class="thumbs">
+								<div class="pic">
+									<img src="__PUBLIC__/Home/images/1px.png" class="preview">
+									<b></b>
+									<input type="hidden" id="img-path" name="img_path" class="picture">
+									<input type="hidden" id="img-name" name="img_name" class="picture">
+								</div>
+								<input type="file" class="file" id="file">
+								<p class="mark">支持jpg、jpeg、git格式<br>大小不超过2M</p>
 							</div>
-							<input type="file" class="file" id="file">
-							<p class="mark">支持jpg、jpeg、git格式<br>大小不超过2M</p>
-						</div>
-					</li>
-				</ul>
-				<h6>关于公司</h6>
-				<ul>
-					<li>
-						<label for="">成立时间：</label>
-						<input type="text" required name="company_creation_time">
-					</li>
-					<li>
-						<label for="">所在城市：</label>
-						<input type="text" required name="company_loaction">
-					</li>
-					<li>
-						<label for="">公司资产：</label>
-						<input type="text" name="company_fund">
-					</li>
-					<li>
-						<label for="">去年销售额：</label>
-						<input type="text" name="sales_volume">
-					</li>
-				</ul>
-				<input type="submit" class="apply" value="提交">
-			</form>
+						</li>
+					</ul>
+					<h6>关于公司</h6>
+					<ul>
+						<li>
+							<label for="">成立时间：</label>
+							<input type="text" required name="company_creation_time">
+						</li>
+						<li>
+							<label for="">所在城市：</label>
+							<input type="text" required name="company_loaction">
+						</li>
+						<li>
+							<label for="">公司资产：</label>
+							<input type="text" name="company_fund">
+						</li>
+						<li>
+							<label for="">去年销售额：</label>
+							<input type="text" name="sales_volume">
+						</li>
+					</ul>
+					<input type="submit" class="apply" value="提交">
+				</form>
+			</div>
 		</div>
+		<include file="Base/footer" />
 	</div>
-	<include file="Base/footer" />
 	<script type="text/javascript">
 		$('input#file').uploadify({
 			width: 300,

@@ -2,58 +2,53 @@
 <html lang="en">
 	<include file="Base/header" />
 <body>
-	<!-- 网站导航 -->
-	<div class="topnav">
-	    <include file="Base/menu" />
-	</div>
-	<!-- 网站LOGO -->
-	<div class="logo wrapper">
-		<h2>虫洞招拍挂</h2>
-		<div class="advert">
-            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
-		</div>
-	</div>
-	<div class="blank"></div>
-	<!-- 未知部分 -->
-	<div class="vague wrapper">
-		<img src="__PUBLIC__/Home/images/pic.jpg" alt="商学院">
-	</div>
-	<!-- 商学院 -->
-	<div class="college wrapper">
-        <!-- Loop start -->
-        <volist name="list" id="vo">
-        <php>$content = strip_tags($vo['content'])</php>
-		<div class="item">
-            <div class="thumb">
-                <a href="__APP__/Home/College/detail/id/{$vo.id}">
-                    <img src="{$vo.img_b_path}{$vo.img_b_name}" alt="虫洞学院">
-                </a>
-			</div>
-			<div class="label">
-                <img src="{$vo.img_l_path}{$vo.img_l_name}" alt="">
-                <span>{$vo.title}</span>
-			</div>
-            <p class="brief">
-                {$content|msubstr=0,100}
-			</p>
-			<div class="extra">
-                <span class="datetime"><b class="icon-clock"></b>
-                    {$vo.start_time}
-				</span>
-                <span class="address"><b class="icon-position"></b>
-                    {$vo.location|msubstr=0,10}
-				</span>
-                <a href="javascript:;" data-cid='{$vo.id}' class="apply">立即报名</a>
-			</div>
+    <div class="wrapper">
+    	<!-- 网站导航 -->
+    	<div class="nav">
+    	    <include file="Base/menu" />
+    	</div>
+    	<div class="blank"></div>
+    	<!-- 未知部分 -->
+    	<div class="vague">
+    		<img src="__PUBLIC__/Home/images/pic.jpg" alt="商学院">
+    	</div>
+    	<!-- 商学院 -->
+    	<div class="college">
+            <!-- Loop start -->
+            <volist name="list" id="vo">
+            <php>$content = strip_tags($vo['content'])</php>
+    		<div class="item">
+                <div class="thumb">
+                    <a href="__APP__/Home/College/detail/id/{$vo.id}">
+                        <img src="{$vo.img_b_path}{$vo.img_b_name}" alt="虫洞学院">
+                    </a>
+    			</div>
+    			<div class="label">
+                    <img src="{$vo.img_l_path}{$vo.img_l_name}" alt="">
+                    <span>{$vo.title}</span>
+    			</div>
+                <p class="brief">
+                    {$content|msubstr=0,100}
+    			</p>
+    			<div class="extra">
+                    <span class="datetime"><b class="icon-clock"></b>
+                        {$vo.start_time}
+    				</span>
+                    <span class="address"><b class="icon-position"></b>
+                        {$vo.location|msubstr=0,10}
+    				</span>
+                    <a href="javascript:;" data-cid='{$vo.id}' class="apply">立即报名</a>
+    			</div>
+            </div>
+            </volist>
+            <!-- Loop end -->
+            <div class="item empty"></div>
         </div>
-        </volist>
-        <!-- Loop end -->
-        <div class="item empty"></div>
+    	<!-- 分页 -->
+        {$show}
+    	<!-- 网站底部 -->
+        <include file="Base/footer" />
     </div>
-	<!-- 分页 -->
-    {$show}
-	<!-- 网站底部 -->
-    <include file="Base/footer" />
     <script type="text/javascript">
     	$('.college, .detail').on('click', '.apply', function () {
     		var _this = $(this);
