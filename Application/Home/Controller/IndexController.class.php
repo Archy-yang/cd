@@ -75,7 +75,10 @@ class IndexController extends HomeController
     {
         $projectList = M('project')->where(array(
             'is_delete' => 0,
+            'is_index' => 1,
+            'is_pass' => 1,
         ))
+        ->order('index_sort desc')
         ->limit($skip, $num +1)
         ->select();
 

@@ -41,9 +41,6 @@
         background: #000;
         height: 5px;
     }
-    div.list {
-        height: 400px;
-    }
     div.del-img {
         display: none;
         position: absolute;
@@ -81,7 +78,11 @@
                 <div id="uploadify"></div>
             </div>
             <p>
-                <span class="remind">建议比例1200X400</span>
+                <eq name="type" value="0">
+                <span class="remind">建议比例：1200x410</span>&nbsp;&nbsp;
+                <else />
+                <span class="remind">建议比例：1200x610</span>&nbsp;&nbsp;
+                </eq>
             </p>
             <form id="myform">
                 <div class="img-list">

@@ -4,24 +4,7 @@
 <body>
 	<!-- 网站导航 -->
 	<div class="topnav">
-		<div class="wrapper">
-			<ul class="nav">
-				<li><a href="__APP__">首页</a></li>
-				<li class="active"><a href="__APP__/Home/Inverstor/info">虫洞招拍挂</a></li>
-				<li><a href="__APP__/Home/Transition/showList">虫洞转型</a></li>
-				<li><a href="__APP__/Home/College/showList">虫洞商学院</a></li>
-			</ul>
-			<a href="javascript:;" class="extra">
-				<span class="icon-phone"></span> 官方咨询电话 <span>400-100-6810</span>
-			</a>
-		</div>
-	</div>
-	<!-- 网站LOGO -->
-	<div class="logo wrapper">
-		<h2>虫洞招拍挂</h2>
-		<div class="advert">
-            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
-		</div>
+	    <include file="Base/menu" />
 	</div>
 	<!-- 转型 -->
 	<div class="bidding wrapper">
@@ -79,10 +62,87 @@
                     <li class="dot">{$info.brief}</li>
 				</ul>
 			</div>
-            <a href="__APP__/Home/Inverstor/signUp/id/{$info.id}" class="apply">申核报名</a>
+            <a href="ajaxscript:;" class="apply">申请报名</a>
 		</div>
 	</div>
 	<!-- 网站底部 -->
     <include file="Base/footer" />
+    <script type="text/javascript">
+        $('.nav').find('li').eq(1).addClass('active');
+    	$('.apply').on('click', function () {
+    		var _this = $(this);
+
+    		var mask = $('<div />', {
+    			id: 'cover',
+    			css: {
+    				position: 'fixed',
+    				top: 0,
+    				left: 0,
+    				width: '100%',
+    				height: "100%",
+    				backgroundColor: '#000',
+    				opacity: 0.8
+    			}
+    		}).appendTo('body');
+
+    		var html = $('#layer').html()
+    		
+            var layer = $(html).appendTo('body');
+
+            layer.find('#cid').val(_this.attr('data-cid'));
+
+    		// 提交表单的主要逻辑
+            layer.find('.submit').click(function () {
+                layer.find('#myform').ajaxSubmit({
+                    url: '__APP__/Home/Inverstor/signUp/id/{$info.id}',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            alert('报名成功');
+
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                });
+    		});
+
+    		mask.one('click', function () {
+    			$(this).remove();
+    			layer.remove();
+    		});
+    	});
+    </script>
+    <script type="text/template" id="layer">
+        <div class="layer">
+            <form id="myform" method="post">
+                <input  type="hidden" id="cid" name="college_id" value='' />
+                <ul>
+                    <li>
+                        <label for="">姓名</label>
+                        <input type="text" required name="name">
+                    </li>
+                    <li>
+                        <label for="">公司</label>
+                        <input type="text" required name="company">
+                    </li>
+                    <li>
+                        <label for="">职位</label>
+                        <input type="text" required name="job">
+                    </li>
+                    <li>
+                        <label for="">手机</label>
+                        <input type="text" required name="mobile">
+                    </li>
+                    <li>
+                        <label for="">邮箱</label>
+                        <input type="text" required name="email">
+                    </li>
+                    <li><input type="button" value="提交报名" class="submit"></li>
+                </ul>
+            </form>
+		</div>
+    </script>
 </body>
 </html>

@@ -6,17 +6,13 @@
 	<div class="topnav">
 	    <include file="Base/menu" />
 	</div>
-	<!-- 网站LOGO -->
-	<div class="logo wrapper">
-		<h2>虫洞招拍挂</h2>
-		<div class="advert">
-            <img src="{$img.path}{$img.name}" alt="虫洞招拍挂">
-		</div>
-	</div>
-	<div class="blank"></div>
-	<!-- 未知部分 -->
-	<div class="vague wrapper">
-		<img src="__PUBLIC__/Home/images/pic.jpg" alt="商学院">
+	<!-- 焦点图 -->
+	<div class="banner wrapper adv" id="banner">
+		<ul class="slide">
+            <volist name="carousel" id="vo">
+            <li><img src="{$vo}" alt="虫洞招拍挂"></li>
+            </volist>
+		</ul>
 	</div>
 	<!-- 商学院 -->
 	<div class="college wrapper">
@@ -55,6 +51,13 @@
 	<!-- 网站底部 -->
     <include file="Base/footer" />
     <script type="text/javascript">
+        $('.nav').find('li').eq(3).addClass('active');
+		$("#banner").unslider({
+			speed: 500,
+			delay: 3000,
+			complete: function() {},
+			dots: true
+        });
     	$('.college, .detail').on('click', '.apply', function () {
     		var _this = $(this);
 
@@ -129,9 +132,6 @@
                 </ul>
             </form>
 		</div>
-    </script>
-    <script type="text/javascript">
-        $('.nav').find('li').eq(3).addClass('active');
     </script>
 </body>
 </html>

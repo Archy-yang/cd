@@ -551,6 +551,7 @@ body {
   overflow: hidden;
 }
 .adv {
+  height: 610px;
   max-height: 610px;
 }
 .service {

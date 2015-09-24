@@ -15,8 +15,7 @@
 	</div>
 	<div class="signup wrapper">
 		<div class="form">
-            <form action="__APP__/Home/Inverstor/saveSignUp/id/{$id}" method="post">
-                <input type="hidden" name="inverstor_id" value="{$id}" />
+            <form action="__APP__/Home/Project/saveCreate" method="post">
                 <input type="hidden" name="is_sign_up" value="1"/>
 				<h5>发起项目</h5>
 				<ul>
@@ -75,6 +74,7 @@
 					<li>
 						<label for="">成立时间：</label>
 						<input type="text" required name="company_creation_time">
+						<span class="cell">年</span>
 					</li>
 					<li>
 						<label for="">所在城市：</label>

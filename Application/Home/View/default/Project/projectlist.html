@@ -29,7 +29,9 @@
                 <h4>{$vo.name}</h4>
                 <p>{$vo.desc}</p>
 				<dl>
-					<dt></dt>
+                    <a href="__APP__/Home/Inverstor/info/id/{$vo.inverstor_id}">
+                        <dt></dt>
+                    </a>
                     <dd>已备资金 : <span>{:round($vo['funds']/100/10000, 2)}万</span></dd>
                     <dd>{$vo.main_type}•<span>{$vo.sub_type}</span></dd>
                     <dd>人才招募 : <span>{$vo.recruit}</span></dd>
