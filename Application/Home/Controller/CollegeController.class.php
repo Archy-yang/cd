@@ -15,8 +15,13 @@ class CollegeController extends HomeController
         $count = $college->where(array('is_delete' => 0))->count();
 
         $page = new Page($count, $num);
-        $img = M('image')->where(array('type' => 7))->find();
-        $banner = $img['path'].$img['name'];
+
+        $img = M('image')->where(array('type' => 5))->select();
+
+        $carousel = array();
+        foreach ($img as $v) {
+            $carousel[] = $v['path'].$v['name'];
+        }
 
         $show = $page->show();
 
@@ -26,7 +31,7 @@ class CollegeController extends HomeController
 
         $this->assign('list', $list);
         $this->assign('show', $show);
-        $this->assign('banner', $banner);
+        $this->assign('carousel', $carousel);
         $this->display();
     
     }

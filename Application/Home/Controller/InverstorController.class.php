@@ -7,31 +7,44 @@ namespace Home\Controller;
  */
 class InverstorController extends HomeController
 {
-    public function info()
+    public function info($id)
     {
-        $img = M('image')->where(array('type' => 1))->find();
-
         $info = M('inverstor')->where(array(
-            'is_show' => 1,
-            'is_sign_up' => 0,
+            'id' => $id
         ))
         ->find();
 
         $info['resource'] = explode("\n", $info['resource']);
         $info['need'] = explode("\n", $info['need']);
 
-        $this->assign('img', $img);
         $this->assign('info', $info);
         $this->display();
     }
 
     public function signUp($id = 0)
     {
-        $img = M('image')->where(array('type' => 1))->find();
+        $signUp = D('Inverstor_sign_up');
 
-        $this->assign('img', $img);
-        $this->assign('id', $id);
-        $this->display();
+        $data = $signUp->create();
+
+        $flag = false;
+        if ($id && $data) {
+            $data['inverstor_id'] = $id;
+            $flag = $signUp->data($data)->add();
+            
+        }
+
+        if ($flag) {
+            echo json_encode(array(
+                'code' => 0,
+            ));
+        } else {
+            echo json_encode(array(
+                'code' => 1,
+                'msg' => $signUp->getError() ? $signUp->getError() : '申请失败',
+            ));
+        }
+        return ;
     }
 
     public function saveSignUp()

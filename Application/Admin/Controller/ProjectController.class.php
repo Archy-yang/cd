@@ -8,6 +8,43 @@ use Think\Page;
 class ProjectController extends AdminController
 {
     /**
+     * 首页项目列表
+     *
+     * @author yangqi
+     */
+    public function indexList()
+    {
+        $project = M('inverstor');
+
+        $where = array(
+            'i.is_delete' => 0,
+            'p.is_pass' => 1,
+            'p.is_index' => 1,
+        );
+        //$field = array(
+        //    'i.project_name',
+        //);
+
+        $list = $project->alias('i')
+            ->field($field)
+            ->join('left join project as p on p.inverstor_id = i.id')
+            ->where($where)
+            ->order('index_sort desc')
+            ->select();
+
+        $funding = array(
+            '天使轮',
+            'A轮',
+            'B轮',
+            'C轮',
+            'D轮',
+        );
+
+        $this->assign("funding", $funding);
+        $this->assign("list", $list);
+        $this->display('projectlist');
+    }
+    /**
      * 项目列表
      *
      * @autor archy

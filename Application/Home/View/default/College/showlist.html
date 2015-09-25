@@ -7,11 +7,15 @@
     	<div class="nav">
     	    <include file="Base/menu" />
     	</div>
+        <!-- 焦点图 -->
+        <div class="banner wrapper adv" id="banner">
+            <ul class="slide">
+                <volist name="carousel" id="vo">
+                <li><img src="{$vo}" alt="虫洞招拍挂"></li>
+                </volist>
+            </ul>
+        </div>
     	<div class="blank"></div>
-    	<!-- 未知部分 -->
-    	<div class="vague">
-    		<img src="__PUBLIC__/Home/images/pic.jpg" alt="商学院">
-    	</div>
     	<!-- 商学院 -->
     	<div class="college">
             <!-- Loop start -->
@@ -50,6 +54,13 @@
         <include file="Base/footer" />
     </div>
     <script type="text/javascript">
+        $('.nav').find('li').eq(3).addClass('active');
+		$("#banner").unslider({
+			speed: 500,
+			delay: 3000,
+			complete: function() {},
+			dots: true
+        });
     	$('.college, .detail').on('click', '.apply', function () {
     		var _this = $(this);
 
@@ -124,9 +135,6 @@
                 </ul>
             </form>
 		</div>
-    </script>
-    <script type="text/javascript">
-        $('.nav').find('li').eq(3).addClass('active');
     </script>
 </body>
 </html>

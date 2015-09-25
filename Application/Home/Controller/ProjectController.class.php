@@ -38,16 +38,15 @@ class ProjectController extends HomeController
         $this->display();
     }
 
-    public function signUp()
+    public function create()
     {
         $img = M('image')->where(array('type' => 1))->find();
 
         $this->assign('img', $img);
-        $this->assign('id', $id);
         $this->display();
     }
 
-    public function saveSignUp()
+    public function saveCreate()
     {
         $inverstor = D('Inverstor');
 
@@ -59,7 +58,7 @@ class ProjectController extends HomeController
         }
 
         if ($flag) {
-            $this->success('申请成功', U('Inverstor/info'));
+            $this->success('申请成功', U('Project/projectList'));
         } else {
             $this->error('申请失败');
         }
@@ -69,7 +68,9 @@ class ProjectController extends HomeController
     {
         $projectList = M('project')->where(array(
             'is_delete' => 0,
+            'is_pass' => 1,
         ))
+        ->order('pass_time desc')
         ->limit($skip, $num +1)
         ->select();
 
