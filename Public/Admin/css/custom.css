@@ -22,3 +22,6 @@ span.remind {
 .main-title .list {
     margin-top: 30px;
 }
+a.del {
+    margin-left: 20px;   
+}

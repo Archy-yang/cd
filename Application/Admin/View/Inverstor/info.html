@@ -1,0 +1,137 @@
+<extend name="Admin@Public:base" />
+
+<block name="style">
+<link rel="stylesheet" type="text/css" href="__STATIC__/datetimepicker/css/datetimepicker.css"/>
+<style type="text/css" media="screen">
+    dl {
+    margin-bottom:20px;
+    }
+    .img-sel img{
+        position: relative;
+        top:0px;
+        left:0px;
+        max-width:300px;
+        max-height:365px;
+    }
+    textarea{
+        height:120px;
+        width:320px;
+    }
+</style>
+</block>
+
+<block name="sidebar">
+    <include file="Public:documenu" />
+</block>
+
+<block name="body">
+	<!-- 标题 -->
+    <div class="main-title">
+        <div>
+            <a href="__APP__/Admin/Project/indexList" class="btn btn-info">返回</a>
+        </div>
+        <div style="margin-top:20px">
+            <form id="myForm">
+                <input name="id" type="hidden" value="{$info.id}" />
+                <dl class="dl-horizontal">
+                    <dt>项目名称</dt>
+                    <dd>{$info.project_name}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>一句话说明</dt>
+                    <dd>
+                        {$info.brief}
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>已备资金</dt>
+                    <dd>
+                        <span>
+                            {:round($info['funding']/100/10000, 2)}万
+                        </span>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>项目简介</dt>
+                    <dd>
+                        <span>
+                            {$info.preject_desc}
+                        </span>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>项目资源</dt>
+                    <dd>
+	                    <volist name="info.resource" id="vo">
+	                    <li class="dot">{$vo}</li>
+	                    </volist>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>项目需求</dt>
+                    <dd>
+	                    <volist name="info.need" id="vo">
+	                    <li class="dot">{$vo}</li>
+	                    </volist>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>人物简介</dt>
+                    <dd>{$info.profile}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>联系电话</dt>
+                    <dd>{$info.mobile}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>人物照片</dt>
+                    <dd>
+                        <div class="img-sel">
+                            <div id="uploadify" class="uploadify"></div>
+                            <img id="img-src" src="{$info.img_path}{$info.img_name}">
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>公司成立时间</dt>
+                    <dd>
+                        {$info.company_creation_time}年
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>公司所在城市</dt>
+                    <dd>
+                        {$info.company_location}
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>公司资产</dt>
+                    <dd>
+                        {$info.company_fund}
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>去年销售额</dt>
+                    <dd>
+                        {$info.sales_volume}
+                    </dd>
+                </dl>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery.form.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.main-nav').find('li').eq(1).addClass('current');
+        $('#subnav').find('h3').eq(1).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(1).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(1).find('li').eq(0).addClass('current');
+    });
+</script>
+</block>
+

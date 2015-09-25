@@ -14,21 +14,15 @@ class ProjectController extends AdminController
      */
     public function indexList()
     {
-        $project = M('inverstor');
+        $project = M('project');
 
         $where = array(
-            'i.is_delete' => 0,
-            'p.is_pass' => 1,
-            'p.is_index' => 1,
+            'is_delete' => 0,
+            'is_pass' => 1,
+            'is_index' => 1,
         );
-        //$field = array(
-        //    'i.project_name',
-        //);
 
-        $list = $project->alias('i')
-            ->field($field)
-            ->join('left join project as p on p.inverstor_id = i.id')
-            ->where($where)
+        $list = $project->where($where)
             ->order('index_sort desc')
             ->select();
 
@@ -42,7 +36,7 @@ class ProjectController extends AdminController
 
         $this->assign("funding", $funding);
         $this->assign("list", $list);
-        $this->display('projectlist');
+        $this->display();
     }
     /**
      * 项目列表

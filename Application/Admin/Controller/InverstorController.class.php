@@ -84,12 +84,15 @@ class InverstorController extends AdminController
         $this->display();
     }
 
-    public function inverstorInfo($id)
+    public function info($id)
     {
         $inverstor = M('inverstor');
 
         $info = $inverstor->where(array("id" => $id))
             ->find();
+
+        $info['resource'] = explode("\n", $info['resource']);
+        $info['need'] = explode("\n", $info['need']);
 
         $this->assign('info', $info);
 
