@@ -9,7 +9,7 @@ use Think\Model;
 class InverstorModel extends Model
 {
     protected $_validate = array(
-        array('funding', 'number', '已备资金只能填写数字'),
+        array('funds', 'number', '已备资金只能填写数字'),
         array('mobile', 'number', '电话格式错误', 0, 11),
     );
 

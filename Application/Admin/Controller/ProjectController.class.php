@@ -17,12 +17,19 @@ class ProjectController extends AdminController
         $project = M('project');
 
         $where = array(
-            'is_delete' => 0,
-            'is_pass' => 1,
-            'is_index' => 1,
+            'i.is_delete' => 0,
+            'p.is_pass' => 1,
+            'p.is_index' => 1,
         );
 
-        $list = $project->where($where)
+        $list = $project->alias('p')
+            ->field(array(
+                'i.*',
+                'p.is_index',
+                'p.is_pass',
+            ))
+            ->join("inner join inverstor as i on i.id = p.inverstor_id")
+            ->where($where)
             ->order('index_sort desc')
             ->select();
 
@@ -78,6 +85,24 @@ class ProjectController extends AdminController
     public function addProject()
     {
         $this->display();
+    }
+
+    /**
+     * 创建/修改项目的列表显示
+     *
+     * @authro archy
+     */
+    public function createProject()
+    {
+        $id = $_POST['id'];
+        trace($_POST);
+
+        if ($id > 0) {
+            $this->updateProject();
+        } else {
+        
+        }
+
     }
 
     /**
@@ -142,8 +167,6 @@ class ProjectController extends AdminController
         $data = $project->create();
 
         if ($data) {
-            $data['funds'] *= 100;
-
             $id = $data['id'];
 
             if (!isset($data['is_funding'])) {
@@ -172,7 +195,6 @@ class ProjectController extends AdminController
         ));
 
         return ;
-
     }
 
     /**

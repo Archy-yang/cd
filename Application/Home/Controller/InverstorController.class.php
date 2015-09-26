@@ -30,7 +30,7 @@ class InverstorController extends HomeController
         $flag = false;
         if ($id && $data) {
             $data['inverstor_id'] = $id;
-            $data['funding'] *= 100;
+            $data['funds'] *= 100;
             $flag = $signUp->data($data)->add();
             
         }

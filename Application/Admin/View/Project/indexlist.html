@@ -1,6 +1,14 @@
 <extend name="Admin@Public:base" />
 
 <block name="style">
+<style type="text/css" media="screen">
+    .brief {
+        width:260px;
+    }
+    .table {
+        min-width: 1200px;
+    }
+</style>
 </block>
 
 <block name="sidebar">
@@ -18,30 +26,24 @@
                 <thead>
                     <tr>
                         <th>项目名称</th>
-                        <th>类型标识</th>
                         <th>已备资金</th>
-                        <th>人才招募</th>
-                        <th>融资状况</th>
+                        <th class="brief">简单说明</th>
+                        <th>公司资产</th>
+                        <th>去年销售额</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <volist name="list" id="vo">
                     <tr>
-                        <td>{$vo.name}</td>
-                        <td>{$vo.main_type}<notempty name="vo.sub_type">·{$vo.sub_type}</notempty></td>
-                        <td>{$vo['funds'] / 100}</td>
-                        <td>{$vo.recruit}</td>
-                        <td>
-                            <if condition="$vo.is_funding eq 0">
-                            未融资
-                            <else/>
-                            {$funding[$vo['funding']]}
-                            </if>
-                        </td>
+                        <td>{$vo.project_name}</td>
+                        <td>{:round($vo['funds'] / 100/10000, 2)}万元</td>
+                        <td>{$vo.brief}</td>
+                        <td>{$vo.company_fund}</td>
+                        <td>{$vo.sales_volume}</td>
                         <td>
                             <a href="__APP__/Admin/Inverstor/info/id/{$vo.inverstor_id}" class="btn btn-info">申请信息</a>
-                            <a href="__APP__/Admin/Project/deleteProject/id/{$vo.id}" class="btn btn-danger del">删除</a>
+                            <a href="__APP__/Admin/Project/deleteProject/id/{$vo.id}" class="btn btn-danger del">取消置首</a>
                         </td>
                     </tr>
                     </volist>
