@@ -224,4 +224,32 @@ class ProjectController extends AdminController
 
         return ;
     }
+
+    public function signUpList($inverstorId)
+    {
+        $model = M("inverstor_sign_up");
+        $inverstor = M('inverstor')->field(array("project_name"))
+            ->where(array('id' => $inverstorId))
+            ->find();
+
+        $count = $model->where(array(
+            'is_delete' => 0,
+            'inverstor_id' => $inverstorId,
+        ))->count();
+        $page = new Page($count, 25);
+        $show = $page->show();
+
+        $list = $model->where(array(
+            'is_delete' => 0,
+            'inverstor_id' => $inverstorId,
+        ))
+        ->limit($page->firstRow, $page->listRows)
+        ->select();
+
+        $this->assign("project", $inverstor['project_name']);
+        $this->assign('show', $show);
+        $this->assign('list', $list);
+
+        $this->display();
+    }
 }

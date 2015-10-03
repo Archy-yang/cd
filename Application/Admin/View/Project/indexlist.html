@@ -19,7 +19,7 @@
 	<!-- 标题 -->
     <div class="main-title">
         <div class="action">
-            <a href="__APP__/Admin/Project/addProject" class="btn btn-success">添加</a>
+            <a href="javascript:;" class="btn btn-success">添加</a>
         </div>
         <div class="list">
             <table class="table">
@@ -42,7 +42,8 @@
                         <td>{$vo.company_fund}</td>
                         <td>{$vo.sales_volume}</td>
                         <td>
-                            <a href="__APP__/Admin/Inverstor/info/id/{$vo.inverstor_id}" class="btn btn-info">申请信息</a>
+                            <a href="__APP__/Admin/Inverstor/info/id/{$vo.id}" class="btn btn-info">信息</a>
+                            <a href="__APP__/Admin/Project/signUpList/inverstorId/{$vo.id}" class="btn btn-info">查看报名</a>
                             <a href="__APP__/Admin/Project/deleteProject/id/{$vo.id}" class="btn btn-danger del">取消置首</a>
                         </td>
                     </tr>
