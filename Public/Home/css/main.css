@@ -529,7 +529,6 @@ body {
 }
 .vague {
   max-height: 410px;
-  padding: 0 !important;
   overflow: hidden;
 }
 .adv {
@@ -1077,91 +1076,70 @@ body {
   height: 20px;
 }
 .college {
-  margin-top: 40px;
-  padding: 0 40px;
+  padding: 40px 40px 0;
   position: relative;
-  text-align: justify;
+}
+.college h4 {
+  line-height: 1;
+  padding-left: 24px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+  background: url('../images/arrow.png') left center no-repeat;
 }
 .college .item {
-  display: inline-block;
-  width: 340px;
-  margin-bottom: 30px;
-  border: 1px solid #EEE;
+  height: 350px;
+  margin-bottom: 40px;
+  box-shadow: 4px 6px 0 #F2F2F2;
   position: relative;
 }
-.college .empty {
-  border: 0 none;
-  margin: 0;
+.college .item .pic {
+  float: left;
+  height: 100%;
 }
-.college .thumb {
-  width: 100%;
-  height: 190px;
-  overflow: hidden;
+.college .item .brief {
+  padding: 5px 0 0 600px;
 }
-.college .label {
-  position: absolute;
-  top: 150px;
-  left: 20px;
-  width: 80px;
-  height: 80px;
-  line-height: 1;
-  zoom: 1;
-}
-.college .label img {
-  position: relative;
-  border-radius: 40px;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
-  -o-border-radius: 40px;
-  -ms-border-radius: 40px;
-}
-.college .label span {
-  position: absolute;
-  left: 95px;
-  bottom: 15px;
-  display: block;
-  width: 200px;
-  color: #3a7ea3;
-}
-.college p.brief {
-  height: 85px;
-  line-height: 1.4;
-  padding: 50px 20px 0;
+.college .item dt {
+  height: 65px;
+  font-size: 22px;
   margin-bottom: 20px;
-  font-size: 15px;
   overflow: hidden;
 }
-.college .extra {
-  position: relative;
-  line-height: 1;
-  padding: 10px 20px;
-  font-size: 14px;
-  background-color: #fafafa;
+.college .item dd {
+  width: 300px;
+  line-height: 36px;
+  padding-left: 20px;
+  border-top: 1px dashed #999;
+  background: url('../images/shape.png') left center no-repeat;
 }
-.college .extra span {
-  display: block;
-  margin: 10px 0;
-}
-.college .extra .icon-position {
-  font-size: 1.25em;
-  vertical-align: middle;
-}
-.college .extra a.apply {
+.college .item .btn {
   position: absolute;
-  right: 20px;
-  bottom: 20px;
+  bottom: 15px;
+  left: 600px;
   display: block;
-  width: 100px;
-  height: 30px;
+  width: 160px;
+  height: 40px;
   text-align: center;
-  line-height: 30px;
-  color: #FFF;
-  background-color: #fe5722;
+  line-height: 40px;
+  background-color: #62cef9;
   border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
+  color: #FFF;
+  font-size: 18px;
+}
+.college .history {
+  padding: 0 0 20px;
+}
+.college .history li {
+  padding-left: 10px;
+  border-bottom: 1px dashed #999;
+  margin-bottom: 10px;
+}
+.college .history a {
+  color: #333;
+}
+.college .history a:hover {
+  color: #000;
 }
 .layer {
   position: fixed;

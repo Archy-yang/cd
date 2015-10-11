@@ -15,38 +15,93 @@
                 </volist>
             </ul>
         </div>
-    	<div class="blank"></div>
     	<!-- 商学院 -->
     	<div class="college">
             <!-- Loop start -->
-            <volist name="list" id="vo">
-            <php>$content = strip_tags($vo['content'])</php>
-    		<div class="item">
-                <div class="thumb">
-                    <a href="__APP__/Home/College/detail/id/{$vo.id}">
-                        <img src="{$vo.img_b_path}{$vo.img_b_name}" alt="虫洞学院">
-                    </a>
-    			</div>
-    			<div class="label">
-                    <img src="{$vo.img_l_path}{$vo.img_l_name}" alt="">
-                    <span>{$vo.title}</span>
-    			</div>
-                <p class="brief">
-                    {$content|msubstr=0,100}
-    			</p>
-    			<div class="extra">
-                    <span class="datetime"><b class="icon-clock"></b>
-                        {$vo.start_time}
-    				</span>
-                    <span class="address"><b class="icon-position"></b>
-                        {$vo.location|msubstr=0,10}
-    				</span>
-                    <a href="javascript:;" data-cid='{$vo.id}' class="apply">立即报名</a>
-    			</div>
+            <h4>即将开课</h4>
+            <div class="item">
+                <div class="pic">
+                    <img src="__PUBLIC__/Home/images/college.png" alt="">
+                </div>
+                <div class="brief">
+                    <dl>
+                        <dt>
+                            中关村创业大街虫洞创业中心互联网思维是怎么样炼成的主题分分享活动
+                        </dt>
+                        <dd>
+                            地点：虫洞创业之家
+                        </dd>
+                        <dd>
+                            主讲老师：李江
+                        </dd>
+                        <dd>
+                            课程导航：互联网 转型
+                        </dd>
+                        <dd>
+                            截止时间：2015.12.01
+                        </dd>
+                    </dl>
+                    <a href="javascript:;" class="btn">加入学院</a>
+                </div>
             </div>
-            </volist>
+            <h4>重温回顾</h4>
+            <div class="item">
+                <div class="pic">
+                    <img src="__PUBLIC__/Home/images/college.png" alt="">
+                </div>
+                <div class="brief">
+                    <dl>
+                        <dt>
+                            中关村创业大街虫洞创业中心互联网思维是怎么样炼成的主题分分享活动
+                        </dt>
+                        <dd>
+                            地点：虫洞创业之家
+                        </dd>
+                        <dd>
+                            主讲老师：李江
+                        </dd>
+                        <dd>
+                            课程导航：互联网 转型
+                        </dd>
+                        <dd>
+                            截止时间：2015.12.01
+                        </dd>
+                    </dl>
+                    <a href="javascript:;" class="btn">加入学院</a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="pic">
+                    <img src="__PUBLIC__/Home/images/college.png" alt="">
+                </div>
+                <div class="brief">
+                    <dl>
+                        <dt>
+                            中关村创业大街虫洞创业中心互联网思维是怎么样炼成的主题分分享活动
+                        </dt>
+                        <dd>
+                            地点：虫洞创业之家
+                        </dd>
+                        <dd>
+                            主讲老师：李江
+                        </dd>
+                        <dd>
+                            课程导航：互联网 转型
+                        </dd>
+                        <dd>
+                            截止时间：2015.12.01
+                        </dd>
+                    </dl>
+                    <a href="javascript:;" class="btn">加入学院</a>
+                </div>
+            </div>
             <!-- Loop end -->
-            <div class="item empty"></div>
+            <ul class="history">
+                <li><a href="javascript:;">虫洞商学院第 XX 期：互联网思维是怎样炼成的？</a></li>
+                <li><a href="javascript:;">虫洞商学院第 XX 期：互联网思维是怎样炼成的？</a></li>
+                <li><a href="javascript:;">虫洞商学院第 XX 期：互联网思维是怎样炼成的？</a></li>
+                <li><a href="javascript:;">虫洞商学院第 XX 期：互联网思维是怎样炼成的？</a></li>
+            </ul>
         </div>
     	<!-- 分页 -->
         {$show}
