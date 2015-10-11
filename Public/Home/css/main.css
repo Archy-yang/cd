@@ -834,7 +834,7 @@ body {
 }
 .signup {
   padding: 40px;
-  background-color: #F8F8F8;
+  background-color: #EEE;
 }
 .signup .form {
   background-color: #FFF;
@@ -847,7 +847,7 @@ body {
   font-size: 22px;
   font-weight: 400;
   color: #666;
-  background-color: #EEE;
+  background-color: #F8F8F8;
 }
 .signup h6 {
   font-size: 20px;
@@ -916,11 +916,14 @@ body {
   color: #FFF;
   background-color: #62cef9;
   border: 0 none;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -o-border-radius: 30px;
+  -ms-border-radius: 30px;
+}
+.signup-submit {
+  background-color: #fff;
 }
 .signup textarea {
   height: 58px;

@@ -31,7 +31,7 @@ class ProjectController extends AdminController
             ))
             ->join("inner join inverstor as i on i.id = p.inverstor_id")
             ->where($where)
-            ->order('index_sort desc')
+            ->order('index_sort desc, p.id desc')
             ->select();
 
         $this->assign("list", $list);
@@ -275,14 +275,28 @@ class ProjectController extends AdminController
     public function setIndex($id)
     {
         if ($id > 0) {
-            $result = M('project')->where(array('id' => $id))
-                ->data(array('is_index' => 1))
-                ->save();
+            $count  = M('project')->where(array(
+                    'p.is_pass' => 1,
+                    'p.is_index' => 1,
+                ))
+                ->count();
+            if ($count <= 30) {
+                $result = M('project')->where(array('id' => $id))
+                    ->data(array('is_index' => 1))
+                    ->save();
 
-            if (false !== $result) {
+                if (false !== $result) {
+                    echo json_encode(array(
+                        'code' => 0,
+                        'msg' => '',
+                    ));
+
+                    return ;
+                }
+            } else {
                 echo json_encode(array(
-                    'code' => 0,
-                    'msg' => '',
+                    'code' => 1,
+                    'msg' => '数量超过30个',
                 ));
 
                 return ;
@@ -290,7 +304,7 @@ class ProjectController extends AdminController
         }
         echo json_encode(array(
             'code' => 1,
-            'msg' => '',
+            'msg' => '操作失败',
         ));
 
         return ;
@@ -303,7 +317,10 @@ class ProjectController extends AdminController
     {
         if ($id > 0) {
             $result = M('project')->where(array('id' => $id))
-                ->data(array('is_index' => 0))
+                ->data(array(
+                    'is_index' => 0,
+                    'index_sort' => 0,
+                ))
                 ->save();
 
             if (false !== $result) {
@@ -402,10 +419,30 @@ class ProjectController extends AdminController
             ))
             ->join("inner join inverstor as i on i.id = p.inverstor_id")
             ->where($where)
-            ->order('index_sort desc')
+            ->order('index_sort desc, p.id desc')
             ->select();
 
         $this->assign("list", $list);
         $this->display();
+    }
+
+    public function saveSort()
+    {
+        $count = count($_POST['sort']);
+        
+        $project = M('project');
+        foreach ($_POST['sort'] as $v) {
+            $project->where(array('id' => $v))
+                ->data(array('index_sort' => $count))
+                ->save();
+
+            $count--;
+        }
+
+        echo json_encode(array(
+            'code' => 0,
+            'msg' => '',
+        ));
+        return ;
     }
 }

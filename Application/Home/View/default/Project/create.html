@@ -7,9 +7,9 @@
 		<div class="nav">
 		    <include file="Base/menu" />
 		</div>
+	    <form action="__APP__/Home/Project/saveCreate" method="post">
 		<div class="signup">
 			<div class="form">
-	            <form action="__APP__/Home/Project/saveCreate" method="post">
 	                <input type="hidden" name="inverstor_id" value="{$id}" />
 	                <input type="hidden" name="is_sign_up" value="1"/>
 					<h5>发起项目</h5>
@@ -84,10 +84,12 @@
 							<input type="text" name="sales_volume">
 						</li>
 					</ul>
-					<input type="submit" class="apply" value="提交">
-				</form>
 			</div>
-		</div>
+        </div>
+        <div class="signup signup-submit">
+                <input type="submit" class="apply" value="提交">
+        </div>
+				</form>
 		<include file="Base/footer" />
 	</div>
     <script type="text/javascript">

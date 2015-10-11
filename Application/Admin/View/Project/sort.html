@@ -1,12 +1,10 @@
 <extend name="Admin@Public:base" />
 
 <block name="style">
+<link rel="stylesheet" href="__STATIC__/jquery-ui.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <style type="text/css" media="screen">
     .brief {
-        width:260px;
-    }
-    .table {
-        min-width: 1200px;
+        width:25%;
     }
 </style>
 </block>
@@ -19,7 +17,8 @@
 	<!-- 标题 -->
     <div class="main-title">
         <div class="action">
-            <a href="javascript:;" class="btn btn-success">排序</a>
+            <a href="javascript:history.go(-1);" class="btn btn-info">返回</a>
+            <a href="javascript:;" class="btn btn-success show">完成</a>
         </div>
         <div class="list">
             <table class="table">
@@ -32,9 +31,9 @@
                         <th>标签</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="sorts">
                     <volist name="list" id="vo">
-                    <tr>
+                    <tr data-id="{$vo.proid}" class="ui-state-default">
                         <td>{$vo.project_name}</td>
                         <td>{$vo.name}</td>
                         <td>{$vo.goal}</td>
@@ -51,12 +50,31 @@
 
 <block name="script">
 <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery-ui.min.js"></script>
 <script type="text/javascript">
     $(function() {
         $('.main-nav').find('li').eq(1).addClass('current');
         $('#subnav').find('h3').eq(1).find('i').removeClass('icon-fold');
         $('#subnav').find('ul').eq(1).removeClass('subnav-off');
         $('#subnav').find('ul').eq(1).find('li').eq(0).addClass('current');
+        
+        $('#sorts').sortable();
+
+        $('.show').on('click', function() {
+            var sorted = $('#sorts').sortable('toArray', {attribute: 'data-id'});
+            $.ajax({
+                url: '__APP__/Admin/Project/saveSort',
+                data: {sort: sorted},
+                dataType: 'json',
+                type: 'post',
+                success: function(data) {
+                    alert('操作完成');
+
+                    window.location.href = "__APP__/Admin/Project/indexList";
+                }
+            })
+        });
+
     });
 </script>
 </block>
