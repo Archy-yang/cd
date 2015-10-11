@@ -781,6 +781,9 @@ body {
   height: 100%;
   float: left;
 }
+.bidding .brief dt img {
+  border-radius: 100px;
+}
 .bidding .brief dd {
   padding-left: 220px;
 }
@@ -1095,7 +1098,9 @@ body {
 }
 .college .item .pic {
   float: left;
+  width: 560px;
   height: 100%;
+  overflow: hidden;
 }
 .college .item .brief {
   padding: 5px 0 0 600px;
@@ -1129,6 +1134,7 @@ body {
 }
 .college .history {
   padding: 0 0 20px;
+  font-size: 18px;
 }
 .college .history li {
   padding-left: 10px;
@@ -1239,63 +1245,63 @@ body {
 }
 .detail {
   margin-top: 40px;
+  padding: 0 40px 40px;
 }
-.detail img {
-  width: 100%;
+.detail .content {
+  margin-top: 40px;
 }
-.detail h4 {
-  line-height: 1;
-  margin: 15px 0 10px;
-  font-size: 20px;
-}
-.detail .attached {
-  padding: 5px 0;
-  font-size: 14px;
-  background-color: #f8f8f8;
-}
-.detail .attached span {
-  display: block;
-  line-height: 1;
-  margin: 10px 0;
-}
-.detail .attached .expiration {
-  color: #666;
-}
-.detail .attached .address {
-  color: #333;
-}
-.detail .attached .icon-position {
-  font-size: 1.25em;
-  vertical-align: middle;
-}
-.detail .attached .apply {
-  width: 100px;
-  height: 30px;
+.detail h3 {
   text-align: center;
-  line-height: 30px;
-  color: #FFF;
-  background-color: #fe5722;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  cursor: pointer;
-}
-.detail h5 {
-  font-size: 18px;
   line-height: 1;
-  padding-bottom: 5px;
-  margin-top: 10px;
-  border-bottom: 1px solid #DDD;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  background: url('../images/line.png') center bottom no-repeat;
 }
-.detail .text {
-  margin: 20px 0 40px;
+.detail .content h5 {
+  font-size: 20px;
+  line-height: 1.5;
+  padding-left: 10px;
+  border-left: 4px solid #a40000;
 }
-.detail .text p {
-  font-size: 15px;
-  text-indent: 30px;
-  margin: 10px 0;
+.detail .content .context {
+  line-height: 1.75;
+  padding-left: 15px;
+  margin: 25px 0;
+}
+.detail .p p {
+  text-indent: 32px;
+  margin-bottom: 10px;
+}
+.detail .content .lecturer {
+  padding: 0 5px;
+  overflow: hidden;
+}
+.detail .content .item {
+  width: 370px;
+  min-height: 160px;
+  text-align: center;
+  float: left;
+}
+.detail .content dt {
+  height: 180px;
+}
+.detail .content strong {
+  font-size: 18px;
+}
+.detail .content .avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border: 2px solid #CCC;
+  border-radius: 100px;
+}
+.detail .content .avatar img {
+  border-radius: 100px;
+}
+.detail .content dd {
+  color: #333;
 }
 .pagination {
   text-align: center;
