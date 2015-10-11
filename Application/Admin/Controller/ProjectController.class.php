@@ -27,21 +27,13 @@ class ProjectController extends AdminController
                 'i.*',
                 'p.is_index',
                 'p.is_pass',
+                'p.id' => 'proid',
             ))
             ->join("inner join inverstor as i on i.id = p.inverstor_id")
             ->where($where)
             ->order('index_sort desc')
             ->select();
 
-        $funding = array(
-            '天使轮',
-            'A轮',
-            'B轮',
-            'C轮',
-            'D轮',
-        );
-
-        $this->assign("funding", $funding);
         $this->assign("list", $list);
         $this->display();
     }
@@ -50,30 +42,52 @@ class ProjectController extends AdminController
      *
      * @autor archy
      */
-    public function projectList()
+    public function projectList($type = 0)
     {
-        $project = M('project');
+        $inverstor = M('inverstor');
         
-        $count = $project->where(array('is_delete' => 0))->count();
+        $where = array(
+            'i.is_delete' => 0,
+        );
 
-        $page = new Page($count, 25);
+        switch ($type) {
+            case 1:
+                $where['is_pass'] = 1;
+
+                break;
+            case 2:
+                $where['is_pass'] = array('exp', 'is NULL or is_pass < 1');
+
+                break;
+            default:
+                break;
+        }
+
+        $count = $inverstor->alias('i')
+            ->join("left join project as p on i.id = p.inverstor_id")
+            ->where($where)
+            ->count();
+
+        $page = new Page($count, 30);
         $show = $page->show();
 
-        $list = $project->where(array('is_delete' => 0))
+
+        $list = $inverstor->alias('i')
+            ->field(array(
+                'i.*',
+                'p.is_index',
+                'p.is_pass',
+                'p.id' => 'proid',
+            ))
+            ->join("left join project as p on i.id = p.inverstor_id")
+            ->where($where)
             ->limit($page->firstRow, $page->listRows)
             ->select();
 
-        $funding = array(
-            '天使轮',
-            'A轮',
-            'B轮',
-            'C轮',
-            'D轮',
-        );
-
-        $this->assign("funding", $funding);
         $this->assign("list", $list);
         $this->assign("show", $show);
+        $this->assign("type", $type);
+
         $this->display();
     }
 
@@ -100,9 +114,9 @@ class ProjectController extends AdminController
         if ($id > 0) {
             $this->updateProject();
         } else {
+            $this->saveProject();
         
         }
-
     }
 
     /**
@@ -133,7 +147,7 @@ class ProjectController extends AdminController
 
         echo json_encode(array(
             'code' => 1,
-            'msg' => '',
+            'msg' => $project->getError() ? $project->getError() : '操作失败 ',
         ));
 
         return ;
@@ -172,6 +186,7 @@ class ProjectController extends AdminController
             if (!isset($data['is_funding'])) {
                 $data['is_funding'] = 0;
             }
+            $data['funds'] *= 100;
 
             if ($id > 0) {
                 unset($data['id']);
@@ -191,7 +206,7 @@ class ProjectController extends AdminController
 
         echo json_encode(array(
             'code' => 1,
-            'msg' => '',
+            'msg' => $project->getError() ? $project->getError() : '操作失败 ',
         ));
 
         return ;
@@ -204,9 +219,9 @@ class ProjectController extends AdminController
      */
     public function deleteProject($id)
     {
-        $project = D('project');
+        $inverstor = D('inverstor');
 
-        $result = $project->where(array('id' => $id))->data(array('is_delete' => 1))->save();
+        $result = $inverstor->where(array('id' => $id))->data(array('is_delete' => 1))->save();
 
         if (false !== $result) {
             echo json_encode(array(
@@ -225,7 +240,7 @@ class ProjectController extends AdminController
         return ;
     }
 
-    public function signUpList($inverstorId)
+    public function signUpList($inverstorId, $l = 1)
     {
         $model = M("inverstor_sign_up");
         $inverstor = M('inverstor')->field(array("project_name"))
@@ -249,7 +264,119 @@ class ProjectController extends AdminController
         $this->assign("project", $inverstor['project_name']);
         $this->assign('show', $show);
         $this->assign('list', $list);
+        $this->assign('l', $l);
 
         $this->display();
+    }
+
+    /**
+     * 设为首页
+     */
+    public function setIndex($id)
+    {
+        if ($id > 0) {
+            $result = M('project')->where(array('id' => $id))
+                ->data(array('is_index' => 1))
+                ->save();
+
+            if (false !== $result) {
+                echo json_encode(array(
+                    'code' => 0,
+                    'msg' => '',
+                ));
+
+                return ;
+            }
+        }
+        echo json_encode(array(
+            'code' => 1,
+            'msg' => '',
+        ));
+
+        return ;
+    }
+
+    /**
+     * 取消首页
+     */
+    public function unIndex($id)
+    {
+        if ($id > 0) {
+            $result = M('project')->where(array('id' => $id))
+                ->data(array('is_index' => 0))
+                ->save();
+
+            if (false !== $result) {
+                echo json_encode(array(
+                    'code' => 0,
+                    'msg' => '',
+                ));
+
+                return ;
+            }
+        }
+    
+        echo json_encode(array(
+            'code' => 1,
+            'msg' => '',
+        ));
+
+        return ;
+    }
+
+    /**
+     * 通过审核
+     */
+    public function pass($id)
+    {
+        if ($id > 0) {
+            $result = M('project')->where(array('id' => $id))
+                ->data(array('is_pass' => 1))
+                ->save();
+
+            if (false !== $result) {
+                echo json_encode(array(
+                    'code' => 0,
+                    'msg' => '',
+                ));
+
+                return ;
+            }
+        }
+
+        echo json_encode(array(
+            'code' => 1,
+            'msg' => '',
+        ));
+
+        return ;
+    }
+
+    /**
+     * 取消审核
+     */
+    public function unpass($id)
+    {
+        if ($id > 0) {
+            $result = M('project')->where(array('id' => $id))
+                ->data(array('is_pass' => 0))
+                ->save();
+
+            if (false !== $result) {
+                echo json_encode(array(
+                    'code' => 0,
+                    'msg' => '',
+                ));
+
+                return ;
+            }
+        }
+
+        echo json_encode(array(
+            'code' => 1,
+            'msg' => '',
+        ));
+
+        return ;
     }
 }

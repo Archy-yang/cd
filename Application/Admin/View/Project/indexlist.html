@@ -44,7 +44,7 @@
                         <td>
                             <a href="__APP__/Admin/Inverstor/info/id/{$vo.id}" class="btn btn-info">信息</a>
                             <a href="__APP__/Admin/Project/signUpList/inverstorId/{$vo.id}" class="btn btn-info">查看报名</a>
-                            <a href="__APP__/Admin/Project/deleteProject/id/{$vo.id}" class="btn btn-danger del">取消置首</a>
+                            <a href="__APP__/Admin/Project/unIndex/id/{$vo.proid}" class="btn btn-danger index">取消置首</a>
                         </td>
                     </tr>
                     </volist>
@@ -83,6 +83,26 @@
                     }
                 });
             }
+
+            return false;
+        });
+        $('.index').on('click', function() {
+            var _this = $(this), href = _this.attr("href");
+            $.ajax({
+                url: href,
+                dateType: 'json',
+                success: function(data) {
+                    data = $.parseJSON(data);
+
+                    if (data.code == 0) {
+                        alert('操作成功');
+
+                        location.reload();
+                    } else {
+                        alert('操作失败');
+                    }
+                }
+            });
 
             return false;
         });

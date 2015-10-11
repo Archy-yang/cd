@@ -9,6 +9,14 @@ use Think\Model;
  */
 class ProjectModel extends Model
 {
+    protected $_validate = array(
+        array('img_name', 'require', '请上传图片', 1),
+        array('recruit', 'require', '请填写人才招募', 1),
+        array('main_type', 'require', '请填写主类型', 1),
+        array('funds', 'require', '请填写已备资金', 1),
+        array('funds', 'number', '已备资金格式错误', 1),
+    );
+
     protected $_auto = array(
         array('create_time', 'getTime', self::MODEL_INSERT, 'callback'),
     );
