@@ -9,62 +9,111 @@
 		</div>
 		<!-- 转型 -->
 		<div class="bidding">
-			<div class="content">
-				<div class="brief">
-	                <p class="text">{$info.profile}</p>
-					<div class="info">
-	                    <img src="{$info.img_path}{$info.img_name}" alt="">
-						<!-- <p class="name">李开复</p>
-						<p class="avatar">
-							<img src="__PUBLIC__/Home/images/avatar.png" alt="李开复">
-						</p>
-						<p class="intro">曾就读于卡内基梅隆大学获计算机学博士学位后担任副教授</p> -->
-					</div>
-				</div>
-				<div class="item company">
-					<h4>公司简介</h4>
-					<ul>
-	                    <li>公司成立时间：<span>{$info.company_creation_time}年</span></li>
-	                    <li>公司资产：<span>{$info.company_fund}</span></li>
-	                    <li>所在城市：<span>{$info.company_location}</span></li>
-	                    <li>公司去年销售额：<span>{$info.sales_volume}</span></li>
-					</ul>
-				</div>
-				<div class="item">
-					<h4>资源</h4>
-	                <ul>
-	                    <volist name="info.resource" id="vo">
-	                    <li class="dot">{$vo}</li>
-	                    </volist>
-					</ul>
-				</div>
-				<div class="item">
-					<h4>需求</h4>
-	                <ul>
-	                    <volist name="info.need" id="vo">
-	                    <li class="dot">{$vo}</li>
-	                    </volist>
-					</ul> </div>
-				<div class="item">
-	                <h4>已备资金</h4>
-	                <ul>
-	                    <li class="dot">{:round($info['funds']/100/10000, 2)}万</li>
-	                </ul>
-				</div>
-				<div class="item">
-					<h4>项目名称</h4>
-	                <ul>
-	                    <li class="dot">{$info.project_name}</li>
-					</ul>
-				</div>
-				<div class="item">
-					<h4>一句话说明</h4>
-	                <ul>
-	                    <li class="dot">{$info.brief}</li>
-					</ul>
-				</div>
-	            <a href="ajaxscript:;" class="apply">申请报名</a>
-			</div>
+            <div class="wrap">
+    			<div class="content">
+    				<div class="brief">
+                        <dl>
+                            <dt>
+                                <img src="__PUBLIC__/Home/images/avatar.png" alt="">
+                            </dt>
+                            <dd class="profile">
+                                <h3>李开复</h3>
+                                <p>
+                                    <span>北京</span> |
+                                    <span>创新工场</span> |
+                                    <span>创始人</span>
+                                </p>
+                                <p class="line">
+                                    <span>IT</span> •
+                                    <span>创新</span> •
+                                    <span>投资</span> •
+                                    <span>科技</span>
+                                </p>
+                            </dd>
+                        </dl>
+    				</div>
+                    <div class="item">
+                        <h4>挂牌方向</h4>
+                        <div class="context">
+                            <p>招募合伙人/投资领域内相关项目</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h4>个人介绍</h4>
+                        <div class="context">
+                            <p>创新工场创始人<br>希望投资参与传统VC企业的变革中去<br>李开复先生曾任谷歌中国区副总裁，是中国青少年的创业偶像，13年创办了创新工场，主要投资服务于中国早期的创业项目。</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h4>现有公司状况</h4>
+                        <div class="context">
+                            <p>创新工场位于北京市海淀区中关村，成立于2012年，主营业务为早期风险投 资、早期孵化、早期创业投资，目前已投资创新工场位于北京市海淀区中关村，成立于2012年，主营业务为早期风险投 资、早期孵化、早期创业投资，目前已投资</p>
+                        </div>
+                    </div>
+                    <div class="item target">
+                        <h4>投资资金和标的</h4>
+                        <div class="context">
+                            <h5>预计投资资金：<span>100万 - 500万元</span></h5>
+                            <h5>投资标的为：<span>互联网 + 传统VC + 孵化器类项目</span></h5>
+                        </div>
+                    </div>
+    				<div class="item">
+    					<h4>资源</h4>
+                        <div class="context">
+        	                <ul>
+        	                    <volist name="info.resource" id="vo">
+        	                    <li class="dot">{$vo}</li>
+        	                    </volist>
+        					</ul>
+                            <div class="h5wrap">
+                                <h5>目标优先考虑</h5>
+                            </div>
+                            <ul>
+                                <li class="dot">随便什么吧</li>
+                            </ul>
+                        </div>
+    				</div>
+    				<div class="item">
+    					<h4>需求</h4>
+                        <div class="context">
+        	                <ul>
+        	                    <volist name="info.need" id="vo">
+        	                    <li class="dot">{$vo}</li>
+        	                    </volist>
+        					</ul>
+                        </div>
+                    </div>
+    				<div class="item">
+    	                <h4>已备资金</h4>
+                        <div class="context">
+                            <ul>
+                                <li class="dot">{:round($info['funds']/100/10000, 2)}万</li>
+                            </ul> 
+                        </div>
+    				</div>
+    				<div class="item">
+    					<h4>项目名称</h4>
+                        <div class="context">
+        	                <ul>
+        	                    <li class="dot">{$info.project_name}</li>
+        					</ul>
+                        </div>
+    				</div>
+    				<div class="item">
+    					<h4>一句话说明</h4>
+                        <div class="context">
+        	                <ul>
+        	                    <li class="dot">{$info.brief}</li>
+        					</ul>
+                        </div>
+    				</div>
+    			</div>
+            </div>
+            <div class="extra">
+                <a href="ajaxscript:;" class="apply">申请报名</a>
+                <!-- 记得要去除背景色 -->
+                <div class="share">这儿放分享组件</div>
+            </div>
 		</div>
 		<!-- 网站底部 -->
 	    <include file="Base/footer" />

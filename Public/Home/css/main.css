@@ -719,8 +719,12 @@ body {
   border-left: 1px solid #666;
 }
 .bidding {
-  padding-top: 40px;
+  /*padding-top: 40px;
   padding-bottom: 40px;
+  background-color: #F8F8F8;*/
+}
+.bidding .wrap {
+  padding: 40px 40px 20px 40px;
   background-color: #F8F8F8;
 }
 .bidding .content {
@@ -728,7 +732,11 @@ body {
   background-color: #FFF;
   border-bottom: 1px solid transparent;
 }
-.bidding .content a.apply {
+.bidding .extra {
+  padding: 40px 0;
+  position: relative;
+}
+.bidding .extra a.apply {
   display: block;
   width: 200px;
   height: 40px;
@@ -744,44 +752,45 @@ body {
   -o-border-radius: 3px;
   -ms-border-radius: 3px;
 }
+.bidding .extra .share {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  height: 40px;
+  background-color: #F2F2F2;
+  line-height: 40px;
+}
 .bidding .brief {
-  height: 300px;
-  padding: 100px 400px 20px 30px;
+  padding: 40px 0 60px 30px;
   overflow: hidden;
   position: relative;
 }
-.bidding p.text {
+.bidding .brief .profile {
+  padding-top: 40px;
+}
+.bidding .brief h3 {
   font-size: 20px;
-  line-height: 1.5;
+  line-height: 1;
+  margin-bottom: 5px;
 }
-.bidding .info {
-  width: 300px;
-  height: 360px;
-  line-height: 1.5;
-  color: #FFF;
-  overflow: hidden;
-  background-color: #76aedf;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.bidding p.name {
-  text-align: center;
-  line-height: 1.5;
-  padding-top: 15px;
-  font-size: 26px;
-  border-bottom: 2px solid #FFF;
-}
-.bidding p.avatar {
+.bidding .brief dl {
   height: 180px;
+  line-height: 30px;
 }
-.bidding p.avatar img {
+.bidding .brief dt {
+  width: 200px;
   height: 100%;
-  margin: auto;
+  float: left;
 }
-.bidding p.intro {
-  padding: 10px 20px;
-  font-size: 24px;
+.bidding .brief dd {
+  padding-left: 220px;
+}
+.bidding .brief p {
+  width: auto;
+}
+.bidding .line {
+  float: left;
+  border-top: 1px solid #e7e7e7;
 }
 .bidding .item {
   margin-bottom: 40px;
@@ -792,11 +801,25 @@ body {
   padding-left: 26px;
   font-size: 20px;
   font-weight: 600;
+  color: #444;
   border-left: 4px solid #76aedf;
+}
+.bidding h5 {
+  font-size: 16px;
+  text-indent: 32px;
+  color: #444;
+}
+.bidding h5 span {
+  font-weight: normal;
+  font-size: 15px;
+}
+.bidding .context {
+  padding: 30px 30px 30px 24px;
+  margin-left: 6px;
   border-bottom: 1px solid #e7e7e7;
 }
-.bidding ul {
-  padding: 30px 0 30px 30px;
+.bidding .context .h5wrap {
+  padding: 20px 0;
 }
 .bidding li {
   line-height: 40px;
@@ -806,19 +829,6 @@ body {
 .bidding .dot {
   padding-left: 15px;
   background: url('../images/dot.png') left center no-repeat;
-}
-.bidding .company ul {
-  overflow: hidden;
-}
-.bidding .company li {
-  width: 50%;
-  float: left;
-  font-size: 16px;
-  color: #000;
-}
-.bidding .company span {
-  color: #464646;
-  font-size: 15px;
 }
 .signup {
   padding-top: 40px;
