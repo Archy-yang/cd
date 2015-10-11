@@ -1245,7 +1245,7 @@ body {
 }
 .detail {
   margin-top: 40px;
-  padding: 0 40px 40px;
+  padding: 0 40px 20px;
 }
 .detail .content {
   margin-top: 40px;
@@ -1302,6 +1302,34 @@ body {
 }
 .detail .content dd {
   color: #333;
+}
+.detail .extra {
+  padding: 40px 0;
+  position: relative;
+}
+.detail .extra a.apply {
+  display: block;
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  margin: 0 auto;
+  font-size: 20px;
+  color: #FFF;
+  background-color: #ff4351;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+}
+.detail .extra .share {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  height: 40px;
+  background-color: #F2F2F2;
+  line-height: 40px;
 }
 .pagination {
   text-align: center;
