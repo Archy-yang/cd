@@ -9,39 +9,19 @@
     .img-sel {
         position: relative;
     }
-    .img-sel img#img-l-src {
-        position: absolute;
-        top:0px;
-        left:0px;
-        max-width:100px;
-        max-height:100px;
-    }
-    .img-sel img#img-b-src {
+    .img-sel img#img-src {
         position: absolute;
         top:0px;
         left:0px;
         max-width:340px;
         max-height:190px;
     }
-    .img-sel img#img-t-src {
-        position: absolute;
-        top:0px;
-        left:0px;
-        max-width:500px;
-        max-height:220px;
-    }
     textarea.content{
         height:240px;
         width:550px;
     }
-    #uploadify_l-queue {
-        max-width:95px;
-    }
-    #uploadify_b-queue {
+    #uploadify-queue {
         max-width:325px;
-    }
-    #uploadify_t-queue {
-        max-width:495px;
     }
     .uploadify-queue-item {
         width: 100%;
@@ -82,7 +62,7 @@
                 <input type="hidden" value="{$info.id}" name="id" />
                 <dl class="dl-horizontal">
                     <dt>标题</dt>
-                    <dd><input name="title" type="text" required placeholder="请输入标题" value="{$info.title}"/></dd>
+                    <dd><input name="title" type="text" class="input-large" required placeholder="请输入标题" value="{$info.title}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>地点</dt>
@@ -101,38 +81,30 @@
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>LOGO图片</dt>
+                    <dt>学院通知</dt>
                     <dd>
-                        <div class="img-sel">
-                            <div id="uploadify_l" class="uploadify"></div>
-                            <img id="img-l-src" src="{$info.img_l_path}{$info.img_l_name}">
-                            <input name="img_l_name" id="img-l-name" type="hidden" value="{$info.img_l_name}"/>
-                            <input name="img_l_path" id="img-l-path" type="hidden" value="{$info.img_l_path}"/>
-                        </div>
-                        <span class="remind">建议比例：100X100</span>
-                    </dd>
+                        <textarea name="note" id="note">{$info.location}</textarea>
+                        
+                        <input name="note" type="text" placeholder="请输入地点" value="{$info.location}"/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>地点</dt>
+                    <dd><input name="location" type="text" placeholder="请输入地点" value="{$info.location}"/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>地点</dt>
+                    <dd><input name="location" type="text" placeholder="请输入地点" value="{$info.location}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>封面图片</dt>
                     <dd>
                         <div class="img-sel">
-                            <div id="uploadify_b" class="uploadify"></div>
-                            <img id="img-b-src" src="{$info.img_b_path}{$info.img_b_name}">
-                            <input name="img_b_name" id="img-b-name" type="hidden" value="{$info.img_b_name}"/>
-                            <input name="img_b_path" id="img-b-path" type="hidden" value="{$info.img_b_path}"/>
+                            <div id="uploadify" class="uploadify"></div>
+                            <img id="img-src" src="{$info.img_path}{$info.img_name}">
+                            <input name="img_name" id="img-name" type="hidden" value="{$info.img_name}"/>
+                            <input name="img_path" id="img-path" type="hidden" value="{$info.img_path}"/>
                         </div>
                         <span class="remind">建议比例：340X190</span>
-                    </dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>详情图片</dt>
-                    <dd>
-                        <div class="img-sel">
-                            <div id="uploadify_t" class="uploadify"></div>
-                            <img id="img-t-src" src="{$info.img_t_path}{$info.img_t_name}">
-                            <input name="img_t_name" id="img-t-name" type="hidden" value="{$info.img_t_name}"/>
-                            <input name="img_t_path" id="img-t-path" type="hidden" value="{$info.img_t_path}"/>
-                        </div>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
@@ -159,7 +131,7 @@
         $('#subnav').find('ul').eq(4).removeClass('subnav-off');
         $('#subnav').find('ul').eq(4).find('li').eq(0).addClass('current');
 
-        $('#uploadify_b').uploadify({
+        $('#uploadify').uploadify({
             'width': 340,
             'height' : 190,
             'swf' : '__STATIC__/uploadify/uploadify.swf',
@@ -179,56 +151,6 @@
                 $('#img-b-src').attr("src", data.path+data.name);
                 $('#img-b-name').val(data.name);
                 $('#img-b-path').val(data.path);
-            },
-            onQueueComplete: function() {
-                $('.saveform').prop('disabled', false);
-            }
-        });
-        $('#uploadify_l').uploadify({
-            'width': 100,
-            'height' : 100,
-            'swf' : '__STATIC__/uploadify/uploadify.swf',
-            'buttonText' : '+上传图片',
-            'uploader' : '__APP__/Admin/Upload/uploadImg',
-            'fileTypeExts': '*.jpg;*.png;*.gif',
-            itemTemplate: '<div id="${fileID}" class="uploadify-queue-item">\
-                                <div class="uploadify-progress">\
-                                    <div class="uploadify-progress-bar"></div>\
-                                </div>\
-            </div>',
-            onUploadStart: function() {
-                $('.saveform').prop('disabled', true);
-            },
-            onUploadSuccess: function(file, data, response) {
-                var  data = $.parseJSON(data);
-                $('#img-l-src').attr("src", data.path+data.name);
-                $('#img-l-name').val(data.name);
-                $('#img-l-path').val(data.path);
-            },
-            onQueueComplete: function() {
-                $('.saveform').prop('disabled', false);
-            }
-        });
-        $('#uploadify_t').uploadify({
-            'width': 500,
-            'height' : 220,
-            'swf' : '__STATIC__/uploadify/uploadify.swf',
-            'buttonText' : '+上传图片',
-            'uploader' : '__APP__/Admin/Upload/uploadImg',
-            'fileTypeExts': '*.jpg;*.png;*.gif',
-            itemTemplate: '<div id="${fileID}" class="uploadify-queue-item">\
-                                <div class="uploadify-progress">\
-                                    <div class="uploadify-progress-bar"></div>\
-                                </div>\
-            </div>',
-            onUploadStart: function() {
-                $('.saveform').prop('disabled', true);
-            },
-            onUploadSuccess: function(file, data, response) {
-                var  data = $.parseJSON(data);
-                $('#img-t-src').attr("src", data.path+data.name);
-                $('#img-t-name').val(data.name);
-                $('#img-t-path').val(data.path);
             },
             onQueueComplete: function() {
                 $('.saveform').prop('disabled', false);
