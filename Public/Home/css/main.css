@@ -833,8 +833,7 @@ body {
   background: url('../images/dot.png') left center no-repeat;
 }
 .signup {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 40px;
   background-color: #F8F8F8;
 }
 .signup .form {
@@ -884,7 +883,7 @@ body {
   top: 0;
 }
 .signup li .cell {
-  left: 710px;
+  left: 770px;
 }
 .signup li .error {
   left: 730px;
