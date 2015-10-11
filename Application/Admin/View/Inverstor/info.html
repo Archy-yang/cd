@@ -31,7 +31,7 @@
 	<!-- 标题 -->
     <div class="main-title">
         <div>
-            <a href="__APP__/Admin/Project/indexList" class="btn btn-info">返回</a>
+            <a href="javascript:history.go(-1);" class="btn btn-info">返回</a>
             <a href="javascript:;" class="btn btn-success confirm">保存修改</a>
         </div>
         <div style="margin-top:20px">
@@ -50,15 +50,6 @@
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>已备资金</dt>
-                    <dd>
-                        <span>
-                            {:round($info['funds']/100/10000, 2)}万
-                        </span>
-                    <input name="funds" type="hidden" value="{$info['funds']}"/>
-                    </dd>
-                </dl>
-                <dl class="dl-horizontal">
                     <dt>项目简介</dt>
                     <dd>
                         <span>
@@ -70,17 +61,31 @@
                 <dl class="dl-horizontal">
                     <dt>项目资源</dt>
                     <dd>
-	                    <volist name="info.resource" id="vo">
-	                    <li class="dot">{$vo}</li>
-	                    </volist>
+                        <volist name="info.resource" id="vo">
+                            <notempty name="vo">
+                            <li class="dot">{$vo}</li>
+                            </notempty>
+                        </volist>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>项目需求</dt>
                     <dd>
 	                    <volist name="info.need" id="vo">
-	                    <li class="dot">{$vo}</li>
+                            <notempty name="vo">
+                            <li class="dot">{$vo}</li>
+                            </notempty>
 	                    </volist>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>已备资金</dt>
+                    <dd>
+                        <notempty name="project.funds">
+                        <input name="funds" type="text" value="{:round($project['funds']/100)}"/>
+                        <else />
+                        <input name="funds" type="text" value="" placeholder="请输入已备资金"/>
+                        </notempty>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
@@ -179,9 +184,9 @@
 <script type="text/javascript">
     $(function() {
         $('.main-nav').find('li').eq(1).addClass('current');
-        $('#subnav').find('h3').eq(1).find('i').removeClass('icon-fold');
-        $('#subnav').find('ul').eq(1).removeClass('subnav-off');
-        $('#subnav').find('ul').eq(1).find('li').eq(0).addClass('current');
+        $('#subnav').find('h3').eq({$l}).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq({$l}).removeClass('subnav-off');
+        $('#subnav').find('ul').eq({$l}).find('li').eq(0).addClass('current');
         $('#uploadify').uploadify({
             'width': 550,
             'height' : 235,
@@ -233,7 +238,7 @@
 
                         location.reload();
                     } else {
-                        alert("修改失败");
+                        alert(data.msg);
                     }
                 }
             });

@@ -1,6 +1,17 @@
 <extend name="Admin@Public:base" />
 
 <block name="style">
+<style type="text/css" media="screen">
+    .brief {
+        width:260px;
+    }
+    .table {
+        min-width: 1200px;
+    }
+    .btn {
+        margin-bottom:2px;
+    }
+</style>
 </block>
 
 <block name="sidebar">
@@ -10,46 +21,77 @@
 <block name="body">
 	<!-- 标题 -->
     <div class="main-title">
+        <ul class="nav nav-tabs">
+            <li <eq name="type" value="0">class="active"</eq>>
+                <a href="__APP__/Admin/Project/projectList/type/0">全部</a>
+            </li>
+            <li <eq name="type" value="1">class="active"</eq>>
+                <a href="__APP__/Admin/Project/projectList/type/1">已审核</a>
+            </li>
+            <li <eq name="type" value="2">class="active"</eq>>
+                <a href="__APP__/Admin/Project/projectList/type/2">未审核</a>
+            </li>
+        </ul>
+
         <div class="action">
-            <a href="__APP__/Admin/Project/addProject" class="btn btn-success">添加</a>
         </div>
         <div class="list">
             <table class="table">
                 <thead>
                     <tr>
                         <th>项目名称</th>
-                        <th>类型标识</th>
                         <th>已备资金</th>
-                        <th>人才招募</th>
-                        <th>融资状况</th>
-                        <th>操作</th>
+                        <th class="brief">简单说明</th>
+                        <th>公司资产</th>
+                        <th>去年销售额</th>
+                        <th>通过审核</th>
+                        <th class="brief">操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <volist name="list" id="vo">
                     <tr>
-                        <td>{$vo.name}</td>
-                        <td>{$vo.main_type}<notempty name="vo.sub_type">·{$vo.sub_type}</notempty></td>
-                        <td>{$vo['funds'] / 100}</td>
-                        <td>{$vo.recruit}</td>
+                        <td>{$vo.project_name}</td>
+                        <td>{:round($vo['funds'] / 100/10000, 2)}万元</td>
+                        <td>{$vo.brief}</td>
+                        <td>{$vo.company_fund}</td>
+                        <td>{$vo.sales_volume}</td>
                         <td>
-                            <if condition="$vo.is_funding eq 0">
-                            未融资
+                            <span style="color:red">
+                            <eq name="vo.is_pass" value="1">
+                            是
                             <else/>
-                            {$funding[$vo['funding']]}
-                            </if>
+                            否
+                            </eq>
+                            </span>
                         </td>
                         <td>
-                            <a href="__APP__/Admin/Project/editProject/id/{$vo.id}" class="btn btn-success">修改</a>
+                            <a href="__APP__/Admin/Inverstor/info/id/{$vo.id}/l/2" class="btn btn-info">信息</a>
+                            <a href="__APP__/Admin/Project/signUpList/inverstorId/{$vo.id}/l/2" class="btn btn-info">查看报名</a>
+                            <eq name="vo.is_index" value='1'>
+                            <a href="__APP__/Admin/Project/unIndex/id/{$vo.proid}" class="btn btn-danger index">取消置首</a>
+                            <else />
+                            <a href="__APP__/Admin/Project/setIndex/id/{$vo.proid}" class="btn btn-success index">置首</a>
+                            </eq>
+                            <if condition="$vo.proid gt 0">
+                            <eq name="vo.is_pass" value='1'>
+                            <a href="__APP__/Admin/Project/unpass/id/{$vo.proid}" class="btn btn-danger pass">取消审核</a>
+                            <else />
+                            <a href="__APP__/Admin/Project/pass/id/{$vo.proid}" class="btn btn-success pass">通过审核</a>
+                            </eq>
+                            <else />
+                            <a href="javascript:alert('请前往项目信息中完善数据后再尝试');" class="btn btn-success nopro">通过审核</a>
+                            </if>
                             <a href="__APP__/Admin/Project/deleteProject/id/{$vo.id}" class="btn btn-danger del">删除</a>
+
                         </td>
                     </tr>
                     </volist>
                 </tbody>
             </table>
         </div>
+        {$show}
     </div>
-    {$show}
 </block>
 
 <block name="script">
@@ -57,9 +99,9 @@
 <script type="text/javascript">
     $(function() {
         $('.main-nav').find('li').eq(1).addClass('current');
-        $('#subnav').find('h3').eq(1).find('i').removeClass('icon-fold');
-        $('#subnav').find('ul').eq(1).removeClass('subnav-off');
-        $('#subnav').find('ul').eq(1).find('li').eq(0).addClass('current');
+        $('#subnav').find('h3').eq(2).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(2).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(2).find('li').eq(0).addClass('current');
 
         $('.del').on('click', function() {
             var _this = $(this), href = _this.attr("href");
@@ -80,6 +122,46 @@
                     }
                 });
             }
+
+            return false;
+        });
+        $('.pass').on('click', function() {
+            var _this = $(this), href = _this.attr("href");
+            $.ajax({
+                url: href,
+                dateType: 'json',
+                success: function(data) {
+                    data = $.parseJSON(data);
+
+                    if (data.code == 0) {
+                        alert('操作成功');
+
+                        location.reload();
+                    } else {
+                        alert('操作失败');
+                    }
+                }
+            });
+
+            return false;
+        });
+        $('.index').on('click', function() {
+            var _this = $(this), href = _this.attr("href");
+            $.ajax({
+                url: href,
+                dateType: 'json',
+                success: function(data) {
+                    data = $.parseJSON(data);
+
+                    if (data.code == 0) {
+                        alert('操作成功');
+
+                        location.reload();
+                    } else {
+                        alert('操作失败');
+                    }
+                }
+            });
 
             return false;
         });

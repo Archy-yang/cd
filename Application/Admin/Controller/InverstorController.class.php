@@ -84,7 +84,7 @@ class InverstorController extends AdminController
         $this->display();
     }
 
-    public function info($id)
+    public function info($id, $l = 1)
     {
         $inverstor = M('inverstor');
 
@@ -101,6 +101,7 @@ class InverstorController extends AdminController
 
         $this->assign('info', $info);
         $this->assign('project', $projectInfo);
+        $this->assign('l', $l);
 
         $this->display();
     }
