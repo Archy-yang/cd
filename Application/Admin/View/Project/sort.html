@@ -1,0 +1,63 @@
+<extend name="Admin@Public:base" />
+
+<block name="style">
+<style type="text/css" media="screen">
+    .brief {
+        width:260px;
+    }
+    .table {
+        min-width: 1200px;
+    }
+</style>
+</block>
+
+<block name="sidebar">
+    <include file="Public:documenu" />
+</block>
+
+<block name="body">
+	<!-- 标题 -->
+    <div class="main-title">
+        <div class="action">
+            <a href="javascript:;" class="btn btn-success">排序</a>
+        </div>
+        <div class="list">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>报名人</th>
+                        <th class="brief">挂牌方向</th>
+                        <th>预计投资资金</th>
+                        <th>标签</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <volist name="list" id="vo">
+                    <tr>
+                        <td>{$vo.project_name}</td>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.goal}</td>
+                        <td>{$vo.company_fund}</td>
+                        <td>{$vo.tag}</td>
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {$show}
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.main-nav').find('li').eq(1).addClass('current');
+        $('#subnav').find('h3').eq(1).find('i').removeClass('icon-fold');
+        $('#subnav').find('ul').eq(1).removeClass('subnav-off');
+        $('#subnav').find('ul').eq(1).find('li').eq(0).addClass('current');
+    });
+</script>
+</block>
+

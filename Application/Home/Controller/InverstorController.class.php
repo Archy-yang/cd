@@ -16,6 +16,17 @@ class InverstorController extends HomeController
 
         $info['resource'] = explode("\n", $info['resource']);
         $info['need'] = explode("\n", $info['need']);
+        $info['tag'] = explode(" ", $info['tag']);
+        $info['prior_need'] = explode(" ", $info['prior_need']);
+        $info['profile'] = str_replace("\n", '<br>', $info['profile']);
+
+        $tag = array();
+
+        foreach ($info['tag'] as $v) {
+            $tag[] = '<span>'.$v.'</span>';
+        }
+
+        $info['tag'] = implode(' • ', $tag);
 
         $this->assign('info', $info);
         $this->display();
@@ -30,9 +41,7 @@ class InverstorController extends HomeController
         $flag = false;
         if ($id && $data) {
             $data['inverstor_id'] = $id;
-            $data['funds'] *= 100;
             $flag = $signUp->data($data)->add();
-            
         }
 
         if ($flag) {

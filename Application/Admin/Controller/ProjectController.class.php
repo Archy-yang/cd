@@ -331,7 +331,10 @@ class ProjectController extends AdminController
     {
         if ($id > 0) {
             $result = M('project')->where(array('id' => $id))
-                ->data(array('is_pass' => 1))
+                ->data(array(
+                    'is_pass' => 1,
+                    'pass_time' => date('Y-m-d H:i:s'),
+                ))
                 ->save();
 
             if (false !== $result) {
@@ -378,5 +381,31 @@ class ProjectController extends AdminController
         ));
 
         return ;
+    }
+
+    public function sort()
+    {
+        $project = M('project');
+
+        $where = array(
+            'i.is_delete' => 0,
+            'p.is_pass' => 1,
+            'p.is_index' => 1,
+        );
+
+        $list = $project->alias('p')
+            ->field(array(
+                'i.*',
+                'p.is_index',
+                'p.is_pass',
+                'p.id' => 'proid',
+            ))
+            ->join("inner join inverstor as i on i.id = p.inverstor_id")
+            ->where($where)
+            ->order('index_sort desc')
+            ->select();
+
+        $this->assign("list", $list);
+        $this->display();
     }
 }

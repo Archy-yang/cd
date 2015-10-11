@@ -20,6 +20,9 @@
         height:120px;
         width:320px;
     }
+    #img-src {
+        max-width:100px;
+    }
 </style>
 </block>
 
@@ -39,43 +42,34 @@
                 <input name="inverstor_id" type="hidden" value="{$info.id}" />
                 <input name="id" type="hidden" value="{$project.id}" />
                 <dl class="dl-horizontal">
+                    <dt>人物姓名</dt>
+                    <dd>{$info.name} -- <span>{$info.job}</span></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>联系电话</dt>
+                    <dd>{$info.mobile}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>人物照片</dt>
+                    <dd>
+                        <img id="img-src" src="{$info.img_path}{$info.img_name}">
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>人物简介</dt>
+                    <dd>{$info.profile}</dd>
+                </dl>
+                <dl class="dl-horizontal">
                     <dt>项目名称</dt>
                     <dd>{$info.project_name}</dd>
                     <input name="name" type="hidden" value="{$info.project_name}"/>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>一句话说明</dt>
-                    <dd>
-                        {$info.brief}
-                    </dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>项目简介</dt>
+                    <dt>挂牌方向 </dt>
                     <dd>
                         <span>
-                            {$info.project_desc}
+                            {$info.goal}
                         </span>
-                        <input name="desc" type="hidden" value="{$info.project_desc}" />
-                    </dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>项目资源</dt>
-                    <dd>
-                        <volist name="info.resource" id="vo">
-                            <notempty name="vo">
-                            <li class="dot">{$vo}</li>
-                            </notempty>
-                        </volist>
-                    </dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>项目需求</dt>
-                    <dd>
-	                    <volist name="info.need" id="vo">
-                            <notempty name="vo">
-                            <li class="dot">{$vo}</li>
-                            </notempty>
-	                    </volist>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
@@ -135,41 +129,62 @@
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>人物简介</dt>
-                    <dd>{$info.profile}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>联系电话</dt>
-                    <dd>{$info.mobile}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>人物照片</dt>
+                    <dt>标签</dt>
                     <dd>
-                        <img id="img-src" src="{$info.img_path}{$info.img_name}">
+                        <span>
+                            {$info.tag}
+                        </span>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>公司成立时间</dt>
+                    <dt>公司现状</dt>
                     <dd>
-                        {$info.company_creation_time}年
+                        <span>
+                            {$info.project_desc}
+                        </span>
+                        <input name="desc" type="hidden" value="{$info.project_desc}" />
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>公司所在城市</dt>
+                    <dt>项目资源</dt>
                     <dd>
-                        {$info.company_location}
+                        <volist name="info.resource" id="vo">
+                            <notempty name="vo">
+                            <li class="dot">{$vo}</li>
+                            </notempty>
+                        </volist>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>公司资产</dt>
+                    <dt>项目需求</dt>
+                    <dd>
+	                    <volist name="info.need" id="vo">
+                            <notempty name="vo">
+                            <li class="dot">{$vo}</li>
+                            </notempty>
+	                    </volist>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>优先考虑</dt>
+                    <dd>
+	                    <volist name="info.prior_need" id="vo">
+                            <notempty name="vo">
+                            <li class="dot">{$vo}</li>
+                            </notempty>
+	                    </volist>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>预计投资资金</dt>
                     <dd>
                         {$info.company_fund}
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>去年销售额</dt>
+                    <dt>投资标的</dt>
                     <dd>
-                        {$info.sales_volume}
+                        {$info.inver_goal}
                     </dd>
                 </dl>
             </form>

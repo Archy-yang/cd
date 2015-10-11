@@ -19,28 +19,28 @@
 	<!-- 标题 -->
     <div class="main-title">
         <div class="action">
-            <a href="javascript:;" class="btn btn-success">添加</a>
+            <a href="__APP__/Admin/Project/sort" class="btn btn-success">排序</a>
         </div>
         <div class="list">
             <table class="table">
                 <thead>
                     <tr>
                         <th>项目名称</th>
-                        <th>已备资金</th>
-                        <th class="brief">简单说明</th>
-                        <th>公司资产</th>
-                        <th>去年销售额</th>
-                        <th>操作</th>
+                        <th>报名人</th>
+                        <th class="brief">挂牌方向</th>
+                        <th>预计投资资金</th>
+                        <th>标签</th>
+                        <th class="brief">操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <volist name="list" id="vo">
                     <tr>
                         <td>{$vo.project_name}</td>
-                        <td>{:round($vo['funds'] / 100/10000, 2)}万元</td>
-                        <td>{$vo.brief}</td>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.goal}</td>
                         <td>{$vo.company_fund}</td>
-                        <td>{$vo.sales_volume}</td>
+                        <td>{$vo.tag}</td>
                         <td>
                             <a href="__APP__/Admin/Inverstor/info/id/{$vo.id}" class="btn btn-info">信息</a>
                             <a href="__APP__/Admin/Project/signUpList/inverstorId/{$vo.id}" class="btn btn-info">查看报名</a>
