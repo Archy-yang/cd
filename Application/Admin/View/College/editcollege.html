@@ -43,6 +43,9 @@
         background: #000;
         height: 5px;
     }
+    .input-small {
+        width:30px;
+    }
 </style>
 </block>
 
@@ -61,12 +64,28 @@
             <form id="myForm">
                 <input type="hidden" value="{$info.id}" name="id" />
                 <dl class="dl-horizontal">
+                    <dt>期次</dt>
+                    <dd>第&nbsp;<input name="num" type="text" class="input-small" required placeholder="一" value="{$info.num}"/>&nbsp;期</dd>
+                </dl>
+                <dl class="dl-horizontal">
                     <dt>标题</dt>
                     <dd><input name="title" type="text" class="input-large" required placeholder="请输入标题" value="{$info.title}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>地点</dt>
                     <dd><input name="location" type="text" placeholder="请输入地点" value="{$info.location}"/></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>学院通知</dt>
+                    <dd>
+                        <textarea name="note" id="note">{$info.note}</textarea>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>日程</dt>
+                    <dd>
+                        <textarea name="schedule" id="schedule">{$info.schedule}</textarea>
+                    </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>开始时间</dt>
@@ -81,19 +100,8 @@
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>学院通知</dt>
-                    <dd>
-                        <textarea name="note" id="note">{$info.location}</textarea>
-                        
-                        <input name="note" type="text" placeholder="请输入地点" value="{$info.location}"/></dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>地点</dt>
-                    <dd><input name="location" type="text" placeholder="请输入地点" value="{$info.location}"/></dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>地点</dt>
-                    <dd><input name="location" type="text" placeholder="请输入地点" value="{$info.location}"/></dd>
+                    <dt>课程导航</dt>
+                    <dd><input name="navigation" type="text" placeholder="请输入地点" value="{$info.navigation}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>封面图片</dt>
@@ -104,11 +112,11 @@
                             <input name="img_name" id="img-name" type="hidden" value="{$info.img_name}"/>
                             <input name="img_path" id="img-path" type="hidden" value="{$info.img_path}"/>
                         </div>
-                        <span class="remind">建议比例：340X190</span>
+                        <span class="remind">建议比例：560X350</span>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>内容</dt>
+                    <dt>课程总结</dt>
                     <dd>
                         <textarea class="content" name="content" id="content">{$info.content}</textarea>
                     </dd>
@@ -133,7 +141,7 @@
 
         $('#uploadify').uploadify({
             'width': 340,
-            'height' : 190,
+            'height' : 212,
             'swf' : '__STATIC__/uploadify/uploadify.swf',
             'buttonText' : '+上传图片',
             'uploader' : '__APP__/Admin/Upload/uploadImg',
@@ -160,6 +168,22 @@
         var ue = UE.getEditor('content', {
             initialFrameWidth:800,
             initialFrameHeight: 1000,
+        });
+        var note = UE.getEditor('note', {
+            toolbars: [],
+            initialFrameWidth:400,
+            initialFrameHeight: 100,
+            elementPathEnabled: false,
+            wordCount: false,
+            enableAutoSave:false,
+        });
+        var schedule = UE.getEditor('schedule', {
+            toolbars: [],
+            initialFrameWidth:400,
+            initialFrameHeight: 100,
+            elementPathEnabled: false,
+            wordCount: false,
+            enableAutoSave:false,
         });
 
         $('#stime').datetimepicker({
