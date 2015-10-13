@@ -1,6 +1,11 @@
 <extend name="Admin@Public:base" />
 
 <block name="style">
+<style type="text/css" media="screen">
+    .btn {
+        margin-top: 5px;
+    }
+</style>
 </block>
 
 <block name="sidebar">
@@ -33,8 +38,14 @@
                         <td>{$vo.end_time}</td>
                         <td style="width:280px">
                             <a href="__APP__/Admin/College/editCollege/id/{$vo.id}" class="btn btn-success">修改</a>
-                            <a href="__APP__/Admin/College/deleteCollege/id/{$vo.id}" class="btn btn-danger del">删除</a>
+                            <eq name="vo.published" value='0'>
+                            <a href="__APP__/Admin/College/publish/id/{$vo.id}" class="btn btn-success click">发布</a>
+                            <else />
+                            <a href="__APP__/Admin/College/unpublish/id/{$vo.id}" class="btn btn-success click">取消发布</a>
+                            </eq>
                             <a href="__APP__/Admin/College/signUpList/id/{$vo.id}" class="btn btn-success" style="margin-left: 20px">查看报名</a>
+                            <a href="__APP__/Admin/College/teacherList/id/{$vo.id}" class="btn btn-success" >讲师列表</a>
+                            <a href="__APP__/Admin/College/deleteCollege/id/{$vo.id}" class="btn btn-danger del">删除</a>
                         </td>
                     </tr>
                     </volist>
@@ -72,6 +83,27 @@
                     }
                 });
             }
+
+            return false;
+        });
+        $('.click').on('click', function() {
+            var _this = $(this), href = _this.attr("href");
+
+            $.ajax({
+                url: href,
+                dateType: 'json',
+                success: function(data) {
+                    data = $.parseJSON(data);
+
+                    if (data.code == 0) {
+                        alert('操作成功');
+
+                        location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
 
             return false;
         });
