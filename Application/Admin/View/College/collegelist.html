@@ -22,6 +22,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>期次</th>
                         <th>标题</th>
                         <th>地点</th>
                         <th>开始时间</th>
@@ -32,6 +33,7 @@
                 <tbody>
                     <volist name="list" id="vo">
                     <tr>
+                        <td>{$vo.num}</td>
                         <td>{$vo.title}</td>
                         <td>{$vo.location}</td>
                         <td>{$vo.start_time}</td>

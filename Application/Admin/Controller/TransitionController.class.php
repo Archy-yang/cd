@@ -164,4 +164,33 @@ class TransitionController extends AdminController
 
         return ;
     }
+
+    public function setTop($id, $type = 1)
+    {
+        $transition = M('transition');
+
+        $result = $transition->where(array("id" => intval($id)))
+            ->data(array(
+                'top' => $type,
+                'top_time' => date('Y-m-d H:i:s'),
+            ))
+            ->save();
+
+        if (false !== $result) {
+            echo json_encode(array(
+                'code' => 0,
+                'msg' => '',
+            ));
+
+            return ;
+        }
+
+        echo json_encode(array(
+            'code' => 1,
+            'msg' => '',
+        ));
+
+        return ;
+    
+    }
 }

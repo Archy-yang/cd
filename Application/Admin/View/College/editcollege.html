@@ -14,7 +14,6 @@
         top:0px;
         left:0px;
         max-width:340px;
-        max-height:190px;
     }
     textarea.content{
         height:240px;
@@ -102,7 +101,7 @@
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>课程导航</dt>
-                    <dd><input name="navigation" type="text" placeholder="请输入地点" value="{$info.navigation}"/></dd>
+                    <dd><input name="navigation" type="text" placeholder="请输入课程导航" value="{$info.navigation}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>封面图片</dt>
@@ -172,8 +171,8 @@
         });
         var note = UE.getEditor('note', {
             toolbars: [],
-            initialFrameWidth:400,
-            initialFrameHeight: 100,
+            initialFrameWidth: 600,
+            initialFrameHeight: 200,
             elementPathEnabled: false,
             wordCount: false,
             enableAutoSave:false,
@@ -189,11 +188,11 @@
 
         $('#stime').datetimepicker({
             autoclose: true,
-            format: 'yyyy-mm-dd hh:ii:ss'
+            format: 'yyyy-mm-dd hh:ii'
         });
         $('#etime').datetimepicker({
             autoclose: true,
-            format: 'yyyy-mm-dd hh:ii:ss'
+            format: 'yyyy-mm-dd hh:ii'
         });
 
         $('.confirm').on('click', function() {

@@ -36,6 +36,11 @@
                         <td>{:implode(' ', json_decode($vo['tag'], 1))}</td>
                         <td>
                             <a href="__APP__/Admin/Transition/editTransition/id/{$vo.id}" class="btn btn-success">修改</a>
+                            <eq name="vo.top" value="1">
+                            <a href="__APP__/Admin/Transition/setTop/id/{$vo.id}/type/0" class="btn btn-success top">取消置顶</a>
+                            <else/>
+                            <a href="__APP__/Admin/Transition/setTop/id/{$vo.id}/type/1" class="btn btn-success top">置顶</a>
+                            </eq>
                             <a href="__APP__/Admin/Transition/deleteTransition/id/{$vo.id}" class="btn btn-danger del">删除</a>
                         </td>
                     </tr>
@@ -54,6 +59,28 @@
         $('#subnav').find('h3').eq(3).find('i').removeClass('icon-fold');
         $('#subnav').find('ul').eq(3).removeClass('subnav-off');
         $('#subnav').find('ul').eq(3).find('li').eq(0).addClass('current');
+
+        $('.top').on('click', function() {
+            var _this = $(this), href = _this.attr("href");
+
+            $.ajax({
+                url: href,
+                dateType: 'json',
+                success: function(data) {
+                    data = $.parseJSON(data);
+
+                    if (data.code == 0) {
+                        alert('操作成功');
+
+                        location.reload();
+                    } else {
+                        alert('操作失败');
+                    }
+                }
+            });
+
+            return false;
+        });
 
         $('.del').on('click', function() {
             var _this = $(this), href = _this.attr("href");

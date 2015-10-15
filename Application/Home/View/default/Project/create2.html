@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+	<include file="Base/header" />
+<body>
+	<div class="wrapper">
+		<!-- 网站导航 -->
+		<div class="nav">
+		    <include file="Base/menu" />
+		</div>
+		<!-- 转型 -->
+		<div class="bidding">
+            <div class="wrap">
+    			<div class="content">
+    				<div class="brief">
+                        <dl>
+                            <dt>
+                                <img src="__PUBLIC__/Home/images/avatar.png" alt="">
+                            </dt>
+                            <dd class="profile">
+                                <h3>{$info.name}</h3>
+                                <p>
+                                    <span>{$info.company_location}</span> 
+                                    | <span>{$info.project_name}</span> 
+                                    | <span>{$info.job}</span>
+                                </p>
+                                <p class="line">
+                                    {$info.tag}
+                                </p>
+                            </dd>
+                        </dl>
+    				</div>
+                    <div class="item">
+                        <h4>挂牌方向</h4>
+                        <div class="context">
+                            <p>{$info.goal}</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h4>个人介绍</h4>
+                        <div class="context">
+                            <p>
+                                {$info.profile}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h4>现有公司状况</h4>
+                        <div class="context">
+                            <p>
+                                {$info.company_situation}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item target">
+                        <h4>投资资金和标的</h4>
+                        <div class="context">
+                            <h5>预计投资资金：<span>{$info.company_fund}元</span></h5>
+                            <h5>投资标的为：<span>{$info.inver_goal}</span></h5>
+                        </div>
+                    </div>
+    				<div class="item">
+    					<h4>可提供资源列表</h4>
+                        <div class="context">
+        	                <ul>
+        	                    <volist name="info.resource" id="vo">
+        	                    <li class="dot">{$vo}</li>
+        	                    </volist>
+        					</ul>
+                        </div>
+    				</div>
+    				<div class="item">
+    					<h4>合伙人招募需求/投资需求</h4>
+                        <div class="context">
+        	                <ul>
+        	                    <volist name="info.need" id="vo">
+        	                    <li class="dot">{$vo}</li>
+        	                    </volist>
+        					</ul>
+                            <div class="h5wrap">
+                                <h5>目标优先考虑</h5>
+                            </div>
+                            <ul>
+        	                    <volist name="info.prior_need" id="vo">
+        	                    <li class="dot">{$vo}</li>
+        	                    </volist>
+                            </ul>
+                        </div>
+                    </div>
+    				<div class="item">
+    	                <h4>合作模式</h4>
+                        <div class="context">
+                            {$info.mode}
+                        </div>
+    				</div>
+    			</div>
+            </div>
+            <div class="extra">
+                <a href="ajaxscript:;" class="apply">申请报名</a>
+                <!-- 记得要去除背景色 -->
+                <div class="share">这儿放分享组件</div>
+            </div>
+		</div>
+		<!-- 网站底部 -->
+	    <include file="Base/footer" />
+    </div>
+    <script type="text/javascript">
+        $('.nav').find('li').eq(1).addClass('active');
+    	$('.apply').on('click', function () {
+    		var _this = $(this);
+
+    		var mask = $('<div />', {
+    			id: 'cover',
+    			css: {
+    				position: 'fixed',
+    				top: 0,
+    				left: 0,
+    				width: '100%',
+    				height: "100%",
+    				backgroundColor: '#000',
+    				opacity: 0.8
+    			}
+    		}).appendTo('body');
+
+    		var html = $('#layer').html()
+    		
+            var layer = $(html).appendTo('body');
+
+            layer.find('#cid').val(_this.attr('data-cid'));
+
+    		// 提交表单的主要逻辑
+            layer.find('.submit').click(function () {
+                layer.find('#myform').ajaxSubmit({
+                    url: '__APP__/Home/Inverstor/signUp/id/{$info.id}',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            alert('报名成功');
+
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                });
+    		});
+
+    		mask.one('click', function () {
+    			$(this).remove();
+    			layer.remove();
+    		});
+    	});
+    </script>
+    <script type="text/template" id="layer">
+        <div class="layer">
+            <form id="myform" method="post">
+                <input  type="hidden" id="cid" name="college_id" value='' />
+                <ul>
+                    <li>
+                        <label for="">姓名</label>
+                        <input type="text" required name="name">
+                    </li>
+                    <li>
+                        <label for="">公司</label>
+                        <input type="text" required name="company">
+                    </li>
+                    <li>
+                        <label for="">职位</label>
+                        <input type="text" required name="job">
+                    </li>
+                    <li>
+                        <label for="">手机</label>
+                        <input type="text" required name="mobile">
+                    </li>
+                    <li>
+                        <label for="">邮箱</label>
+                        <input type="text" required name="email">
+                    </li>
+                    <li><input type="button" value="提交报名" class="submit"></li>
+                </ul>
+            </form>
+		</div>
+    </script>
+</body>
+</html>

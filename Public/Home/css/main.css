@@ -1358,3 +1358,8 @@ body {
   color: #FFF;
   background-color: #db6d4b;
 }
+.note {
+    margin: 20px auto;
+    width: 850px;
+    min-height: 300px;
+}

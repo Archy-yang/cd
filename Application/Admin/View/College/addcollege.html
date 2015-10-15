@@ -14,7 +14,6 @@
         top:0px;
         left:0px;
         max-width:340px;
-        max-height:190px;
     }
     textarea.content{
         height:240px;
@@ -100,7 +99,7 @@
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>课程导航</dt>
-                    <dd><input name="navigation" type="text" placeholder="请输入地点" value=""/></dd>
+                    <dd><input name="navigation" type="text" placeholder="请输入课程导航" value=""/></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>封面图片</dt>
@@ -155,9 +154,9 @@
             },
             onUploadSuccess: function(file, data, response) {
                 var  data = $.parseJSON(data);
-                $('#img-b-src').attr("src", data.path+data.name);
-                $('#img-b-name').val(data.name);
-                $('#img-b-path').val(data.path);
+                $('#img-src').attr("src", data.path+data.name);
+                $('#img-name').val(data.name);
+                $('#img-path').val(data.path);
             },
             onQueueComplete: function() {
                 $('.saveform').prop('disabled', false);
@@ -166,11 +165,11 @@
 
         $('#stime').datetimepicker({
             autoclose: true,
-            format: 'yyyy-mm-dd hh:ii:ss'
+            format: 'yyyy-mm-dd hh:ii'
         });
         $('#etime').datetimepicker({
             autoclose: true,
-            format: 'yyyy-mm-dd hh:ii:ss'
+            format: 'yyyy-mm-dd hh:ii'
         });
 
         var ue = UE.getEditor('content', {
@@ -179,8 +178,8 @@
         });
         var note = UE.getEditor('note', {
             toolbars: [],
-            initialFrameWidth:400,
-            initialFrameHeight: 100,
+            initialFrameWidth:600,
+            initialFrameHeight: 200,
             elementPathEnabled: false,
             wordCount: false,
             enableAutoSave:false,
@@ -196,7 +195,7 @@
 
         $('.confirm').on('click', function() {
             $('#myForm').ajaxSubmit({
-                url: '__APP__/Admin/College/updateCollege',
+                url: '__APP__/Admin/College/saveCollege',
                 type: 'post',
                 dataType: 'json',
                 beforeSubmit: function() {
@@ -223,11 +222,11 @@
                 },
                 success: function(data) {
                     if(data.code == 0) {
-                        alert('修改成功');
+                        alert('保存成功');
 
                         location.href="__APP__/Admin/College/collegeList";
                     } else {
-                        alert("修改失败");
+                        alert("保存失败");
                     }
                 }
             });

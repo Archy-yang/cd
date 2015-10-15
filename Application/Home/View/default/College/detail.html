@@ -15,114 +15,40 @@
             <img src="__PUBLIC__/Home/images/xy.jpg" alt="虫洞招拍挂">
             </notempty>
     	</div>
-    	<div class="detail">
+        <div class="detail">
             <h3>虫洞商学院讲师分享</h3>
     		<div class="content">
                 <h5>学院通知</h5>
                 <div class="context p">
-                    <p>这里有一些数据作为支持，负责人说：“我们的线下路演做了近3年的时间，所有平台上的项目都非常希望参加我们的路演，但是我们秉承着一贯的严格风格，对项目进行筛选。在已经完成的33期路演中，30%的项目在路演之后融资成功，这只是一个初步的数据，然后在我们平台上融资成功的项目40%可以走到下一轮，剩下的可能就不幸的要转变创业方向，或者是继续挣扎，但是这个数据在行业里也是非常可观的了，大家可以进行参考。”</p>
-                    <p>创投圈可以说是你创业融资的第一站，这里不怕你脑洞太大，就怕你脑洞不够大，正如开篇所说，想法要够有创意，并且“乱中有序”，让我们看到项目足够强大的发展空间。而创投圈会给大家免费提供更专业的建议，也会运用投资理念和投资能力去做推介，从而提供更多的融资机会。</p>
+                    {$detail.note}
                 </div>
                 <h5>学院日程</h5>
                 <div class="context">
                     <ul>
-                        <li>13:30 -- 14:00 签到入场</li>
-                        <li>13:30 -- 14:00 签到入场</li>
-                        <li>13:30 -- 14:00 签到入场</li>
-                        <li>13:30 -- 14:00 签到入场</li>
-                        <li>13:30 -- 14:00 签到入场</li>
+                        <volist name="detail.schedule" id="vo">
+                        <li>{$vo}</li>
+                        </volist>
                     </ul>
                 </div>
                 <h5>学院讲师</h5>
                 <div class="context lecturer">
+                    <volist name="teacher" id="vo">
                     <dl class="item">
                         <dt>
                             <div class="avatar">
-                                <img src="__PUBLIC__/Home/images/logo.jpg" alt="">
+                                <img src="{$vo.img_path}{$vo.img_name}" alt="">
                             </div>
-                            <strong>小丸子</strong>
+                            <strong>{$vo.name}</strong>
                         </dt>
-                        <dd>变革家创始人</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
+                        <volist name="vo.desc" id="desc">
+                        <dd>{$desc}</dd>
+                        </volist>
                     </dl>
-                    <dl class="item">
-                        <dt>
-                            <div class="avatar">
-                                <img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-                            </div>
-                            <strong>小丸子</strong>
-                        </dt>
-                        <dd>变革家创始人</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                    </dl>
-                    <dl class="item">
-                        <dt>
-                            <div class="avatar">
-                                <img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-                            </div>
-                            <strong>小丸子</strong>
-                        </dt>
-                        <dd>变革家创始人</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                    </dl>
-                    <dl class="item">
-                        <dt>
-                            <div class="avatar">
-                                <img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-                            </div>
-                            <strong>小丸子</strong>
-                        </dt>
-                        <dd>变革家创始人</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                    </dl>
-                    <dl class="item">
-                        <dt>
-                            <div class="avatar">
-                                <img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-                            </div>
-                            <strong>小丸子</strong>
-                        </dt>
-                        <dd>变革家创始人</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                    </dl>
-                    <dl class="item">
-                        <dt>
-                            <div class="avatar">
-                                <img src="__PUBLIC__/Home/images/logo.jpg" alt="">
-                            </div>
-                            <strong>小丸子</strong>
-                        </dt>
-                        <dd>变革家创始人</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                        <dd>原创业家战略副总裁</dd>
-                    </dl>
+                    </volist>
                 </div>
     		</div>
             <div class="extra">
-                <a href="javascript:;" class="apply">我要报名</a>
+                <a href="javascript:;" class="apply" data-cid="{$detail.id}">我要报名</a>
                 <div class="share">这里放分享组件</div>
             </div>
     	</div>
@@ -146,11 +72,13 @@
     			}
     		}).appendTo('body');
 
-    		var html = $('#layer').html()
+            var html = $('#layer').html()
+
     		
     		var layer = $(html).appendTo('body');
 
             layer.find('#cid').val(_this.attr('data-cid'));
+            console.log(_this.attr('data-cid'));
 
     		// 提交表单的主要逻辑
             layer.find('.submit').click(function () {
@@ -178,7 +106,7 @@
     <script type="text/template" id="layer">
         <div class="layer">
             <form id="myform" method="post">
-                <input  type="hidden" id="cid" name="college_id" value='' />
+                <input  type="hidden" id="cid" name="college_id" value="" />
                 <ul>
                     <li>
                         <label for="">姓名</label>

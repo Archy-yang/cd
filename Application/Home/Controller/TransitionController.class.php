@@ -21,6 +21,7 @@ class TransitionController extends HomeController
         $show = $page->show();
 
         $list = $transition->where(array('is_delete' => 0))
+            ->order('top desc, top_time desc')
             ->limit($page->firstRow, $page->listRows)
             ->select();
 

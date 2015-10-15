@@ -9,20 +9,23 @@
 		</div>
 		<!-- 文章 -->
 		<div class="article">
-	        <h3>{$detail.title}</h3>
-			<p class="attached">
+            <h3>{$detail.title}</h3>
+            <p class="attached" style="width:850px;margin:auto;border-bottom-style:dashed">
 	            作者: <span class="author">{$detail.author}</span>
 	            <span class="datetime"><b class="icon-clock"></b>
 	                {$detail.create_time}
 				</span>
 	            来源: <span class="source">{$detail.refer}</span>
 			</p>
-	        <div class="content">
+	        <div class="content note">
 	            {$detail.content}
 			</div>
 		</div>
 		<!-- 网站底部 -->
 	    <include file="Base/footer" />
     </div>
+    <script type="text/javascript">
+        $('.nav').find('li').eq(2).addClass('active');
+    </script>
 </body>
 </html>

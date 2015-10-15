@@ -18,93 +18,103 @@
     	<!-- 商学院 -->
     	<div class="college">
             <!-- Loop start -->
+            <notempty name="comming">
             <h4>即将开课</h4>
             <div class="item">
                 <div class="pic">
-                    <img src="__PUBLIC__/Home/images/college.png" alt="">
+                    <img src="{$comming.img_path}{$comming.img_name}" alt="">
                 </div>
                 <div class="brief">
                     <dl>
                         <dt>
-                            中关村创业大街虫洞创业中心互联网思维是怎么样炼成的主题分分享活动
+                            {$comming.title}
                         </dt>
                         <dd>
-                            地点：虫洞创业之家
+                            地点：{$comming.location}
                         </dd>
                         <dd>
-                            主讲老师：李江
+                            主讲老师：{:implode("&nbsp;&nbsp;", $comming['teacher'])}
                         </dd>
                         <dd>
-                            课程导航：互联网 转型
+                            课程导航：{$comming.navigation}
                         </dd>
                         <dd>
-                            截止时间：2015.12.01
+                            截止时间：{$comming.end_time}
                         </dd>
                     </dl>
-                    <a href="javascript:;" class="btn">加入学院</a>
+                    <a href="__APP__/Home/College/detail/id/{$comming.id}" class="btn">加入学院</a>
                 </div>
             </div>
+            </notempty>
+            <notempty name="now">
+            <h4>正在进行</h4>
+            <div class="item">
+                <div class="pic">
+                    <img src="{$now.img_path}{$now.img_name}" alt="">
+                </div>
+                <div class="brief">
+                    <dl>
+                        <dt>
+                            {$now.title}
+                        </dt>
+                        <dd>
+                            地点：{$now.location}
+                        </dd>
+                        <dd>
+                            主讲老师：{:implode("&nbsp;&nbsp;", $now['teacher'])}
+                        </dd>
+                        <dd>
+                            课程导航：{$now.navigation}
+                        </dd>
+                        <dd>
+                            截止时间：{$now.end_time}
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            </notempty>
+            <notempty name="pass">
             <h4>重温回顾</h4>
+            <volist name="pass" id="vo">
             <div class="item">
                 <div class="pic">
-                    <img src="__PUBLIC__/Home/images/college.png" alt="">
+                    <img src="{$vo.img_path}{$vo.img_name}" alt="">
                 </div>
                 <div class="brief">
                     <dl>
                         <dt>
-                            中关村创业大街虫洞创业中心互联网思维是怎么样炼成的主题分分享活动
+                            {$vo.title}
                         </dt>
                         <dd>
-                            地点：虫洞创业之家
+                            地点：{$vo.location}
                         </dd>
                         <dd>
-                            主讲老师：李江
+                            主讲老师：{:implode("&nbsp;&nbsp;", $vo['teacher'])}
                         </dd>
                         <dd>
-                            课程导航：互联网 转型
+                            课程导航：{$vo.navigation}
                         </dd>
                         <dd>
-                            截止时间：2015.12.01
+                            截止时间：{$vo.end_time}
                         </dd>
                     </dl>
-                    <a href="javascript:;" class="btn">加入学院</a>
+                    <a href="__APP__/Home/College/note/id/{$vo.id}" class="btn">课程回顾</a>
                 </div>
             </div>
-            <div class="item">
-                <div class="pic">
-                    <img src="__PUBLIC__/Home/images/college.png" alt="">
-                </div>
-                <div class="brief">
-                    <dl>
-                        <dt>
-                            中关村创业大街虫洞创业中心互联网思维是怎么样炼成的主题分分享活动
-                        </dt>
-                        <dd>
-                            地点：虫洞创业之家
-                        </dd>
-                        <dd>
-                            主讲老师：李江
-                        </dd>
-                        <dd>
-                            课程导航：互联网 转型
-                        </dd>
-                        <dd>
-                            截止时间：2015.12.01
-                        </dd>
-                    </dl>
-                    <a href="javascript:;" class="btn">加入学院</a>
-                </div>
-            </div>
+            </volist>
+            </notempty>
             <!-- Loop end -->
             <ul class="history">
-                <li><a href="javascript:;">虫洞商学院第 XX 期：互联网思维是怎样炼成的？</a></li>
-                <li><a href="javascript:;">虫洞商学院第 XX 期：互联网思维是怎样炼成的？</a></li>
-                <li><a href="javascript:;">虫洞商学院第 XX 期：互联网思维是怎样炼成的？</a></li>
-                <li><a href="javascript:;">虫洞商学院第 XX 期：互联网思维是怎样炼成的？</a></li>
+                <volist name="list" id="vo">
+                <li><a href="__APP__/Home/College/note/id/{$vo.id}">虫洞商学院第 {$vo.num} 期：{$vo.title}</a></li>
+                </volist>
             </ul>
         </div>
-    	<!-- 分页 -->
-        {$show}
+        <div class="service">
+            <if condition="$more">
+            <a href="javascript:;" class="more">MORE</a>
+            </if>
+        </div>
     	<!-- 网站底部 -->
         <include file="Base/footer" />
     </div>
@@ -116,6 +126,28 @@
 			complete: function() {},
 			dots: true
         });
+
+        var page = 1;
+        $('.more').on('click', function() {
+            $.ajax({
+                url: '__APP__/Home/College/moreList/page/'+page,
+                dataType: 'json',
+                success: function(data) {
+                    if (data.code == 0) {
+                        $('.history').append(data.html);
+
+                        if (!data.more) {
+                            $('.more').hide();
+                        } else {
+                            page++;
+                        }
+                    } else {
+                        $(this).hide();
+                    }
+                }
+            });
+        });
+
     	$('.college, .detail').on('click', '.apply', function () {
     		var _this = $(this);
 

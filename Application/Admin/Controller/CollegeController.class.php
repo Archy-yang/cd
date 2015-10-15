@@ -160,6 +160,7 @@ class CollegeController extends AdminController
             $result = $college->where(array('id' => $id))
                 ->data(array(
                     'published' => 1,
+                    'published_time' => date('Y-m-d H:i:s'),
                 ))
                 ->save();
 
