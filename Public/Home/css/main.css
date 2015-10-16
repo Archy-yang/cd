@@ -1374,3 +1374,10 @@ body {
     width: 850px;
     min-height: 300px;
 }
+.share a {
+  background-size: 50px;
+  -webkit-background-size: 50px;
+  -o-background-size: 50px;
+  -moz-background-size: 50px;
+  -ms-background-size: 50px;
+}
