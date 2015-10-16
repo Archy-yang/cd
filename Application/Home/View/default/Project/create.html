@@ -7,48 +7,30 @@
 		<div class="nav">
 		    <include file="Base/menu" />
 		</div>
-	    <form action="__APP__/Home/Project/saveCreate" method="post">
+	    <form id="myForm" action="__APP__/Home/Project/saveCreate" method="post">
 		<div class="signup">
 			<div class="form">
-	                <input type="hidden" name="inverstor_id" value="{$id}" />
-	                <input type="hidden" name="is_sign_up" value="1"/>
-					<h5>发起项目</h5>
-					<ul>
-						<li>
-							<label for="">项目名称：</label>
-							<input type="text" required name="project_name">
-						</li>
-						<li>
-							<label for="">一句话说明：</label>
-							<input type="text" name="brief">
-						</li>
-						<li>
-							<label for="">已备资金：</label>
-							<input type="text" name="funds">
-							<span class="cell">元</span>
-						</li>
-						<li>
-							<label for="">项目简介：</label>
-							<textarea name="project_desc"></textarea>
-						</li>
-						<li>
-							<label for="">项目资源：</label>
-							<textarea name="resourse"></textarea>
-						</li>
-						<li>
-							<label for="">项目需求：</label>
-							<textarea name="need" class="needs"></textarea>
-						</li>
-					</ul>
 					<h6>发起人信息</h6>
 					<ul>
+						<li>
+							<label for="">姓名：</label>
+							<input type="text" required name="name">
+						</li>
+						<li>
+							<label for="">联系电话：</label>
+							<input type="text" required name="mobile">
+						</li>
+						<li>
+							<label for="">职位：</label>
+							<input type="text" required name="job" placeholder="创始人">
+						</li>
 						<li>
 							<label for="">自我介绍：</label>
 							<textarea name="profile"></textarea>
 						</li>
 						<li>
-							<label for="">联系电话：</label>
-							<input type="text" required name="mobile">
+							<label for="">所在城市：</label>
+							<input type="text" required name="company_loaction" placeholder="北京">
 						</li>
 						<li>
 							<label for="">上传照片：</label>
@@ -64,24 +46,56 @@
 							</div>
 						</li>
 					</ul>
+					<h5>发起项目</h5>
+					<ul>
+						<li>
+							<label for="">项目名称：</label>
+							<input type="text" required name="project_name">
+						</li>
+						<li>
+							<label for="">项目标签：</label>
+                            <input type="text" required name="tag" placeholder="IT 创新">
+                            <span class="cell">多个标签用空格隔开</span>
+						</li>
+						<li>
+							<label for="">挂牌方向：</label>
+							<input type="text" name="goal" placeholder="招募合伙人/投资领域内相关项目">
+						</li>
+						<li>
+							<label for="">预计投资资金：</label>
+							<input type="text" name="company_fund" placeholder="100万-500万">
+							<span class="cell">元</span>
+						</li>
+						<li>
+							<label for="">投资标的：</label>
+							<input type="text" name="inver_goal" placeholder="互联网+传统VC+孵化器类项目">
+						</li>
+						<li>
+							<label for="">项目简介：</label>
+							<textarea name="project_desc"></textarea>
+						</li>
+						<li>
+							<label for="">可提供资源列表：</label>
+							<textarea name="resource"></textarea>
+						</li>
+						<li>
+                            <label for="">合伙人招募需求\ <br/>投资需求：</label>
+							<textarea name="need" class="needs"></textarea>
+						</li>
+						<li>
+							<label for="">目标公司优先考虑：</label>
+							<textarea name="prior_need" class="needs"></textarea>
+						</li>
+						<li>
+							<label for="">合作模式：</label>
+							<input type="text" name="mode" placeholder="51%股份+百万薪资">
+						</li>
+					</ul>
 					<h6>关于公司</h6>
 					<ul>
 						<li>
-							<label for="">成立时间：</label>
-							<input type="text" required name="company_creation_time">
-							<span class="cell">年</span>
-						</li>
-						<li>
-							<label for="">所在城市：</label>
-							<input type="text" required name="company_loaction">
-						</li>
-						<li>
-							<label for="">公司资产：</label>
-							<input type="text" name="company_fund">
-						</li>
-						<li>
-							<label for="">去年销售额：</label>
-							<input type="text" name="sales_volume">
+							<label for="">现有公司情况</label>
+							<textarea name="company_situation" class="needs"></textarea>
 						</li>
 					</ul>
 			</div>
@@ -89,14 +103,15 @@
         <div class="signup signup-submit">
                 <input type="submit" class="apply" value="提交">
         </div>
-				</form>
+		</form>
 		<include file="Base/footer" />
 	</div>
+    <script type="text/javascript" src="__STATIC__/jquery.form.js"></script>
     <script type="text/javascript">
         $('.nav').find('li').eq(1).addClass('active');
 		$('input#file').uploadify({
-			width: 300,
-			height: 360,
+			width: 200,
+			height: 200,
 			buttonClass: 'custombtn',
 			buttonText: '',
 			fileTypeExts: '*.gif; *.jpg; *.png',
@@ -128,6 +143,22 @@
                 	alert('图片大小超出限制');
                 }
 			}
+        });
+        $('.apply').on('click', function() {
+            $('#myForm').ajaxSubmit({
+                dataType: 'json',
+                success: function(data) {
+                    if(data.code == 0) {
+                        alert('创建成功');
+
+                        window.location.href = '__APP__/Home/Index/index';
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+
+            return false;
         });
 	</script>
 </body>

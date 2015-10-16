@@ -52,16 +52,30 @@ class ProjectController extends HomeController
 
         $data = $inverstor->create();
 
+        trace($data);
+
         $flag = false;
         if ($data) {
             $flag = $inverstor->data($data)->add();
-        }
 
-        if ($flag) {
-            $this->success('申请成功', U('Project/projectList'));
-        } else {
-            $this->error('申请失败');
-        }
+            if ($flag) {
+                echo json_encode(array(
+                    'code' => 0,
+                    'msg' => '',
+                ));
+                
+                return;
+            }
+        } 
+
+        $error = $inverstor->getError();
+
+        echo json_encode(array(
+            'code' => 1,
+            'msg' => $error ? $error : '创建失败',
+        ));
+        
+        return;
     }
 
     protected function getList($skip, $num)

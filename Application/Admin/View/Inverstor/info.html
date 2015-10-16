@@ -34,7 +34,11 @@
 	<!-- 标题 -->
     <div class="main-title">
         <div>
-            <a href="javascript:history.go(-1);" class="btn btn-info">返回</a>
+            <eq name="l" value="2">
+            <a href="__APP__/Admin/Project/projectList" class="btn btn-info">返回</a>
+            <else />
+            <a href="__APP__/Admin/Project/indexList" class="btn btn-info">返回</a>
+            </eq>
             <a href="javascript:;" class="btn btn-success confirm">保存修改</a>
         </div>
         <div style="margin-top:20px">
@@ -78,7 +82,7 @@
                         <notempty name="project.funds">
                         <input name="funds" type="text" value="{:round($project['funds']/100)}"/>
                         <else />
-                        <input name="funds" type="text" value="" placeholder="请输入已备资金"/>
+                        <input name="funds" type="text" value="" placeholder="1000000"/>
                         </notempty>
                     </dd>
                 </dl>
