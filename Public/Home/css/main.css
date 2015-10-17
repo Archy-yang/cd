@@ -756,7 +756,6 @@ body {
   top: 40px;
   right: 40px;
   height: 40px;
-  background-color: #F2F2F2;
   line-height: 40px;
 }
 .bidding .brief {
@@ -1256,6 +1255,17 @@ body {
 .article .content p {
   margin-bottom: 10px;
 }
+.article .extra {
+  height: 40px;
+  position: relative;
+}
+.article .extra .share {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  height: 40px;
+  line-height: 40px;
+}
 .detail {
   margin-top: 40px;
   padding: 0 40px 20px;
@@ -1341,7 +1351,6 @@ body {
   top: 40px;
   right: 40px;
   height: 40px;
-  background-color: #F2F2F2;
   line-height: 40px;
 }
 .pagination {
@@ -1374,10 +1383,11 @@ body {
     width: 850px;
     min-height: 300px;
 }
-.share a {
+/*优先级较低被覆盖了*/
+/*.share a {
   background-size: 50px;
   -webkit-background-size: 50px;
   -o-background-size: 50px;
   -moz-background-size: 50px;
   -ms-background-size: 50px;
-}
+}*/
