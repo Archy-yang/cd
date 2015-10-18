@@ -23,7 +23,7 @@ class IndexController extends AdminController {
     public function index(){
         if(UID){
             $info['user'] = M('Member')->count();
-            $info['inverstor'] = M('Inverstor')->where(array('is_sign_up' => 1))->count();
+            $info['inverstor'] = M('Inverstor')->where(array('is_delete' => 0))->count();
             $info['college'] = M('College_sign_up')->count();
             $info['transition'] = M('Transition')->count();
             $info['college'] = M('College')->where(array('is_delete' => 0))->count();
