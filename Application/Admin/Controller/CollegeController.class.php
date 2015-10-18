@@ -239,7 +239,7 @@ class CollegeController extends AdminController
                 ->select();
 
             if (false !== $linkList) {
-                $linkTeacherId = [];
+                $linkTeacherId = array();
 
                 if ($linkList) {
                     foreach($linkList as $v){

@@ -215,7 +215,7 @@ class CollegeController extends HomeController
                 $more = false;
             }
         } else {
-            $list = [];
+            $list = array();
             $more = false;
         }
 
