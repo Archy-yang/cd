@@ -32,6 +32,7 @@ class HomeController extends Controller {
         }
 
         $this->assign('qrcode', $this->getQrcode());
+        $this->assign("info", $this->getInfo());
     }
 
 	/* 用户登录检测 */
@@ -61,4 +62,12 @@ class HomeController extends Controller {
         return $qrcode;
     }
 
+    protected function getInfo()
+    {
+        $info = M('info')->find();
+
+        $ths->info = $info;
+
+        return $info;
+    }
 }
