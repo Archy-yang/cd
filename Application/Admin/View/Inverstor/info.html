@@ -77,13 +77,11 @@
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>已备资金</dt>
+                    <dt>
+                        <input class="input-small" name="key_funds" type="text" value="{$project['key_funds']}" placeholder="已备资金">
+                    </dt>
                     <dd>
-                        <notempty name="project.funds">
-                        <input name="funds" type="text" value="{:round($project['funds']/100)}"/>
-                        <else />
-                        <input name="funds" type="text" value="" placeholder="1000000"/>
-                        </notempty>
+                        <input name="funds" type="text" value="{$project['funds']}"/>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
@@ -97,7 +95,9 @@
                     <dd><input name="sub_type" type="text" placeholder="请输入项目次类型" value="{$project.sub_type}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>人才招募</dt>
+                    <dt>
+                        <input class="input-small" name="key_recruit" type="text" value="{$project['key_recruit']}" placeholder="人才招募">
+                    </dt>
                     <dd><input name="recruit" type="text" placeholder="请输入项目人才招募" value="{$project.recruit}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">

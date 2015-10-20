@@ -35,15 +35,17 @@
                     </if>
     			</div>
     			<div class="brief">
-                    <h4>{$vo.name}</h4>
+        			<a href="__APP__/Home/Inverstor/info/id/{$vo.inverstor_id}">
+                        <h4>{$vo.name}</h4>
+                    </a>
                     <p>{$vo.desc}</p>
     				<dl>
         				<a href="__APP__/Home/Inverstor/info/id/{$vo.inverstor_id}">
                             <dt></dt>
                         </a>
-                        <dd>已备资金 : <span>{:round($vo['funds']/100/10000, 2)}万</span></dd>
+                        <dd><empty name="vo.key_funds">已备资金<else />{$vo.key_funds}</empty> : <span>{$vo['funds']}</span></dd>
                         <dd>{$vo.main_type}<notempty name="vo.sub_type">•<span>{$vo.sub_type}</span></notempty></dd>
-                        <dd>人才招募 : <span>{$vo.recruit}</span></dd>
+                        <dd><empty name="vo.key_recruit">人才招募<else />{$vo.key_recruit}</empty> : <span>{$vo.recruit}</span></dd>
     				</dl>
     			</div>
             </div>

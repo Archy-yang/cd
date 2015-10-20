@@ -28,6 +28,7 @@ class TransitionController extends HomeController
         $this->assign('list', $list);
         $this->assign('show', $show);
         $this->assign('banner', $banner);
+        $this->assign('title', '虫洞研究');
         $this->display();
     }
 
@@ -40,6 +41,7 @@ class TransitionController extends HomeController
 
         $this->assign('img', $img);
         $this->assign('detail', $detail);
+        $this->assign('title', '虫洞研究');
 
         $this->display();
     }

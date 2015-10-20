@@ -531,9 +531,15 @@ body {
   max-height: 410px;
   overflow: hidden;
 }
-.adv {
-  height: 610px;
+.adv-b {
+    height: 600px;
   max-height: 610px;
+}
+.adv {
+  max-height: 610px;
+}
+.adv img{
+    margin: auto;
 }
 .service {
   padding: 0 40px;
@@ -707,7 +713,7 @@ body {
 }
 .footer .extra .contact {
   position: absolute;
-  left: 170px;
+  left: 160px;
   bottom: 10px;
   /*width: 260px;*/
   text-align: left;

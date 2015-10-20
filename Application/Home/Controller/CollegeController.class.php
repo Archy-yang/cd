@@ -30,6 +30,7 @@ class CollegeController extends HomeController
         $this->assign('carousel', $carousel);
         $this->assign('list', $list);
         $this->assign('more', $more);
+        $this->assign('title', '虫洞商学院');
         $this->display();
     
     }
@@ -86,6 +87,7 @@ class CollegeController extends HomeController
             $this->assign('detail', $detail);
         }
 
+        $this->assign('title', '虫洞商学院');
         $this->display();
     }
 
@@ -94,6 +96,7 @@ class CollegeController extends HomeController
         $college = M('college');
         $detail = $college->where(array('id' => $id))->find();
 
+        $this->assign('title', '虫洞商学院');
         $this->assign('detail', $detail);
 
         $this->display();

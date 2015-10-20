@@ -50,6 +50,7 @@ class IndexController extends HomeController
         $this->assign('banner', $banner);
         $this->assign('project', $project);
         $this->assign('more', $more);
+        $this->assign('title', '中国首家反向创业平台');
                  
         $this->display();
     }

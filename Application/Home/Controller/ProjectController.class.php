@@ -17,6 +17,7 @@ class ProjectController extends HomeController
         $this->assign('banner', $banner);
         $this->assign('project', $project);
         $this->assign('more', $more);
+        $this->assign('title', '虫洞招拍挂');
         $this->display();
     }
 
@@ -43,6 +44,7 @@ class ProjectController extends HomeController
         $img = M('image')->where(array('type' => 1))->find();
 
         $this->assign('img', $img);
+        $this->assign('title', '创建项目');
         $this->display();
     }
 

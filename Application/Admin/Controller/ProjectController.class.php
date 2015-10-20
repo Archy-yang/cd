@@ -131,8 +131,6 @@ class ProjectController extends AdminController
         $data = $project->create();
 
         if ($data) {
-            $data['funds'] *= 100;
-
             $result = $project->data($data)->add();
 
             if ($result) {
@@ -186,7 +184,6 @@ class ProjectController extends AdminController
             if (!isset($data['is_funding'])) {
                 $data['is_funding'] = 0;
             }
-            $data['funds'] *= 100;
 
             if ($id > 0) {
                 unset($data['id']);
