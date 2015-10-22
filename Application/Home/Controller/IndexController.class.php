@@ -74,14 +74,18 @@ class IndexController extends HomeController
 
     protected function projectList($skip, $num)
     {
-        $projectList = M('project')->where(array(
-            'is_delete' => 0,
-            'is_index' => 1,
-            'is_pass' => 1,
-        ))
-        ->order('index_sort desc, id desc')
-        ->limit($skip, $num +1)
-        ->select();
+        $projectList = M('project')->alias("p")
+            ->field('p.*')
+            ->join('inverstor as i on i.id = p.inverstor_id')
+            ->where(array(
+                'i.is_delete' => 0,
+                'p.is_delete' => 0,
+                'p.is_index' => 1,
+                'p.is_pass' => 1,
+            ))
+            ->order('index_sort desc, id desc')
+            ->limit($skip, $num +1)
+            ->select();
 
 
         if (count($projectList) > $num) {

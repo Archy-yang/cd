@@ -54,8 +54,6 @@ class ProjectController extends HomeController
 
         $data = $inverstor->create();
 
-        trace($data);
-
         $flag = false;
         if ($data) {
             $flag = $inverstor->data($data)->add();
@@ -82,13 +80,17 @@ class ProjectController extends HomeController
 
     protected function getList($skip, $num)
     {
-        $projectList = M('project')->where(array(
-            'is_delete' => 0,
-            'is_pass' => 1,
-        ))
-        ->order('pass_time desc')
-        ->limit($skip, $num +1)
-        ->select();
+        $projectList = M('project')->alias('p')
+            ->field('p.*')
+            ->join('inverstor as i on i.id = p.inverstor_id')
+                ->where(array(
+                'i.is_delete' => 0,
+                'p.is_delete' => 0,
+                'p.is_pass' => 1,
+            ))
+            ->order('p.pass_time desc')
+            ->limit($skip, $num +1)
+            ->select();
 
 
         if (count($projectList) > $num) {
