@@ -29,7 +29,7 @@ class InverstorController extends HomeController
         $info['tag'] = implode(' • ', $tag);
 
         $this->assign('info', $info);
-        $this->assign('title', '虫洞招拍挂');
+        $this->assign('title', $info['project_name']);
         $this->display();
     }
 

@@ -41,7 +41,7 @@ class TransitionController extends HomeController
 
         $this->assign('img', $img);
         $this->assign('detail', $detail);
-        $this->assign('title', '虫洞研究');
+        $this->assign('title', $detail['title']);
 
         $this->display();
     }
