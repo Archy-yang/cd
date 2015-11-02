@@ -96,10 +96,6 @@ class InverstorController extends AdminController
         $projectInfo = $project->where(array('inverstor_id' => $id))
             ->find();
 
-        $info['resource'] = explode("\n", $info['resource']);
-        $info['need'] = explode("\n", $info['need']);
-        $info['prior_need'] = explode("\n", $info['prior_need']);
-
         $this->assign('info', $info);
         $this->assign('project', $projectInfo);
         $this->assign('l', $l);

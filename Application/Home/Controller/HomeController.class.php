@@ -66,7 +66,7 @@ class HomeController extends Controller {
     {
         $info = M('info')->find();
 
-        $ths->info = $info;
+        $this->info = $info;
 
         return $info;
     }

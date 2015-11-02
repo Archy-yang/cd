@@ -108,7 +108,7 @@ class ProjectController extends AdminController
      */
     public function createProject()
     {
-        $id = $_POST['id'];
+        $id = $_POST['project']['id'];
         trace($_POST);
 
         if ($id > 0) {
@@ -128,18 +128,30 @@ class ProjectController extends AdminController
     {
         $project = D("Project");
 
-        $data = $project->create();
+        $data = $_POST['project'];
+        $data = $project->create($data);
 
-        if ($data) {
-            $result = $project->data($data)->add();
+        $inverstor = D("Inverstor");
+        $inverstorData = $inverstor->create($_POST, 2);
 
-            if ($result) {
-                echo json_encode(array(
-                    'code' => 0,
-                    'msg' => ''
-                ));
+        if ($data && $inverstorData) {
+            $inverstorId = $_POST['inverstor_id'];
 
-                return ;
+            if ($inverstorId > 0) {
+                $result = $project->data($data)->add();
+                $inverstorResult = $inverstor->where(array('id' => intval($inverstorId)))
+                    ->data($inverstorData)
+                    ->save();
+                
+                if ($result && false !== $inverstorResult) {
+                    echo json_encode(array(
+                        'code' => 0,
+                        'msg' => ''
+                    ));
+
+                    return ;
+                
+                }
             }
         }
 
@@ -176,21 +188,29 @@ class ProjectController extends AdminController
     {
         $project = D("Project");
 
-        $data = $project->create();
+        $data = $_POST['project'];
+        $data = $project->create($data);
 
-        if ($data) {
+        $inverstor = D("Inverstor");
+        $inverstorData = $inverstor->create($_POST, 2);
+
+        if ($data && $inverstorData) {
             $id = $data['id'];
+            $inverstorId = $_POST['inverstor_id'];
 
             if (!isset($data['is_funding'])) {
                 $data['is_funding'] = 0;
             }
 
-            if ($id > 0) {
+            if ($id > 0 && $inverstorId > 0) {
                 unset($data['id']);
 
                 $result = $project->where(array('id' => intval($id)))->data($data)->save();
+                $inverstorResult = $inverstor->where(array('id' => intval($inverstorId)))
+                    ->data($inverstorData)
+                    ->save();
 
-                if (false !== $result) {
+                if (false !== $result && false !== $inverstorResult) {
                     echo json_encode(array(
                         'code' => 0,
                         'msg' => ''

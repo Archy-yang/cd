@@ -14,6 +14,8 @@ class InverstorModel extends Model
         array('mobile', 'number', '电话格式错误', 0, 11),
         array('profile', 'require', '请填写个人简介'),
         array('project_name', 'require', '请填写项目名称'),
+        array('job', 'require', '请填写职务'),
+        array('company_location', 'require', '请填写所在城市'),
         array('img_name', 'require', '请上传照片'),
         array('company_fund', 'require', '请填写预计投资资金'),
         array('tag', 'require', '请填写项目标签'),
@@ -28,8 +30,6 @@ class InverstorModel extends Model
     );
 
     protected $_auto = array(
-        array('job', '创始人', self::MODEL_INSERT),
-        array('company_location', '北京', self::MODEL_INSERT),
         array('create_time', 'getTime', self::MODEL_INSERT, 'callback'),
     );
 

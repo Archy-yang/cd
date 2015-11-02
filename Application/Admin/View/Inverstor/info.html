@@ -18,7 +18,7 @@
     }
     textarea{
         height:120px;
-        width:320px;
+        width:600px;
     }
     #img-src {
         max-width:100px;
@@ -44,14 +44,19 @@
         <div style="margin-top:20px">
             <form id="myForm">
                 <input name="inverstor_id" type="hidden" value="{$info.id}" />
-                <input name="id" type="hidden" value="{$project.id}" />
+                <input name="project[inverstor_id]" type="hidden" value="{$info.id}" />
+                <input name="project[id]" type="hidden" value="{$project.id}" />
                 <dl class="dl-horizontal">
                     <dt>人物姓名</dt>
-                    <dd>{$info.name} -- <span>{$info.job}</span></dd>
+                    <dd><input class="input-small" name="name" type="text" value="{$info.name}" /> -- <span><input name="job" class="input-small" type="text" value="{$info.job}" /></span></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>联系电话</dt>
-                    <dd>{$info.mobile}</dd>
+                    <dd><input name="mobile" type="text" value="{$info.mobile}" /></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>所在城市</dt>
+                    <dd><input name="company_location" type="text" value="{$info.company_location}" /></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>人物照片</dt>
@@ -61,54 +66,63 @@
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>人物简介</dt>
-                    <dd>{$info.profile}</dd>
+                    <dd><textarea name="profile">{$info.profile}</textarea></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>项目名称</dt>
-                    <dd>{$info.project_name}</dd>
-                    <input name="name" type="hidden" value="{$info.project_name}"/>
+                    <dd><input name="project_name" class="input-xlarge" type="text" value="{$info.project_name}" /></dd>
+                    <input name="project[name]" type="hidden" value="{$info.project_name}"/>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>挂牌方向 </dt>
                     <dd>
                         <span>
-                            {$info.goal}
+                            <input name="goal" type="text" class="input-xlarge" value="{$info.goal}" />
                         </span>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
+                    <dt>项目简介</dt>
+                    <dd>
+                        <span>
+                            <textarea name="project_desc"> {$info.project_desc} </textarea>
+                        </span>
+                        <input name="project[desc]" type="hidden" value="{$info.project_desc}" />
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
                     <dt>
-                        <input class="input-small" name="key_funds" type="text" value="{$project['key_funds']}" placeholder="已备资金">
+                        <input class="input-small" name="project[key_funds]" type="text" value="{$project['key_funds']}" placeholder="已备资金">
                     </dt>
                     <dd>
-                        <input name="funds" type="text" value="{$project['funds']}"/>
+                        <input name="project[funds]" type="text" value="{$project['funds']}"/>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>主类型</dt>
                     <dd>
-                        <input name="main_type" type="text" placeholder="请输入项目主类型" value="{$project.main_type}"/>
+                        <input name="project[main_type]" type="text" placeholder="请输入项目主类型" value="{$project.main_type}"/>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>次类型</dt>
-                    <dd><input name="sub_type" type="text" placeholder="请输入项目次类型" value="{$project.sub_type}"/></dd>
+                    <dd><input name="project[sub_type]" type="text" placeholder="请输入项目次类型" value="{$project.sub_type}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>
-                        <input class="input-small" name="key_recruit" type="text" value="{$project['key_recruit']}" placeholder="人才招募">
+                        <input class="input-small" name="project[key_recruit]" type="text" value="{$project['key_recruit']}" placeholder="人才招募">
                     </dt>
-                    <dd><input name="recruit" type="text" placeholder="请输入项目人才招募" value="{$project.recruit}"/></dd>
+                    <dd><input name="project[recruit]" type="text" placeholder="请输入项目人才招募" value="{$project.recruit}"/></dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>融资情况</dt>
                     <dd>
                         <p>
-                            是否融资：<input id="is-funding" name="is_funding" type="checkbox" value="1" <eq name="project.is_funding" value="1">checked</eq> />
+                            是否融资：<input id="is-funding" name="project[is_funding]" type="checkbox" value="1" <eq name="project.is_funding" value="1">checked</eq> />
                         </p>
                         <p style="margin-top:10px;<neq name='project.is_funding' value='1'>display:none</neq>">
                             融资情况：
-                            <select name="funding" id="funding" onchange="" size="1">
+                            <select name="project[funding]" id="funding" onchange="" size="1">
                                 <option <eq name="project.is_funding" value="0">selected</eq> value="0">天使轮</option>
                                 <option <eq name="project.is_funding" value="1">selected</eq> value="1">A轮</option>
                                 <option <eq name="project.is_funding" value="2">selected</eq> value="2">B轮</option>
@@ -124,8 +138,8 @@
                         <div class="img-sel">
                             <div id="uploadify" class="uploadify"></div>
                             <img src="{$project['img_path']}{$project['img_name']}">
-                            <input name="img_name" id="img-name" type="hidden" value="{$project['img_name']}"/>
-                            <input name="img_path" id="img-path" type="hidden" value="{$project['img_path']}"/>
+                            <input name="project[img_name]" id="img-name" type="hidden" value="{$project['img_name']}"/>
+                            <input name="project[img_path]" id="img-path" type="hidden" value="{$project['img_path']}"/>
                         </div>
                         <p>
                             <span class="remind">建议比例700X300</span>
@@ -136,7 +150,7 @@
                     <dt>标签</dt>
                     <dd>
                         <span>
-                            {$info.tag}
+                            <input name="tag" type="text" class="input-xlarge" value="{$info.tag}" />
                         </span>
                     </dd>
                 </dl>
@@ -144,51 +158,38 @@
                     <dt>公司现状</dt>
                     <dd>
                         <span>
-                            {$info.project_desc}
+                            <textarea name="company_situation">{$info.company_situation}</textarea>
                         </span>
-                        <input name="desc" type="hidden" value="{$info.project_desc}" />
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>项目资源</dt>
                     <dd>
-                        <volist name="info.resource" id="vo">
-                            <notempty name="vo">
-                            <li class="dot">{$vo}</li>
-                            </notempty>
-                        </volist>
+                        <textarea name="resource"> {$info.resource}</textarea>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>项目需求</dt>
                     <dd>
-	                    <volist name="info.need" id="vo">
-                            <notempty name="vo">
-                            <li class="dot">{$vo}</li>
-                            </notempty>
-	                    </volist>
+                        <textarea name="need"> {$info.need}</textarea>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>优先考虑</dt>
                     <dd>
-	                    <volist name="info.prior_need" id="vo">
-                            <notempty name="vo">
-                            <li class="dot">{$vo}</li>
-                            </notempty>
-	                    </volist>
+                        <textarea name="prior_need"> {$info.prior_need}</textarea>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>预计投资资金</dt>
                     <dd>
-                        {$info.company_fund}
+                        <input name="company_fund" type="text" value="{$info.company_fund}" />
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>投资标的</dt>
                     <dd>
-                        {$info.inver_goal}
+                        <input name="inver_goal" type="text" value="{$info.inver_goal}" />
                     </dd>
                 </dl>
             </form>
