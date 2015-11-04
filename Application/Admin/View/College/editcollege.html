@@ -156,9 +156,9 @@
             },
             onUploadSuccess: function(file, data, response) {
                 var  data = $.parseJSON(data);
-                $('#img-b-src').attr("src", data.path+data.name);
-                $('#img-b-name').val(data.name);
-                $('#img-b-path').val(data.path);
+                $('#img-src').attr("src", data.path+data.name);
+                $('#img-name').val(data.name);
+                $('#img-path').val(data.path);
             },
             onQueueComplete: function() {
                 $('.saveform').prop('disabled', false);
